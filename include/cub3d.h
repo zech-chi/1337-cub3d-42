@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 18:11:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:39:02 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ int		ft_strcmp(const char *s1, const char *s2);
 void	ft_valid_name(char *name);
 int		ft_open_file(char *path);
 void	ft_scan_map(t_cub *cub, char *path);
+
+/* malloc */
+void	*allocate_memory_safely(size_t bytes);
+void	ft_free_data(t_cub *cub);
 
 
 /* parsing/parsing.c */

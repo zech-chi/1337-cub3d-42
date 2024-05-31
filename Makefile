@@ -11,7 +11,8 @@ SRCS =  main.c \
 		tools/putstr_fd.c \
 		parsing/parsing.c \
 		tools/strcmp.c \
-		tools/isvalid.c 
+		tools/isvalid.c \
+		tools/openfile.c 
 
 OBJS = $(SRCS:.c=.o)
 

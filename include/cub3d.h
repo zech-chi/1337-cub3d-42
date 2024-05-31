@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:02:31 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:20:05 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <fcntl.h>
 
 # define BUFFER_SIZE 1
 # define SUCCESS 0
 # define FAILED 1
-# define WHITE "\e[1;37m";
+# define WHITE "\e[1;37m"
 # define RED "\e[1;31m"
 # define GREEN "\e[1;32m"
 # define RESET "\e[m"
@@ -56,6 +57,8 @@ char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *str, int fd, int endl, char *color);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isvalidname(char *name);
+int		ft_openfile(char *path);
+
 
 /* parsing/parsing.c */
 int	ft_parsing(int ac, char **av, t_cub *cub);

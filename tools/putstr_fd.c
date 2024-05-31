@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   putstr_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 15:20:40 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/05/31 15:26:02 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/05/31 15:40:32 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
-int	main(int ac, char **av)
+void	ft_putstr_fd(char *str, int fd, int endl, char *color)
 {
-	t_cub	cub;
-
-	if (ft_parsing(ac, av, &cub))
-		return (FAILED);
-	return (0);
+	if (!str)
+		return ;
+	write(fd, color, ft_strlen(color));
+	write(fd, str, ft_strlen(str));
+	if (endl)
+		write(fd, "\n", 1);
+	write(fd, RESET, ft_strlen(RESET));
 }
+

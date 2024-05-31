@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 12:25:54 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:39:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # define BUFFER_SIZE 1
 # define SUCCESS 0
 # define FAILED 1
+# define WHITE "\e[1;37m";
+# define RED "\e[1;31m"
+# define GREEN "\e[1;32m"
+# define RESET "\e[m"
 
 /* cub3d struct */
 typedef struct s_cub {
@@ -47,8 +51,12 @@ int		has_the_end(char *buff, char **line);
 /* get_next_line/get_next_line.c */
 char	*get_next_line(int fd);
 
-/* tools/split.c */
+/* tools */
 char	**ft_split(char const *s, char c);
+void	ft_putstr_fd(char *str, int fd, int endl, char *color);
+
+/* parsing/parsing.c */
+int	ft_parsing(int ac, char **av, t_cub *cub);
 
 
 #endif

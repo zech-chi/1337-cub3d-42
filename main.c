@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 15:20:40 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:58:21 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int ac, char **av)
 {
 	t_cub	cub;
 
-	if (ft_parsing(ac, av, &cub))
-		return (FAILED);
+	ft_parsing(ac, av, &cub);
 	return (0);
 }

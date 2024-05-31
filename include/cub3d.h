@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 17:00:00 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:11:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *str, int fd, int endl, char *color);
 int		ft_strcmp(const char *s1, const char *s2);
-int		ft_isvalidname(char *name);
-int		ft_openfile(char *path);
-char	 **ft_getdata(int fd, t_cub *cub);
+void	ft_valid_name(char *name);
+int		ft_open_file(char *path);
+void	ft_scan_map(t_cub *cub, char *path);
 
 
 /* parsing/parsing.c */
-int		ft_parsing(int ac, char **av, t_cub *cub);
+void	ft_parsing(int ac, char **av, t_cub *cub);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:53:51 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:00:13 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_parsing(int ac, char **av, t_cub *cub)
 	if (ft_isvalidname(av[1]))
 		return (FAILED);
 	fd = ft_openfile(av[1]);
-	// cub->map = ft_getmap(fd);
+	ft_getdata(fd, cub);
 	close(fd);
 	ft_putstr_fd("Good args", 1, 1, GREEN);
 	return (SUCCESS);

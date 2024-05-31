@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 16:43:49 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:00:00 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	ft_putstr_fd(char *str, int fd, int endl, char *color);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_isvalidname(char *name);
 int		ft_openfile(char *path);
-char	 **ft_getmap(int fd);
+char	 **ft_getdata(int fd, t_cub *cub);
 
 
 /* parsing/parsing.c */
-int	ft_parsing(int ac, char **av, t_cub *cub);
+int		ft_parsing(int ac, char **av, t_cub *cub);
 
 
 #endif

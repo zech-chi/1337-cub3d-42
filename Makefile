@@ -9,7 +9,9 @@ SRCS =  main.c \
 		get_next_line/get_next_line.c \
 		tools/split.c \
 		tools/putstr_fd.c \
-		parsing/parsing.c
+		parsing/parsing.c \
+		tools/strcmp.c \
+		tools/isvalid.c 
 
 OBJS = $(SRCS:.c=.o)
 

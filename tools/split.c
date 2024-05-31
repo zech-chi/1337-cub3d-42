@@ -6,11 +6,11 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 11:45:18 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 11:45:46 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:23:54 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "../include/cub3d.h"
 
 static int	count_words(char const *s, char c)
 {

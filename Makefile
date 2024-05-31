@@ -13,7 +13,9 @@ SRCS =  main.c \
 		tools/strcmp.c \
 		tools/isvalid.c \
 		tools/openfile.c \
-		tools/getmap.c
+		tools/getmap.c \
+		tools/strncmp.c \
+		tools/substr.c
 
 OBJS = $(SRCS:.c=.o)
 

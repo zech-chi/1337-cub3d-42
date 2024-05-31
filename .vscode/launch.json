@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/zech-chi/Desktop/1337-cub3d-42/get_next_line",
+      "program": "/Users/zech-chi/Desktop/1337-cub3d-42/get_next_line/build/Debug/outDebug"
+    }
+  ]
+}

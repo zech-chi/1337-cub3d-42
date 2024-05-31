@@ -4,7 +4,7 @@ void	ft_free_matirx(char **matrix)
 {
 	int i;
 
-	if (!(*matrix) || !matrix)
+	if (!matrix)
 		return ;
 	i = -1;
 	while (matrix[++i])

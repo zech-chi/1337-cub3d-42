@@ -12,7 +12,8 @@ SRCS =  main.c \
 		parsing/parsing.c \
 		tools/strcmp.c \
 		tools/isvalid.c \
-		tools/openfile.c 
+		tools/openfile.c \
+		tools/getmap.c
 
 OBJS = $(SRCS:.c=.o)
 

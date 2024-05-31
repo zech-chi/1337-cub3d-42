@@ -1,14 +1,13 @@
-NAME =  cub3D
+NAME = cub3D
 
 CC = cc
 
-# to remove -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-SRCS =  main.c \
-		get_next_line/get_next_line_utils.c \
-		get_next_line/get_next_line.c \
-		tools/split.c
+SRCS = main.c \
+       get_next_line/get_next_line_utils.c \
+       get_next_line/get_next_line.c \
+       tools/split.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -18,7 +17,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $^ -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

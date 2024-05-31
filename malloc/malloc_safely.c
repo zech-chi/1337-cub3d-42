@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-void	*allocate_memory_safely(size_t bytes)
+void	*allocate_memory_safely(size_t bytes, t_cub *cub)
 {
 	void	*ptr;
 
@@ -8,7 +8,8 @@ void	*allocate_memory_safely(size_t bytes)
 	if (!ptr)
 	{
 		ft_putstr_fd("Error: failed to allocate memory", 2, 1,RED);
-		return (NULL);
+		ft_free_data(cub);
+		exit(FAILED);
 	}
 	return (ptr);
 }

@@ -2,5 +2,6 @@
 
 char **ft_getmap(int fd)
 {
-	
+	(void)fd;
+	return (NULL);
 }

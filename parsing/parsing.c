@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 20:51:12 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:47:18 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ void	ft_parsing(int ac, char **av, t_cub *cub)
 	}
 	ft_data_init(cub);
 	ft_valid_name(av[1]);
-	ft_scan_map(cub, av[1]);
-	ft_display_linked_list(cub);
+	ft_scan_file(cub, av[1]);
 	ft_create_map(cub);
-	if (ft_is_valid_map(cub))
+	if (ft_scan_map(cub))
 		exit(1);
 	ft_putstr_fd("Good args", 1, 1, GREEN);
 }

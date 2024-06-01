@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 12:08:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 20:39:00 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:49:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 void	ft_display_map(t_cub *cub)
 {
-	int	r;
+	int r;
 
+	if (!cub->map)
+		return ;
+
+	printf("------------------------------\n");
 	r = 0;
-	while (cub->map[r])
+	while (r < cub->rows)
 		printf("%s\n", cub->map[r++]);
+	printf("------------------------------\n");
 }
 
 void    ft_display(t_cub *cub)
@@ -35,7 +40,5 @@ void    ft_display(t_cub *cub)
 		printf("C [%d, %d, %d]\n", cub->cc[0], cub->cc[1], cub->cc[2]);
 	else
 		printf("C is empty\n");
-	printf("-------------------------------------\n");
 	ft_display_map(cub);
-	printf("-------------------------------------\n");
 }

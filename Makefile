@@ -20,6 +20,8 @@ SRCS =  main.c \
 		tools/substr.c \
 		parsing/get_color.c \
 		parsing/parsing.c \
+		parsing/scan_file.c \
+		parsing/create_map.c \
 		parsing/scan_map.c \
 		parsing/create_map.c \
 		parsing/is_valid_map.c \

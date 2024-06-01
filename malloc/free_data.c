@@ -22,6 +22,7 @@ void	ft_free_list(t_list **head)
 	{
 		ptr = (*head);
 		(*head) = (*head)->next;
+		free(ptr->content);
 		free(ptr);
 	}
 }

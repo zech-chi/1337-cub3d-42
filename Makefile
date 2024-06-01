@@ -21,6 +21,8 @@ SRCS =  main.c \
 		parsing/get_color.c \
 		parsing/parsing.c \
 		parsing/scan_map.c \
+		parsing/create_map.c \
+		parsing/is_valid_map.c \
 		linked_list/ft_lstadd_back.c
 
 OBJS = $(SRCS:.c=.o)

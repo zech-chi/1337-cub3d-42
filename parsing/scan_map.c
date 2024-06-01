@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 10:34:47 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 13:05:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:48:16 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,99 @@ int	ft_scan_line_part1(t_cub *cub, char *line)
 
 	return (FAILED);
 }
+/*part 2*/
+int	ft_check_internal_char(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
+			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
+			&& line[i] != '\n' && line[i] != ' ')
+			return (FAILED);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+int	ft_check_content_line(char* line, int *check)
+{
+	if ((*line == '\n' || ft_is_full_spaces(line)) && (*check))
+		return (FAILED);
+	if (ft_check_internal_char(line))
+		return (FAILED);
+	return (SUCCESS);
+}
+
+int	ft_scan_line_part2(t_cub *cub, char *line, int *check)
+{
+	t_list* new_node;
+
+	if (line[ft_strlen(line) - 1] == '\n')
+		line [ft_strlen(line) - 1] = '\0';
+	if (*line == '\0')
+		return (SUCCESS);
+	if (ft_check_content_line(line, check))
+		return (FAILED);
+	(*check) = 1;
+	new_node = ft_lstnew(line);
+	if (!new_node)
+		return (FAILED);
+	ft_lstadd_back(&(cub->head), new_node);
+	return (SUCCESS);
+}
+
+void	ft_set_rows_cols(t_cub *cub)
+{
+	size_t 	max_len;
+	t_list	*tmp;
+
+	tmp = cub->head;
+	cub->rows = ft_lstsize(tmp);
+	max_len = 0;
+	while (tmp)
+	{
+		printf("%s->%zu\n", tmp->content, ft_strlen(tmp->content));
+		if (max_len < ft_strlen(tmp->content))
+			max_len = ft_strlen(tmp->content);
+		tmp = tmp->next;
+	}
+	cub->cols = max_len;
+}
+/*part 2*/
 
 void	ft_scan_map(t_cub *cub, char *path)
 {
-	int		fd;
-	char	*line;
+	int	check;
 
-	fd = ft_open_file(path);
-	line = get_next_line(fd);
-	while (line)
+	cub->fd = ft_open_file(path);
+	cub->line = get_next_line(cub->fd);
+	check = 0;
+	while (cub->line)
 	{
 		if (ft_part1_full(cub))
 		{
-			if (ft_scan_line_part2(cub, line)) // todo
+			if (ft_scan_line_part2(cub, cub->line, &check)) // todo
 			{
 				ft_putstr_fd("Error: Invalid map", 2, 1, RED);
-				free(line);
 				ft_free_data(cub);
-				close(fd);
 				exit(FAILED);
 			}
 		}
 		else
 		{
-			if (ft_scan_line_part1(cub, line))
+			if (ft_scan_line_part1(cub, cub->line))
 			{
 				ft_putstr_fd("Error: Invalid map", 2, 1, RED);
-				free(line);
 				ft_free_data(cub);
-				close(fd);
 				exit(FAILED);
 			}
 		}
-		free(line);
-		line = get_next_line(fd);
+		free(cub->line);
+		cub->line = get_next_line(cub->fd);
 	}
-	close(fd);
+	close(cub->fd);
+	ft_set_rows_cols(cub);
 }

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:19:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 22:22:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:19:09 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*help(void)
 	return (ptr);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	size;
 	size_t	i;

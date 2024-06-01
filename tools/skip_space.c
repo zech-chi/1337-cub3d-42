@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   skip_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 12:17:05 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/06/01 10:31:15 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/06/01 10:31:47 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
-int	main(int ac, char **av)
+void	ft_skip_space(char *str, int *i)
 {
-	t_cub	cub;
-
-	ft_parsing(ac, av, &cub);
-	ft_display(&cub);
-	return (0);
+	if (!str)
+		return ;
+	while (str[*i] == ' ')
+		(*i)++;
 }

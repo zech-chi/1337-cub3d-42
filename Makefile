@@ -5,17 +5,22 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRCS =  main.c \
+		to_remove/display.c \
 		get_next_line/get_next_line_utils.c \
 		get_next_line/get_next_line.c \
-		tools/split.c \
-		tools/putstr_fd.c \
-		parsing/parsing.c \
-		tools/strcmp.c \
+		malloc/free_data.c \
+		malloc/malloc_safely.c \
 		tools/isvalid.c \
 		tools/openfile.c \
-		tools/getmap.c \
+		tools/putstr_fd.c \
+		tools/skip_space.c \
+		tools/split.c \
+		tools/strcmp.c \
 		tools/strncmp.c \
-		tools/substr.c
+		tools/substr.c \
+		parsing/get_color.c \
+		parsing/parsing.c \
+		parsing/scan_map.c
 
 OBJS = $(SRCS:.c=.o)
 

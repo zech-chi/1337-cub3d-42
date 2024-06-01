@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 22:20:09 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:07:31 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 /* cub3d struct */
 typedef struct s_cub {
 	char	**map;
+	char	*line;
 	char	*no;
 	char	*so;
 	char	*we;
@@ -40,6 +41,8 @@ typedef struct s_cub {
 	int		cols;
 	int		pr;
 	int		pc;
+	int		fd;
+	t_list	*head;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -60,15 +63,22 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_valid_name(char *name);
 int		ft_open_file(char *path);
 void	ft_scan_map(t_cub *cub, char *path);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+void	ft_skip_space(char *str, int *i);
 
 /* malloc */
-void	*allocate_memory_safely(size_t bytes);
+void	*allocate_memory_safely(size_t bytes, t_cub *cub);
 void	ft_free_data(t_cub *cub);
 
 
 /* parsing/parsing.c */
 void	ft_parsing(int ac, char **av, t_cub *cub);
+int		*ft_get_color(char *line, t_cub *cub);
+int		ft_set_color(t_cub *cub, int **color, char *line , int *i);
 
+
+
+/*to remove*/
+void    ft_display(t_cub *cub);
 
 #endif

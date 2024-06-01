@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:05:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 14:42:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:29:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_create_map(t_cub *cub)
 	char	*a;
 	char	*b;
 
-	if (!cub->head || !(*(cub->head)))
+	if (!cub->head)
 		return ;
-	cub->map = allocate_memory_safely(sizeof(char *) * (cub->rows + 1));
+	cub->map = allocate_memory_safely(sizeof(char *) * (cub->rows + 1), cub);
 	r = 0;
 	node = cub->head;
 	while (node)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 15:40:32 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/01 21:25:36 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_valid_name(char *name);
 int		ft_open_file(char *path);
-void	ft_scan_map(t_cub *cub, char *path);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 void	ft_skip_space(char *str, int *i);
 
@@ -82,6 +81,9 @@ void	ft_free_data(t_cub *cub);
 void	ft_parsing(int ac, char **av, t_cub *cub);
 int		*ft_get_color(char *line, t_cub *cub);
 int		ft_set_color(t_cub *cub, int **color, char *line , int *i);
+void	ft_scan_file(t_cub *cub, char *path);
+void	ft_create_map(t_cub *cub);
+int		ft_scan_map(t_cub *cub);
 
 /*linked_list*/
 t_list	*ft_lstnew(void *content);

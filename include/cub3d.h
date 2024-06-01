@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 13:07:31 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:40:32 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define RESET "\e[m"
 
 /* cub3d struct */
+
+typedef struct s_list
+{
+	char 			*content;
+	struct s_list* 	next;
+}	t_list;
+
 typedef struct s_cub {
 	char	**map;
 	char	*line;
@@ -37,12 +44,12 @@ typedef struct s_cub {
 	char	*ea;
 	int		*cf;
 	int		*cc;
+	t_list	*head;
 	int		rows;
 	int		cols;
 	int		pr;
 	int		pc;
 	int		fd;
-	t_list	*head;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -76,8 +83,11 @@ void	ft_parsing(int ac, char **av, t_cub *cub);
 int		*ft_get_color(char *line, t_cub *cub);
 int		ft_set_color(t_cub *cub, int **color, char *line , int *i);
 
-
-
+/*linked_list*/
+t_list	*ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+void	ft_display_list(t_list *head) ;// to remove 
 /*to remove*/
 void    ft_display(t_cub *cub);
 

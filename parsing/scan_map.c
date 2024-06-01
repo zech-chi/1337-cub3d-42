@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 10:34:47 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 15:49:08 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/01 16:48:16 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int	ft_scan_line_part2(t_cub *cub, char *line, int *check)
 
 	if (line[ft_strlen(line) - 1] == '\n')
 		line [ft_strlen(line) - 1] = '\0';
+	if (*line == '\0')
+		return (SUCCESS);
 	if (ft_check_content_line(line, check))
 		return (FAILED);
 	(*check) = 1;

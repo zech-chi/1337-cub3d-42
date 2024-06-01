@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 18:02:04 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 18:23:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:45:59 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_scan_map(t_cub *cub, char *path)
 	char	*line;
 
 	fd = ft_open_file(path);
-
-	
 	close(fd);
 	return (NULL);
 }

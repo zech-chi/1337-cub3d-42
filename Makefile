@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 SRCS =  main.c \
 		to_remove/display.c \
@@ -21,7 +21,7 @@ SRCS =  main.c \
 		parsing/get_color.c \
 		parsing/parsing.c \
 		parsing/scan_map.c \
-		linked_list/ft_lstadd_back.c
+		linked_list/linked_list.c
 
 OBJS = $(SRCS:.c=.o)
 

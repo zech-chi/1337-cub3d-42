@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_data.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
+/*   Updated: 2024/06/02 14:58:14 by zelabbas         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 void	ft_free_matirx(char **matrix)
 {
-	int i;
+	int	i;
 
 	if (!matrix)
 		return ;
@@ -14,7 +26,7 @@ void	ft_free_matirx(char **matrix)
 
 void	ft_free_list(t_list **head)
 {
-	t_list *ptr;
+	t_list	*ptr;
 
 	if (!head)
 		return ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:38 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 10:28:47 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:30:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	ft_set_rows_cols(t_cub *cub)
 	max_len = 0;
 	while (tmp)
 	{
-		printf("%s->%zu\n", tmp->content, ft_strlen(tmp->content));
+		// printf("%s->%zu\n", tmp->content, ft_strlen(tmp->content));
 		if (max_len < ft_strlen(tmp->content))
 			max_len = ft_strlen(tmp->content);
 		tmp = tmp->next;

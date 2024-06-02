@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 22:46:32 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 12:48:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:36:16 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,13 @@ int *ft_get_color(char *line, t_cub *cub)
 
 int	ft_set_color(t_cub *cub, int **color, char *line , int *i)
 {
+	int	j;
+
 	(*i)++;
+	j = *i;
+	ft_skip_space(line, i);
+	if (j == (*i))
+		return (FAILED);
 	*color = ft_get_color(line + (*i), cub);
 	if (!(*color))
 		return (FAILED);

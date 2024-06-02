@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:38 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 10:13:16 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/02 10:28:47 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	ft_set_coordonates_textures(char **texture, char *line, int *i)
 {
+	int j;
+
 	(*i) += 2;
+	j = *i;
 	ft_skip_space(line, i);
+	if (j == (*i))
+		return (FAILED);
 	*texture = ft_substr(line, *i, ft_strlen(line) - (*i) - 1);
 	if (!(*texture))
 		return (FAILED);

@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 15:14:34 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:47:27 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,16 @@ int		ft_set_color(t_cub *cub, int **color, char *line, int *i);
 void	ft_scan_file(t_cub *cub, char *path);
 void	ft_create_map(t_cub *cub);
 int		ft_scan_map(t_cub *cub);
+
+/* parsing/scan_file.c*/
+int		ft_part1_full(t_cub *cub);
+
+/* parsing/scan_line_1&2.c*/
+void	ft_scan_line(t_cub *cub, int *check);
+int		ft_is_full_spaces(char *line);
+int		ft_is_full_spaces_newline(char *line);
+int		ft_check_content_line(char *line, int *check);
+int		ft_set_coordonates_textures(char **texture, char *line, int *i);
 
 /*linked_list*/
 t_list	*ft_lstnew(void *content);

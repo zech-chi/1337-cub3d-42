@@ -1,12 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/02 14:30:08 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/06/02 14:30:09 by zech-chi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
+	char	*line;
 
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
+	line = content;
+	if (line[ft_strlen(line) - 1] == '\n')
+		line [ft_strlen(line) - 1] = '\0';
 	new->content = ft_strdup(content);
 	new->next = NULL;
 	return (new);

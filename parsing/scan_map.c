@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 10:34:47 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 16:48:16 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:32:50 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,26 @@ int	ft_set_coordonates_textures(char **texture, char *line, int *i)
 
 int	ft_part1_full(t_cub *cub)
 {
+	if (cub->ea)
+	{
+		if (*(cub->ea) == '\0')
+			return (0);
+	}
+	if (cub->we)
+	{
+		if (*(cub->we) == '\0')
+			return (0);
+	}
+	if (cub->so)
+	{
+		if (*(cub->so) == '\0')
+			return (0);
+	}
+	if (cub->no)
+	{
+		if (*(cub->no) == '\0')
+			return (0);
+	}
 	return (cub->we && cub->ea && cub->so && cub->no && cub->cf && cub->cc);
 }
 
@@ -77,26 +97,29 @@ int	ft_check_internal_char(char *line)
 	}
 	return (SUCCESS);
 }
+int	ft_is_full_spaces_newline(char *line)
+{
+	while (*line == ' ' || *line == '\n')
+		line++;
+	return (*line == '\0');
+}
 
 int	ft_check_content_line(char* line, int *check)
 {
-	if ((*line == '\n' || ft_is_full_spaces(line)) && (*check))
+	if ((*line == '\n' || ft_is_full_spaces_newline(line)) && (*check))
 		return (FAILED);
 	if (ft_check_internal_char(line))
 		return (FAILED);
 	return (SUCCESS);
 }
-
 int	ft_scan_line_part2(t_cub *cub, char *line, int *check)
 {
 	t_list* new_node;
 
-	if (line[ft_strlen(line) - 1] == '\n')
-		line [ft_strlen(line) - 1] = '\0';
-	if (*line == '\0')
-		return (SUCCESS);
 	if (ft_check_content_line(line, check))
 		return (FAILED);
+	if (ft_is_full_spaces_newline(line) && !(*check))
+		return (SUCCESS);
 	(*check) = 1;
 	new_node = ft_lstnew(line);
 	if (!new_node)
@@ -135,7 +158,7 @@ void	ft_scan_map(t_cub *cub, char *path)
 	{
 		if (ft_part1_full(cub))
 		{
-			if (ft_scan_line_part2(cub, cub->line, &check)) // todo
+			if (ft_scan_line_part2(cub, cub->line, &check))
 			{
 				ft_putstr_fd("Error: Invalid map", 2, 1, RED);
 				ft_free_data(cub);

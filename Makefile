@@ -18,10 +18,12 @@ SRCS =  main.c \
 		tools/strcmp.c \
 		tools/strncmp.c \
 		tools/substr.c \
+		parsing/create_map.c \
 		parsing/get_color.c \
 		parsing/parsing.c \
 		parsing/scan_file.c \
-		parsing/create_map.c \
+		parsing/scan_line_1.c \
+		parsing/scan_line_2.c \
 		parsing/scan_map.c \
 		linked_list/ft_lstadd_back.c
 

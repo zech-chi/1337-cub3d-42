@@ -6,13 +6,13 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:04:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 15:27:02 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:31:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_scan_line_part1(t_cub *cub, char *line)
+static int	ft_scan_line_part1(t_cub *cub, char *line)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ int	ft_scan_line_part1(t_cub *cub, char *line)
 	return (FAILED);
 }
 
-int	ft_scan_line_part2(t_cub *cub, char *line, int *check)
+static int	ft_scan_line_part2(t_cub *cub, char *line, int *check)
 {
 	t_list	*new_node;
 

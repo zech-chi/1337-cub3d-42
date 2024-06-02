@@ -6,27 +6,13 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:09:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 15:11:43 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/02 15:34:33 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_is_full_spaces(char *line)
-{
-	while (*line == ' ')
-		line++;
-	return (*line == '\0');
-}
-
-int	ft_is_full_spaces_newline(char *line)
-{
-	while (*line == ' ' || *line == '\n')
-		line++;
-	return (*line == '\0');
-}
-
-int	ft_check_internal_char(char *line)
+static int	ft_check_internal_char(char *line)
 {
 	int	i;
 
@@ -40,6 +26,20 @@ int	ft_check_internal_char(char *line)
 		i++;
 	}
 	return (SUCCESS);
+}
+
+int	ft_is_full_spaces(char *line)
+{
+	while (*line == ' ')
+		line++;
+	return (*line == '\0');
+}
+
+int	ft_is_full_spaces_newline(char *line)
+{
+	while (*line == ' ' || *line == '\n')
+		line++;
+	return (*line == '\0');
 }
 
 int	ft_check_content_line(char *line, int *check)

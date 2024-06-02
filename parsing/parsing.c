@@ -6,25 +6,11 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 21:47:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:57:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	ft_display_linked_list(t_cub *cub)
-{
-	t_list	*node;
-
-	node = cub->head;
-	printf("#####################################\n");
-	while (node)
-	{
-		printf("%s\n", node->content);
-		node = node->next;
-	}
-	printf("#####################################\n");
-}
 
 static void	ft_data_init(t_cub *cub)
 {

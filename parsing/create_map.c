@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:05:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 21:46:33 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:49:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static char	*ft_spaces(int n)
 	spaces[i] = 0;
 	return (spaces);
 }
-
-
 
 void	ft_create_map(t_cub *cub)
 {

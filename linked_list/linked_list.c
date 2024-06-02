@@ -3,10 +3,14 @@
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
+	char	*line;
 
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!new)
 		return (NULL);
+	line = content;
+	if (line[ft_strlen(line) - 1] == '\n')
+		line [ft_strlen(line) - 1] = '\0';
 	new->content = ft_strdup(content);
 	new->next = NULL;
 	return (new);

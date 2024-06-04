@@ -6,13 +6,14 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 15:38:28 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/04 21:35:39 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -35,6 +36,12 @@ typedef struct s_list
 	struct s_list* 	next;
 }	t_list;
 
+typedef struct s_mlx {
+	mlx_t	*mlx_ptr;
+	void	*mlx_win;
+	void	*mlx_img;
+}	t_mlx;
+
 typedef struct s_cub {
 	char	**map;
 	char	*line;
@@ -50,6 +57,7 @@ typedef struct s_cub {
 	int		pr;
 	int		pc;
 	int		fd;
+	t_mlx	mlx;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */

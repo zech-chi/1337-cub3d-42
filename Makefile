@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS =  main.c \
 		to_remove/display.c \
@@ -32,12 +32,12 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o: %.c include/cub3d.h
-	@$(CC) $(CFLAGS) -c $< -o $@ && \
+	@$(CC) $(CFLAGS) -c $< -o $@  && \
 	echo "compilation file name $< done ✅" || \
 	(echo "compilation of $< failed ❌" && exit 1)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@ && \
+	@$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/zech-chi/.brew/opt/glfw/lib/" && \
 	echo "create executable file ${NAME} done ✅" || \
 	(echo "create executable file ${NAME} failed ❌" && exit 1)
 

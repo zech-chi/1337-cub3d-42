@@ -37,7 +37,7 @@ all: $(NAME)
 	(echo "compilation of $< failed ❌" && exit 1)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/zech-chi/.brew/opt/glfw/lib/" && \
+	@$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" && \
 	echo "create executable file ${NAME} done ✅" || \
 	(echo "create executable file ${NAME} failed ❌" && exit 1)
 

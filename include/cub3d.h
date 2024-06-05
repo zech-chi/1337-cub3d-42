@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/04 21:35:39 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:48:55 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ typedef struct s_list
 }	t_list;
 
 typedef struct s_mlx {
-	mlx_t	*mlx_ptr;
-	void	*mlx_win;
-	void	*mlx_img;
+	mlx_t			*mlx_ptr;
+	void			*mlx_win;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*we;
+	mlx_texture_t	*ea;
+	mlx_image_t		*image;
 }	t_mlx;
 
 typedef struct s_cub {

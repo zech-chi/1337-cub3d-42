@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/05 10:48:55 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:08:31 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define RED "\e[1;31m"
 # define GREEN "\e[1;32m"
 # define RESET "\e[m"
+# define Tile_minimap 10
 
 /* cub3d struct */
 

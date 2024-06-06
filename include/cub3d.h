@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/05 18:08:31 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:19:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <math.h>
 
 # define BUFFER_SIZE 1
 # define SUCCESS 0
@@ -47,22 +48,37 @@ typedef struct s_mlx {
 	mlx_image_t		*image;
 }	t_mlx;
 
+typedef struct s_player
+{
+	int		r;
+	int		c;
+	int		turn;
+	int		walk;
+	int		player_color;
+	int		ray_color;
+	char	sens;
+	double	radius;
+	double	rot_angle;
+	double	rot_speed;
+	double	move_speed;
+}	t_player;
+
 typedef struct s_cub {
-	char	**map;
-	char	*line;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		*cf;
-	int		*cc;
-	t_list	*head;
-	int		rows;
-	int		cols;
-	int		pr;
-	int		pc;
-	int		fd;
-	t_mlx	mlx;
+	char		**map;
+	char		*line;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	int			*cf;
+	int			*cc;
+	int			pixel;
+	int			rows;
+	int			cols;
+	int			fd;
+	t_list		*head;
+	t_mlx		mlx;
+	t_player	player;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -115,5 +131,12 @@ int		ft_lstsize(t_list *lst);
 void	ft_display_list(t_list *head) ;// to remove 
 /*to remove*/
 void    ft_display(t_cub *cub);
+
+/* player */
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void	ft_player_init(t_cub *cub);
+void	ft_draw_player(t_cub *cub);
+void	ft_draw_ray(t_cub *cub, double alpha);
+/* the end */
 
 #endif

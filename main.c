@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/05 20:40:52 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:20:52 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void ft_putpixel(t_cub *cub, int r, int c, uint32_t color)
     //     return;
     // }
 
-    for (int i = r; i < r + 10; i++)
+    for (int i = r; i < r + cub->pixel; i++)
     {
-        for (int j = c; j < c + 10; j++)
+        for (int j = c; j < c + cub->pixel; j++)
         {
             mlx_put_pixel(cub->mlx.image, j, i, color);
         }
@@ -53,45 +53,14 @@ void ft_hook(void* param)
 		cub->mlx.image->instances[0].x += 5;
 }
 
-void draw_circle(t_cub *cub, int x0, int y0, int radius, int color)
-{
-    int x = radius;
-    int y = 0;
-    int err = 0;
-
-    while (x >= y)
-    {
-        mlx_put_pixel(cub->mlx.image, x0 + x, y0 + y, color);
-        mlx_put_pixel(cub->mlx.image, x0 + y, y0 + x, color);
-        mlx_put_pixel(cub->mlx.image, x0 - y, y0 + x, color);
-        mlx_put_pixel(cub->mlx.image, x0 - x, y0 + y, color);
-        mlx_put_pixel(cub->mlx.image, x0 - x, y0 - y, color);
-        mlx_put_pixel(cub->mlx.image, x0 - y, y0 - x, color);
-        mlx_put_pixel(cub->mlx.image, x0 + y, y0 - x, color);
-        mlx_put_pixel(cub->mlx.image, x0 + x, y0 - y, color);
-
-        if (err <= 0)
-        {
-            y += 1;
-            err += 2 * y + 1;
-        }
-        if (err > 0)
-        {
-            x -= 1;
-            err -= 2 * x + 1;
-        }
-    }
-}
-
-
 void	ft_build_map(t_cub *cub)
 {
-	if (!(cub->mlx.mlx_ptr = mlx_init(50 * cub->cols, 50 * cub->rows, "ziko^2", false)))
+	if (!(cub->mlx.mlx_ptr = mlx_init(cub->pixel * cub->cols, cub->pixel * cub->rows, "ziko^2", false)))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return ;
 	}
-	cub->mlx.image = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * Tile_minimap, cub->rows * Tile_minimap);
+	cub->mlx.image = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel, cub->rows * cub->pixel);
     if (!cub->mlx.image)
     {
         puts(mlx_strerror(mlx_errno));
@@ -109,16 +78,16 @@ void	ft_build_map(t_cub *cub)
 		for (int c = 0; c < cub->cols; c++)
 		{
 			if (cub->map[r][c] == ' ')
-				ft_putpixel(cub, 10 * r, 10 * c, ft_pixel(233, 89,10,255));
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(233, 89,10,255));
 			else if (cub->map[r][c] == '1')
-				ft_putpixel(cub, 10 * r, 10 * c, ft_pixel(0,255,0,255));
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,255,0,255));
 			else if (cub->map[r][c] == '0')
-				ft_putpixel(cub, 10 * r, 10 * c, ft_pixel(0,0,0,255));
-			else
-				 draw_circle(cub, 10 * c + 5 , 10 * r + 5 , 5, ft_pixel(255, 0, 0, 255));
-				// Draws a circle centered at (10*c + 5, 10*r + 5) with a radius of 5
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,0,0,255));
 		}
 	}
+	ft_putpixel(cub, cub->player.r - cub->pixel * 0.5, cub->player.c - cub->pixel * 0.5, ft_pixel(0,0,0,255));
+	ft_draw_ray(cub, M_PI / 6);
+	ft_draw_player(cub);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
@@ -131,7 +100,8 @@ int	main(int ac, char **av)
 	ft_parsing(ac, av, &cub);
 	ft_display(&cub);
 	ft_build_map(&cub);
-	// ft_loadimg(cub);
+
+    // ft_loadimg(cub);
 	// ft_display_list(cub.head);
 	// printf("\n--------------------------------\n");
 	// printf("rows:%d, colos:%d", cub.rows, cub.cols);

@@ -25,11 +25,13 @@ SRCS =  main.c \
 		parsing/scan_line_1.c \
 		parsing/scan_line_2.c \
 		parsing/scan_map.c \
-		linked_list/ft_lstadd_back.c
+		linked_list/ft_lstadd_back.c \
+		player/player_setup.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+
+all: $(NAME) clean ## haywaa
 
 %.o: %.c include/cub3d.h
 	@$(CC) $(CFLAGS) -c $< -o $@  && \

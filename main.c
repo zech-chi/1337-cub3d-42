@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/06 17:20:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:48:05 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	ft_build_map(t_cub *cub)
 		}
 	}
 	ft_putpixel(cub, cub->player.r - cub->pixel * 0.5, cub->player.c - cub->pixel * 0.5, ft_pixel(0,0,0,255));
-	ft_draw_ray(cub, M_PI / 6);
+	// ft_draw_ray(cub, 3 * M_PI / 2);
+	ft_draw_rays(cub, M_PI , 3 * M_PI / 2);
 	ft_draw_player(cub);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);

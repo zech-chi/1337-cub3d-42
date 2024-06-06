@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_setup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/06 17:20:07 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:57:28 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_draw_player(t_cub *cub)
 	int	y;
 
 	y = cub->player.r - cub->player.radius;
-
 	while (y < cub->player.r + cub->player.radius)
 	{
 		x = cub->player.c - cub->player.radius;
@@ -32,39 +31,39 @@ void	ft_draw_player(t_cub *cub)
 	}
 }
 
-void	ft_bresenham_line(int x1, int y1, int x2, int y2, t_cub *cub)
-{
-	int	dx;
-	int	dy;
-	int	sens_x;
-	int	sens_y;
-	int	err;
+// void	ft_bresenham_line(int x1, int y1, int x2, int y2, t_cub *cub)
+// {
+// 	int	dx;
+// 	int	dy;
+// 	int	sens_x;
+// 	int	sens_y;
+// 	int	err;
 
-	dx = abs(x2 - x1);
-	dy = abs(y2 - y1);
-	sens_x = 1 - 2 * (x1 > x2);
-	sens_y = 1 - 2 * (y1 > y2);
-	err = dy - dx;
-	while (1)
-	{
-		printf("target -> (%d, %d)\n", x1, y1);
-		if (x1 < 0 || y1 < 0)
-			break;
-		mlx_put_pixel(cub->mlx.image, x1, y1, cub->player.player_color);
-		if (x1 == x2 && y1 == y2)
-			break;
-		if (2 * err > -dx)
-		{
-			err -= dx;
-			y1 += sens_y;
-		}
-		if (2 * err < dy)
-		{
-			err += dy;
-			x1 += sens_x;
-		}
-	}
-}
+// 	dx = abs(x2 - x1);
+// 	dy = abs(y2 - y1);
+// 	sens_x = 1 - 2 * (x1 > x2);
+// 	sens_y = 1 - 2 * (y1 > y2);
+// 	err = dy - dx;
+// 	while (1)
+// 	{
+// 		printf("target -> (%d, %d)\n", x1, y1);
+// 		if (x1 < 0 || y1 < 0)
+// 			break;
+// 		mlx_put_pixel(cub->mlx.image, x1, y1, cub->player.player_color);
+// 		if (x1 == x2 && y1 == y2)
+// 			break;
+// 		if (2 * err > -dx)
+// 		{
+// 			err -= dx;
+// 			y1 += sens_y;
+// 		}
+// 		if (2 * err < dy)
+// 		{
+// 			err += dy;
+// 			x1 += sens_x;
+// 		}
+// 	}
+// }
 // int	x;
 	// int	y;
 
@@ -101,6 +100,15 @@ void	ft_draw_ray(t_cub *cub, double alpha)
 		else
 			mlx_put_pixel(cub->mlx.image, x, y, cub->player.player_color);
 		distance++;
+	}
+}
+
+void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle)
+{
+	while (start_angle <= end_angle)
+	{
+		ft_draw_ray(cub, start_angle);
+		start_angle += start_angle * 0.001;
 	}
 }
 

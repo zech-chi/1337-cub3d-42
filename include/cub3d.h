@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/06 17:19:02 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:35:15 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	ft_player_init(t_cub *cub);
 void	ft_draw_player(t_cub *cub);
 void	ft_draw_ray(t_cub *cub, double alpha);
+void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle);
 /* the end */
 
 #endif

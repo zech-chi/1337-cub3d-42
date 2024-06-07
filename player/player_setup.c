@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/07 21:52:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:23:39 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_iswall(t_cub *cub, int x, int y, double alpha)
 		return (1);
 	if (ft_between(alpha, M_PI, 3 * M_PI / 2)  && cub->map[r - 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
 		return (1);
-	if (ft_between(alpha, M_PI / 2, M_PI)  && cub->map[r + 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
+	if (ft_between(alpha, M_PI / 2, M_PI) && cub->map[r + 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
 		return (1);
 	(void)alpha;
 	return (0);
@@ -125,6 +125,6 @@ void	ft_player_init(t_cub *cub)
 		cub->player.rot_angle = 0;
 	else if (cub->player.sens == 'S')
 		cub->player.rot_angle = (3 * M_PI) / 2;
-	cub->player.move_speed = 5;
+	cub->player.move_speed = 3;
 	cub->player.rot_speed = 2 * (M_PI / 180);
 }

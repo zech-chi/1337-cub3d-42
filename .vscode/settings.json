@@ -2,6 +2,7 @@
 	"C_Cpp.errorSquiggles": "disabled",
 	"files.associations": {
 		"cub3d.h": "c",
-		"mlx42.h": "c"
+		"mlx42.h": "c",
+		"__locale": "c"
 	}
 }

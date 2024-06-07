@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/07 21:17:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:37:15 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_render_mini_map(t_cub *cub)
 	ft_draw_player(cub);
 }
 
-int	ft_iswall2(t_cub *cub, int x, int y)
+int	ft_iswall2(t_cub *cub, int x, int y, double alpha)
 {
 	int	r;
 	int	c;
@@ -66,10 +66,21 @@ int	ft_iswall2(t_cub *cub, int x, int y)
 
 	r = y / cub->pixel;
 	c = x / cub->pixel;
-	pr = cub->player.r;
-	pc = cub->player.c;
+	pr = cub->player.r / cub->pixel;
+	pc = cub->player.c / cub->pixel;
+	if (r == pr && c == pc)
+		return (0);
 	if (r < 0 || c < 0 || r > cub->rows || c > cub->cols || cub->map[r][c] == '1' || cub->map[r][c] == ' ')
 		return (1);
+	if (ft_between(alpha, 0, M_PI / 2) && cub->map[r + 1][c] == '1' && cub->map[r][c - 1] == '1')
+		return (1);
+	if (ft_between(alpha, 3 * M_PI / 2, 2 * M_PI) && cub->map[r - 1][c] == '1' && cub->map[r][c - 1] == '1')
+		return (1);
+	if (ft_between(alpha, M_PI, 3 * M_PI / 2) && cub->map[r - 1][c] == '1' && cub->map[r][c + 1] == '1')
+		return (1);
+	if (ft_between(alpha, M_PI / 2, M_PI) && cub->map[r + 1][c] == '1' && cub->map[r][c + 1] == '1')
+		return (1);
+	(void)alpha;
 	return (0);
 }
 
@@ -86,7 +97,7 @@ void ft_hook(void* param)
 	{
 		a = cub->player.move_speed * cos(cub->player.rot_angle);
 		b = -1 * cub->player.move_speed * sin(cub->player.rot_angle);
-		if (!ft_iswall2(cub, cub->player.c + 3 * a, cub->player.r + 3 * b))
+		if (!ft_iswall2(cub, cub->player.c + 2 * a, cub->player.r + 2 * b, cub->player.rot_angle))
 		{
 			cub->player.r += b;
 			cub->player.c += a;
@@ -96,7 +107,21 @@ void ft_hook(void* param)
 	{
 		a = -1 * cub->player.move_speed * cos(cub->player.rot_angle);
 		b = cub->player.move_speed * sin(cub->player.rot_angle);
-		if (!ft_iswall2(cub, cub->player.c + 3 * a, cub->player.r + 3 * b))
+		if (
+			(
+				ft_between(cub->player.rot_angle, 0, M_PI / 2) && \
+				!ft_iswall2(cub, cub->player.c + 2 * a, cub->player.r + 2 * b, cub->player.rot_angle + M_PI)
+			) || (
+				ft_between(cub->player.rot_angle, M_PI, 3 * M_PI / 2) && \
+				!ft_iswall2(cub, cub->player.c + 2 * a, cub->player.r + 2 * b, cub->player.rot_angle - M_PI)
+			) || (
+				ft_between(cub->player.rot_angle, M_PI / 2, M_PI) && \
+				!ft_iswall2(cub, cub->player.c + 2 * a, cub->player.r + 2 * b, cub->player.rot_angle + M_PI)
+			) || (
+				ft_between(cub->player.rot_angle, 3 * M_PI / 2, 2 * M_PI) && \
+				!ft_iswall2(cub, cub->player.c + 2 * a, cub->player.r + 2 * b, cub->player.rot_angle - M_PI)
+			)
+		)
 		{
 			cub->player.r += b;
 			cub->player.c += a;

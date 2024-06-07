@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/06 17:48:05 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:16:43 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,67 @@ void ft_putpixel(t_cub *cub, int r, int c, uint32_t color)
     // mlx_delete_image(cub->mlx.mlx_ptr, image);  // Uncomment if necessary
 }
 
+
+void	ft_render_mini_map(t_cub *cub)
+{
+	for (int r = 0; r < cub->rows; r++)
+	{
+		for (int c = 0; c < cub->cols; c++)
+		{
+			if (cub->map[r][c] == ' ')
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(255, 255, 255,255));
+			else if (cub->map[r][c] == '1')
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,255,0,255));
+			else if (cub->map[r][c] == '0')
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,0,0,255));
+		}
+	}
+	ft_draw_player(cub);
+}
+
 void ft_hook(void* param)
 {
-	t_cub *cub = param;
+	t_cub *cub;
+	int		a;
+	int		b;
 
+	cub = param;
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx.mlx_ptr);
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_UP))
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_UP) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_W)) 
+	{
+		a = cub->player.move_speed * cos(cub->player.rot_angle);
+		b = -1 * cub->player.move_speed * sin(cub->player.rot_angle);
+		if (!ft_iswall(cub, cub->player.c + 3 * a, cub->player.r + 3 * b))
+		{
+			cub->player.r += b;
+			cub->player.c += a;
+		}
+	}
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_DOWN) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_S))
+	{
+		a = -1 * cub->player.move_speed * cos(cub->player.rot_angle);
+		b = cub->player.move_speed * sin(cub->player.rot_angle);
+		if (!ft_iswall(cub, cub->player.c + 3 * a, cub->player.r + 3 * b))
+		{
+			cub->player.r += b;
+			cub->player.c += a;
+		}
+	}
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_A))
+		cub->player.rot_angle += cub->player.rot_speed;
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_D))
+		cub->player.rot_angle -= cub->player.rot_speed;
+
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
 		cub->mlx.image->instances[0].y -= 5;
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_DOWN))
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_K))
 		cub->mlx.image->instances[0].y += 5;
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT))
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
 		cub->mlx.image->instances[0].x -= 5;
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_L))
 		cub->mlx.image->instances[0].x += 5;
+	ft_render_mini_map(cub);
 }
 
 void	ft_build_map(t_cub *cub)
@@ -67,28 +114,13 @@ void	ft_build_map(t_cub *cub)
         return;
     }
 	cub->mlx.no = mlx_load_png("chinese-wall.png");
-
     if (!cub->mlx.no)
     {
         puts(mlx_strerror(mlx_errno));
         return;
     }
-	for (int r = 0; r < cub->rows; r++)
-	{
-		for (int c = 0; c < cub->cols; c++)
-		{
-			if (cub->map[r][c] == ' ')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(233, 89,10,255));
-			else if (cub->map[r][c] == '1')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,255,0,255));
-			else if (cub->map[r][c] == '0')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,0,0,255));
-		}
-	}
 	ft_putpixel(cub, cub->player.r - cub->pixel * 0.5, cub->player.c - cub->pixel * 0.5, ft_pixel(0,0,0,255));
-	// ft_draw_ray(cub, 3 * M_PI / 2);
-	ft_draw_rays(cub, M_PI , 3 * M_PI / 2);
-	ft_draw_player(cub);
+	// ft_draw_ray(cub, 3 * M_PI / 2)
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);
 	mlx_loop(cub->mlx.mlx_ptr);

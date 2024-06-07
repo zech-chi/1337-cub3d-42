@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/07 14:18:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/07 21:52:37 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	ft_draw_player(t_cub *cub)
 {
 	int	x;
 	int	y;
+	double	start_angle;
+	double	end_angle;
 
-	ft_draw_rays(cub, cub->player.rot_angle - M_PI / 6 , cub->player.rot_angle + M_PI / 6);
+	start_angle = cub->player.rot_angle - M_PI / 6;
+	end_angle = cub->player.rot_angle + M_PI / 6;
+	ft_draw_rays(cub, start_angle, end_angle);
 	y = cub->player.r - cub->player.radius;
 	while (y < cub->player.r + cub->player.radius)
 	{
@@ -32,58 +36,35 @@ void	ft_draw_player(t_cub *cub)
 	}
 }
 
-// void	ft_bresenham_line(int x1, int y1, int x2, int y2, t_cub *cub)
-// {
-// 	int	dx;
-// 	int	dy;
-// 	int	sens_x;
-// 	int	sens_y;
-// 	int	err;
+int	ft_between(double alpha, double angle_start, double angle_end)
+{
+	if (angle_start < alpha && alpha < angle_end)
+		return (1);
+	return (0);
+}
 
-// 	dx = abs(x2 - x1);
-// 	dy = abs(y2 - y1);
-// 	sens_x = 1 - 2 * (x1 > x2);
-// 	sens_y = 1 - 2 * (y1 > y2);
-// 	err = dy - dx;
-// 	while (1)
-// 	{
-// 		printf("target -> (%d, %d)\n", x1, y1);
-// 		if (x1 < 0 || y1 < 0)
-// 			break;
-// 		mlx_put_pixel(cub->mlx.image, x1, y1, cub->player.player_color);
-// 		if (x1 == x2 && y1 == y2)
-// 			break;
-// 		if (2 * err > -dx)
-// 		{
-// 			err -= dx;
-// 			y1 += sens_y;
-// 		}
-// 		if (2 * err < dy)
-// 		{
-// 			err += dy;
-// 			x1 += sens_x;
-// 		}
-// 	}
-// }
-// int	x;
-	// int	y;
-
-	// x = cub->player.c + distance * cos(alpha);
-	// y = cub->player.r - distance * sin(alpha);
-	// printf("player -> (%d, %d)\n", cub->player.c, cub->player.r);
-	// printf("target -> (%d, %d)\n", x, y);
-	// ft_bresenham_line(cub->player.c, cub->player.r, x, y, cub);
-
-int	ft_iswall(t_cub *cub, int x, int y)
+int	ft_iswall(t_cub *cub, int x, int y, double alpha)
 {
 	int	r;
 	int	c;
+	int	pr;
+	int	pc;
 
 	r = y / cub->pixel;
 	c = x / cub->pixel;
-
+	pr = cub->player.r / cub->pixel;
+	pc = cub->player.c / cub->pixel;
 	if (r < 0 || c < 0 || r > cub->rows || c > cub->cols || cub->map[r][c] == '1' || cub->map[r][c] == ' ')
 		return (1);
+	if ((ft_between(alpha, 0, M_PI / 2) || ft_between(alpha, 2 * M_PI, 2 * M_PI + M_PI / 2))  && cub->map[r + 1][c] == '1' && cub->map[r][c - 1] == '1' && r != pr && c != pc)
+		return (1);
+	if ((ft_between(alpha, 3 * M_PI / 2, 2 * M_PI) || ft_between(alpha, -M_PI / 2, 0))  && cub->map[r - 1][c] == '1' && cub->map[r][c - 1] == '1' && r != pr && c != pc)
+		return (1);
+	if (ft_between(alpha, M_PI, 3 * M_PI / 2)  && cub->map[r - 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
+		return (1);
+	if (ft_between(alpha, M_PI / 2, M_PI)  && cub->map[r + 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
+		return (1);
+	(void)alpha;
 	return (0);
 }
 
@@ -102,10 +83,11 @@ void	ft_draw_ray(t_cub *cub, double alpha)
 		b = distance * sin(-alpha);
 		x = cub->player.c + a;
 		y = cub->player.r + b;
-		if (ft_iswall(cub, x, y))
+		if (ft_iswall(cub, x, y, alpha))
 			break;
 		else
-			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 0, 0, 255 * exp(-0.0065 * distance)));
+			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 0, 0, 255 * exp(-0.008 * distance)));
+			// mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 255, 255 * exp(-0.004 * distance)));
 		distance++;
 	}
 }
@@ -133,6 +115,7 @@ void	ft_player_init(t_cub *cub)
 	cub->player.turn = 0;
 	cub->player.walk = 0;
 	cub->player.player_color = ft_pixel(255, 255, 0, 255);
+	// cub->player.player_color = ft_pixel(255, 0, 0, 255);
 	cub->player.ray_color = ft_pixel(255, 0, 0, 100);
 	if (cub->player.sens == 'N')
 		cub->player.rot_angle = M_PI / 2;

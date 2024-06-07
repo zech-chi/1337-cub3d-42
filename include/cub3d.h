@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/06 20:55:46 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:48:19 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	ft_player_init(t_cub *cub);
 void	ft_draw_player(t_cub *cub);
 void	ft_draw_ray(t_cub *cub, double alpha);
 void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle);
-int	ft_iswall(t_cub *cub, int x, int y);
+int		ft_iswall(t_cub *cub, int x, int y, double alpha);
 /* the end */
 
 #endif

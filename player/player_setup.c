@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_setup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 11:10:40 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:10:48 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_player(t_cub *cub)
 
 int	ft_between(double alpha, double angle_start, double angle_end)
 {
-	if (angle_start < alpha && alpha < angle_end)
+	if (angle_start <= alpha && alpha <= angle_end)
 		return (1);
 	return (0);
 }

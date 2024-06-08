@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 12:38:36 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:10:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,57 @@ void ft_putpixel(t_cub *cub, int r, int c, uint32_t color)
 
 void	ft_render_mini_map(t_cub *cub)
 {
+	int	x;
+	int	y;
+
 	for (int r = 0; r < cub->rows; r++)
 	{
 		for (int c = 0; c < cub->cols; c++)
 		{
 			if (cub->map[r][c] == ' ')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0, 0, 0,255));
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0, 0, 0, 0));
 			else if (cub->map[r][c] == '1')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(255, 255, 255,255));
-				//ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(52, 25, 72,255));
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(254,163,3,255));
+				// ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(255, 255, 255,255));
 			else if (cub->map[r][c] == '0')
-				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,0,0,255));
-				// ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(254,163,3,255));
+				ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(52, 25, 72,255));
+				// ft_putpixel(cub, cub->pixel * r, cub->pixel * c, ft_pixel(0,0,0,255));
 		}
 	}
 	ft_draw_player(cub);
+	y = 171 + cub->player.r;
+	while (y < cub->rows * cub->pixel)
+	{
+		x = 0;
+		while (x < cub->cols * cub->pixel)
+		{
+			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 0, 0, 0));
+			x++;
+		}
+		y++;
+	}
+
+	x = 171 + cub->player.c;
+	while (x < cub->cols * cub->pixel)
+	{
+		y = 0;
+		while (y < cub->rows * cub->pixel)
+		{
+			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 0, 0, 0));
+			y++;
+		}
+		x++;
+	}
+
+	y = -1;
+	while (++y < 171 * 2)
+	{
+		x = -1;
+		while (++x < 171 * 2)
+		{
+			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_pixel(0, 0, 0, 255));
+		}
+	}
 }
 
 int	ft_iswall2(t_cub *cub, int x, int y, double alpha)
@@ -103,6 +139,13 @@ void ft_hook(void* param)
 		{
 			cub->player.r += b;
 			cub->player.c += a;
+			x = cub->mlx.image->instances[0].x - a;
+			y = cub->mlx.image->instances[0].y - b;
+			cub->mlx.image->instances[0].y = y;
+			cub->mlx.image->instances[0].x = x;
+			// if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
+			// 	cub->mlx.image->instances[0].y = y;
+			// }
 		}
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_DOWN) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_S))
@@ -127,6 +170,12 @@ void ft_hook(void* param)
 		{
 			cub->player.r += b;
 			cub->player.c += a;
+			x = cub->mlx.image->instances[0].x - a;
+			y = cub->mlx.image->instances[0].y - b;
+			cub->mlx.image->instances[0].y = y;
+			cub->mlx.image->instances[0].x = x;
+			// if (y >= 0)
+			// 	cub->mlx.image->instances[0].y = y;
 		}
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_A))
@@ -144,39 +193,47 @@ void ft_hook(void* param)
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
 	{
     	y = cub->mlx.image->instances[0].y - 5;
-    	if (y >= 0)
+    	// if (y >= 0)
         	cub->mlx.image->instances[0].y = y;
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_K))
 	{
 		y = cub->mlx.image->instances[0].y + 5;
-		if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
+		// if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
 			cub->mlx.image->instances[0].y = y;
-    	}
+    	// }
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
 	{
 		x = cub->mlx.image->instances[0].x - 5;
-		if (x >= 0)
+		// if (x >= 0)
         	cub->mlx.image->instances[0].x = x;
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_L))
 	{
 		x = cub->mlx.image->instances[0].x + 5;
-		if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
+		// if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
 			cub->mlx.image->instances[0].x = x;
 	}
 	ft_render_mini_map(cub);
+	// for (int y = 0; y < cub->rows * cub->pixel * 3; y++)
+	// {
+	// 	for (int x = 0; x < cub->cols * cub->pixel * 3; x++)
+	// 	{
+	// 		mlx_put_pixel(cub->mlx.maze_img, x, y, ft_pixel(255, 0, 0, 255));
+	// 	}
+	// }
 }
 
 void	ft_build_map(t_cub *cub)
 {
-	if (!(cub->mlx.mlx_ptr = mlx_init(cub->pixel * cub->cols * 5, cub->pixel * cub->rows * 5, "ziko^2", false)))
+	if (!(cub->mlx.mlx_ptr = mlx_init(cub->pixel * cub->cols * 2, cub->pixel * cub->rows * 2, "ziko^2", false)))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return ;
 	}
 	cub->mlx.image = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel, cub->rows * cub->pixel);
+	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 5, cub->rows * cub->pixel * 5);
     if (!cub->mlx.image)
     {
         puts(mlx_strerror(mlx_errno));
@@ -190,7 +247,9 @@ void	ft_build_map(t_cub *cub)
     }
 	ft_putpixel(cub, cub->player.r - cub->pixel * 0.5, cub->player.c - cub->pixel * 0.5, ft_pixel(0,0,0,255));
 	// ft_draw_ray(cub, 3 * M_PI / 2)
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
+	printf("%d, %d\n", cub->player.r, cub->player.c);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, -cub->player.c + 171, -cub->player.r + 171);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

@@ -26,7 +26,8 @@ SRCS =  main.c \
 		parsing/scan_line_2.c \
 		parsing/scan_map.c \
 		linked_list/ft_lstadd_back.c \
-		player/player_setup.c
+		player/player_setup.c \
+		render_walls/draw_walls.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 18:10:48 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/08 20:45:28 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,36 +68,47 @@ int	ft_iswall(t_cub *cub, int x, int y, double alpha)
 	return (0);
 }
 
-void	ft_draw_ray(t_cub *cub, double alpha)
+int	ft_draw_ray(t_cub *cub, double alpha)
 {
 	int		distance;
 	double	a;
 	double	b;
 	int		y;
 	int		x;
+	double	d;
 
 	distance = 0;
+	d = 0;
 	while (1)
 	{
 		a = distance * cos(alpha);
 		b = distance * sin(-alpha);
 		x = cub->player.c + a;
 		y = cub->player.r + b;
+		d += sqrt(pow(a, 2) + pow(b, 2));
 		if (ft_iswall(cub, x, y, alpha))
 			break;
 		else
-			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 0, 0, 255 * exp(-0.008 * distance)));
+			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 0, 255 * exp(-0.008 * distance)));
 			// mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 255, 255 * exp(-0.004 * distance)));
 		distance++;
 	}
+	return (d);
 }
 
 void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle)
 {
+	double	distance;
+	int	x;
+
+	ft_reset_walls(cub);
+	x = cub->cols * cub->pixel * 2 - 1;
 	while (start_angle <= end_angle)
 	{
-		ft_draw_ray(cub, start_angle);
+		distance = ft_draw_ray(cub, start_angle);
+		ft_draw_walls(cub, distance, x);
 		start_angle +=  0.001;
+		x--;
 	}
 }
 
@@ -114,7 +125,7 @@ void	ft_player_init(t_cub *cub)
 	cub->player.radius = 5;
 	cub->player.turn = 0;
 	cub->player.walk = 0;
-	cub->player.player_color = ft_pixel(255, 255, 0, 255);
+	cub->player.player_color = ft_pixel(255, 255, 255, 255);
 	// cub->player.player_color = ft_pixel(255, 0, 0, 255);
 	cub->player.ray_color = ft_pixel(255, 0, 0, 100);
 	if (cub->player.sens == 'N')

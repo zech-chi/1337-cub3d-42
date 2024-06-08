@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 18:10:02 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/08 20:43:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,31 +190,6 @@ void ft_hook(void* param)
 		if (cub->player.rot_angle < 0)
 			cub->player.rot_angle += 2 * M_PI;
 	}
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
-	{
-    	y = cub->mlx.image->instances[0].y - 5;
-    	// if (y >= 0)
-        	cub->mlx.image->instances[0].y = y;
-	}
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_K))
-	{
-		y = cub->mlx.image->instances[0].y + 5;
-		// if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
-			cub->mlx.image->instances[0].y = y;
-    	// }
-	}
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
-	{
-		x = cub->mlx.image->instances[0].x - 5;
-		// if (x >= 0)
-        	cub->mlx.image->instances[0].x = x;
-	}
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_L))
-	{
-		x = cub->mlx.image->instances[0].x + 5;
-		// if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
-			cub->mlx.image->instances[0].x = x;
-	}
 	ft_render_mini_map(cub);
 	// for (int y = 0; y < cub->rows * cub->pixel * 3; y++)
 	// {
@@ -233,7 +208,7 @@ void	ft_build_map(t_cub *cub)
 		return ;
 	}
 	cub->mlx.image = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel, cub->rows * cub->pixel);
-	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 5, cub->rows * cub->pixel * 5);
+	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 2, cub->rows * cub->pixel * 2);
     if (!cub->mlx.image)
     {
         puts(mlx_strerror(mlx_errno));

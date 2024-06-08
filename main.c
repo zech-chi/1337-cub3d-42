@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/07 22:37:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/08 12:38:36 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void ft_hook(void* param)
 	t_cub *cub;
 	int		a;
 	int		b;
+	int y = 0;
+	int x = 0;
 
 	cub = param;
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_ESCAPE))
@@ -139,21 +141,37 @@ void ft_hook(void* param)
 		if (cub->player.rot_angle < 0)
 			cub->player.rot_angle += 2 * M_PI;
 	}
-
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
-		cub->mlx.image->instances[0].y -= 5;
+	{
+    	y = cub->mlx.image->instances[0].y - 5;
+    	if (y >= 0)
+        	cub->mlx.image->instances[0].y = y;
+	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_K))
-		cub->mlx.image->instances[0].y += 5;
+	{
+		y = cub->mlx.image->instances[0].y + 5;
+		if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
+			cub->mlx.image->instances[0].y = y;
+    	}
+	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
-		cub->mlx.image->instances[0].x -= 5;
+	{
+		x = cub->mlx.image->instances[0].x - 5;
+		if (x >= 0)
+        	cub->mlx.image->instances[0].x = x;
+	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_L))
-		cub->mlx.image->instances[0].x += 5;
+	{
+		x = cub->mlx.image->instances[0].x + 5;
+		if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
+			cub->mlx.image->instances[0].x = x;
+	}
 	ft_render_mini_map(cub);
 }
 
 void	ft_build_map(t_cub *cub)
 {
-	if (!(cub->mlx.mlx_ptr = mlx_init(cub->pixel * cub->cols, cub->pixel * cub->rows, "ziko^2", false)))
+	if (!(cub->mlx.mlx_ptr = mlx_init(cub->pixel * cub->cols * 5, cub->pixel * cub->rows * 5, "ziko^2", false)))
 	{
 		puts(mlx_strerror(mlx_errno));
 		return ;

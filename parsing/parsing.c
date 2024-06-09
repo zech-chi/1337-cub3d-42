@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 14:48:47 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/09 12:09:38 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	ft_data_init(t_cub *cub)
 	cub->rows = 0;
 	cub->cols = 0;
 	cub->fd = -1;
+	cub->mini_map = true;
+	cub->mlx.great_mini_map = NULL;
 	cub->pixel = 32;
 	cub->player.r = -1;
 	cub->player.c = -1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 20:43:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/09 13:24:51 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,34 @@ void ft_hook(void* param)
 		if (cub->player.rot_angle < 0)
 			cub->player.rot_angle += 2 * M_PI;
 	}
-	ft_render_mini_map(cub);
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_G))
+	{
+		if (!cub->mlx.great_mini_map)
+			cub->mlx.great_mini_map = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 2, cub->rows * cub->pixel * 2);
+		else
+		{
+			mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.great_mini_map);
+			cub->mlx.great_mini_map = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 2, cub->rows * cub->pixel * 2);
+		}
+		if (!cub->mlx.great_mini_map)
+		{
+			puts(mlx_strerror(mlx_errno));
+			exit(1);
+		}
+		cub->mini_map = false;
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.great_mini_map, 0, 0);
+	}
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_M))
+	{
+		if(cub->mlx.great_mini_map)
+			mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.great_mini_map);
+		cub->mini_map = true;
+		cub->mlx.great_mini_map = NULL;
+	}
+	if (cub->mini_map)
+		ft_render_mini_map(cub);
+	else
+		ft_rendre_great_map(cub);
 	// for (int y = 0; y < cub->rows * cub->pixel * 3; y++)
 	// {
 	// 	for (int x = 0; x < cub->cols * cub->pixel * 3; x++)
@@ -224,6 +251,7 @@ void	ft_build_map(t_cub *cub)
 	// ft_draw_ray(cub, 3 * M_PI / 2)
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
 	printf("%d, %d\n", cub->player.r, cub->player.c);
+	printf("%d\n", cub->mini_map);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, -cub->player.c + 171, -cub->player.r + 171);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);
 	mlx_loop(cub->mlx.mlx_ptr);

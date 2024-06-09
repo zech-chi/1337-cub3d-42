@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 12:38:36 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 21:39:57 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,116 @@ int	ft_iswall2(t_cub *cub, int x, int y, double alpha)
 		return (1);
 	(void)alpha;
 	return (0);
+}
+
+int	ft_isgreatwall(t_cub *cub, int x, int y, double alpha)
+{
+	int	r;
+	int	c;
+	int	pr;
+	int	pc;
+
+	r = y / cub->pixel;
+	c = x / cub->pixel;
+	pr = cub->player.r / cub->pixel;
+	pc = cub->player.c / cub->pixel;
+	if (r < 0 || c < 0 || r > cub->rows || c > cub->cols || cub->map[r][c] == '1' || cub->map[r][c] == ' ')
+		return (1);
+	if ((ft_between(alpha, 0, M_PI / 2) || ft_between(alpha, 2 * M_PI, 2 * M_PI + M_PI / 2))  && cub->map[r + 1][c] == '1' && cub->map[r][c - 1] == '1' && r != pr && c != pc)
+		return (1);
+	if ((ft_between(alpha, 3 * M_PI / 2, 2 * M_PI) || ft_between(alpha, -M_PI / 2, 0))  && cub->map[r - 1][c] == '1' && cub->map[r][c - 1] == '1' && r != pr && c != pc)
+		return (1);
+	if (ft_between(alpha, M_PI, 3 * M_PI / 2)  && cub->map[r - 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
+		return (1);
+	if (ft_between(alpha, M_PI / 2, M_PI) && cub->map[r + 1][c] == '1' && cub->map[r][c + 1] == '1' && r != pr && c != pc)
+		return (1);
+	return (0);
+}
+
+void	ft_draw_great_ray(t_cub *cub, double alpha)
+{
+	int		distance;
+	double	a;
+	double	b;
+	int		y;
+	int		x;
+
+	distance = 0;
+	while (1)
+	{
+		a = distance * cos(alpha);
+		b = distance * sin(-alpha);
+		x = cub->player.c * 5  + a;
+		y = cub->player.r * 5 + b;
+		if (ft_isgreatwall(cub, x / 5 , y / 5, alpha))
+			break;
+		else
+			mlx_put_pixel(cub->mlx.great_mini_map, x, y, ft_pixel(255, 0, 0, 255 * exp(-0.008 * distance)));
+			// mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 255, 255 * exp(-0.004 * distance)));
+		distance++;
+	}
+}
+
+void	ft_draw_great_rays(t_cub *cub,double start_angle,double end_angle)
+{
+	while (start_angle <= end_angle)
+	{
+		ft_draw_great_ray(cub, start_angle);
+		start_angle +=  0.001;
+	}
+}
+
+
+void	ft_draw_great_player(t_cub *cub)
+{
+	int	x;
+	int	y;
+	double	start_angle;
+	double	end_angle;
+
+	start_angle = cub->player.rot_angle - M_PI / 6;
+	end_angle = cub->player.rot_angle + M_PI / 6;
+	ft_draw_great_rays(cub, start_angle, end_angle);
+	y = cub->player.r * 5 - cub->player.radius;
+	while (y < cub->player.r * 5 + cub->player.radius * 5)
+	{
+		x = cub->player.c * 5 - cub->player.radius * 5;
+		while (x < cub->player.c * 5 + cub->player.radius * 5)
+		{
+			if (pow(x - cub->player.c * 5, 2) + pow(y - cub->player.r * 5, 2) < pow(cub->player.radius, 2))
+				mlx_put_pixel(cub->mlx.great_mini_map, x, y, cub->player.player_color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void ft_putpixel_greatmap(t_cub *cub, int r, int c, uint32_t color)
+{
+	for (int i = r; i < r + cub->pixel * 5; i++)
+	{
+		for (int j = c; j < c + cub->pixel * 5; j++)
+		{
+			mlx_put_pixel(cub->mlx.great_mini_map, j, i, color);
+		}
+	}
+}
+
+void	ft_rendre_great_map(t_cub *cub)
+{
+	for (int r = 0; r < cub->rows; r++)
+	{
+		for (int c = 0; c < cub->cols; c++)
+		{
+			if (cub->map[r][c] == ' ')
+				ft_putpixel_greatmap(cub, cub->pixel * r * 5, cub->pixel * c * 5, ft_pixel(0, 0, 0,255));
+			else if (cub->map[r][c] == '1')
+				ft_putpixel_greatmap(cub, cub->pixel * r * 5, cub->pixel * c * 5, ft_pixel(255, 255, 255,255));
+			else if (cub->map[r][c] == '0')
+				ft_putpixel_greatmap(cub, cub->pixel * r * 5, cub->pixel * c * 5, ft_pixel(0,0,0,255));
+		}
+	}
+	ft_draw_great_player(cub);
 }
 
 void ft_hook(void* param)
@@ -166,7 +276,29 @@ void ft_hook(void* param)
 		if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
 			cub->mlx.image->instances[0].x = x;
 	}
-	ft_render_mini_map(cub);
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_G))
+	{
+		if (!cub->mlx.great_mini_map)
+			cub->mlx.great_mini_map = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * cub->pixel * 5, cub->rows * cub->pixel * 5);
+		if (!cub->mlx.great_mini_map)
+		{
+			puts(mlx_strerror(mlx_errno));
+			exit(1);
+		}
+		cub->mini_map = false;
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.great_mini_map, 0, 0);
+	}
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_M))
+	{
+		if(cub->mlx.great_mini_map)
+			mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.great_mini_map);
+		cub->mini_map = true;
+		cub->mlx.great_mini_map = NULL;
+	}
+	if (cub->mini_map)
+		ft_render_mini_map(cub);
+	else
+		ft_rendre_great_map(cub);
 }
 
 void	ft_build_map(t_cub *cub)
@@ -188,8 +320,6 @@ void	ft_build_map(t_cub *cub)
         puts(mlx_strerror(mlx_errno));
         return;
     }
-	ft_putpixel(cub, cub->player.r - cub->pixel * 0.5, cub->player.c - cub->pixel * 0.5, ft_pixel(0,0,0,255));
-	// ft_draw_ray(cub, 3 * M_PI / 2)
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.image, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_hook, cub);
 	mlx_loop(cub->mlx.mlx_ptr);

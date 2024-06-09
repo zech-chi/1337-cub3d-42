@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 11:10:40 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 20:51:01 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ void	ft_player_init(t_cub *cub)
 		cub->player.rot_angle = 0;
 	else if (cub->player.sens == 'S')
 		cub->player.rot_angle = (3 * M_PI) / 2;
-	cub->player.move_speed = 3;
+	cub->player.move_speed = 2;
 	cub->player.rot_speed = 2 * (M_PI / 180);
 }

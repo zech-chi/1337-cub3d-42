@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 12:37:50 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 20:00:28 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ static void	ft_data_init(t_cub *cub)
 	cub->cc = NULL;
 	cub->line = NULL;
 	cub->head = NULL;
+	cub->mlx.great_mini_map = NULL;
 	cub->rows = 0;
 	cub->cols = 0;
 	cub->fd = -1;
+	cub->mini_map = true;
 	cub->pixel = 10;
 	cub->player.r = -1;
 	cub->player.c = -1;

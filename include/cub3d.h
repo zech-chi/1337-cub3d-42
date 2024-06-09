@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 12:38:13 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/08 20:00:18 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_mlx {
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 	mlx_image_t		*image;
+	mlx_image_t		*great_mini_map;
 }	t_mlx;
 
 typedef struct s_player
@@ -77,6 +78,7 @@ typedef struct s_cub {
 	int			cols;
 	int			fd;
 	t_list		*head;
+	bool		mini_map;
 	t_mlx		mlx;
 	t_player	player;
 }	t_cub;

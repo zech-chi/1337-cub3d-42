@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 14:57:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:00:54 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,13 @@ static void	ft_data_init(t_cub *cub)
 	cub->head = NULL;
 	cub->rows = 0;
 	cub->cols = 0;
-	cub->pr = -1;
-	cub->pc = -1;
+	cub->player.pr = -1;
+	cub->player.pc = -1;
 	cub->fd = -1;
+	cub->pixel = 64;
+	cub->window_height = 800;
+	cub->window_width = 1200;
+	cub->render = true;
 }
 
 void	ft_parsing(int ac, char **av, t_cub *cub)
@@ -43,5 +47,6 @@ void	ft_parsing(int ac, char **av, t_cub *cub)
 	ft_create_map(cub);
 	if (ft_scan_map(cub))
 		exit(1);
+	ft_player_init(cub);
 	ft_putstr_fd("Good args", 1, 1, GREEN);
 }

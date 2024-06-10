@@ -25,19 +25,22 @@ SRCS =  main.c \
 		parsing/scan_line_1.c \
 		parsing/scan_line_2.c \
 		parsing/scan_map.c \
-		linked_list/linked_list.c
+		linked_list/linked_list.c \
+		draw/walls.c \
+		player/player.c \
+		math/math_tools.c
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) clean
 
 %.o: %.c include/cub3d.h
-	@$(CC) $(CFLAGS) -c $< -o $@ && \
+	@$(CC) $(CFLAGS) -c $< -o $@  && \
 	echo "compilation file name $< done ✅" || \
 	(echo "compilation of $< failed ❌" && exit 1)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@ && \
+	@$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" && \
 	echo "create executable file ${NAME} done ✅" || \
 	(echo "create executable file ${NAME} failed ❌" && exit 1)
 

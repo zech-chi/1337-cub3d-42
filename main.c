@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/01 21:43:01 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/09 21:09:52 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	ft_parsing(ac, av, &cub);
 	ft_display(&cub);
+	ft_build_maze(&cub);
 	// ft_display_list(cub.head);
 	// printf("\n--------------------------------\n");
 	// printf("rows:%d, colos:%d", cub.rows, cub.cols);

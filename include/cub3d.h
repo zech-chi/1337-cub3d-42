@@ -6,18 +6,20 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 15:47:27 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:25:55 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
+# include "../MLX42/include/MLX42/MLX42.h"
 
 # define BUFFER_SIZE 1
 # define SUCCESS 0
@@ -34,22 +36,44 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct s_cub
+typedef struct s_mlx
 {
-	char	**map;
-	char	*line;
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	int		*cf;
-	int		*cc;
-	t_list	*head;
-	int		rows;
-	int		cols;
+	mlx_t		*mlx_ptr;
+	mlx_image_t	*maze_img;
+}	t_mlx;
+
+typedef struct s_player
+{
 	int		pr;
 	int		pc;
-	int		fd;
+	char	sens;
+	double	py;
+	double	px;
+	double	angle;
+	double	walk_speed;
+	double	turn_speed;
+}	t_player;
+
+typedef struct s_cub
+{
+	char		**map;
+	char		*line;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	int			*cf;
+	int			*cc;
+	int			rows;
+	int			cols;
+	int			fd;
+	int			pixel;
+	int			window_height;
+	int			window_width;
+	bool		render;
+	t_list		*head;
+	t_mlx		mlx;
+	t_player	player;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -102,5 +126,20 @@ int		ft_lstsize(t_list *lst);
 void	ft_display_list(t_list *head);// to remove 
 /*to remove*/
 void	ft_display(t_cub *cub);
+
+/*draw*/
+int32_t ft_color(int32_t r, int32_t g, int32_t b, int32_t a);
+void	ft_build_maze(t_cub *cub);
+/*end draw*/
+
+/*player*/
+void	ft_player_init(t_cub *cub);
+void	ft_render_player(t_cub *cub);
+void	ft_player_event(t_cub *cub);
+/*end player*/
+
+/*math*/
+int	ft_between(double alpha, double angle_start, double angle_end);
+/*end math*/
 
 #endif

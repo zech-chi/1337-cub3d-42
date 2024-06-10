@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 20:09:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 10:58:05 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_cub {
 	int			rows;
 	int			cols;
 	int			fd;
+	bool		render;
 	t_list		*head;
 	t_mlx		mlx;
 	t_player	player;
@@ -144,7 +145,7 @@ int		ft_between(double alpha, double angle_start, double angle_end);
 
 
 
-void	ft_draw_walls(t_cub *cub, double distance, int x);
+void	ft_draw_walls(t_cub *cub, double distance, int x, double angle);
 void	ft_reset_walls(t_cub *cub);
 /* the end */
 

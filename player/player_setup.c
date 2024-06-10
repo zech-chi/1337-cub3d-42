@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:48:07 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 20:45:28 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:12:31 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_iswall(t_cub *cub, int x, int y, double alpha)
 
 int	ft_draw_ray(t_cub *cub, double alpha)
 {
-	int		distance;
+	double	distance;
 	double	a;
 	double	b;
 	int		y;
@@ -85,13 +85,13 @@ int	ft_draw_ray(t_cub *cub, double alpha)
 		b = distance * sin(-alpha);
 		x = cub->player.c + a;
 		y = cub->player.r + b;
-		d += sqrt(pow(a, 2) + pow(b, 2));
 		if (ft_iswall(cub, x, y, alpha))
 			break;
 		else
 			mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 0, 255 * exp(-0.008 * distance)));
 			// mlx_put_pixel(cub->mlx.image, x, y, ft_pixel(255, 255, 255, 255 * exp(-0.004 * distance)));
-		distance++;
+		distance += 0.5;
+		d += sqrt(pow(a, 2) + pow(b, 2));
 	}
 	return (d);
 }
@@ -106,8 +106,8 @@ void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle)
 	while (start_angle <= end_angle)
 	{
 		distance = ft_draw_ray(cub, start_angle);
-		ft_draw_walls(cub, distance, x);
-		start_angle +=  0.001;
+		ft_draw_walls(cub, distance, x, start_angle);
+		start_angle +=  0.0005;
 		x--;
 	}
 }
@@ -136,6 +136,6 @@ void	ft_player_init(t_cub *cub)
 		cub->player.rot_angle = 0;
 	else if (cub->player.sens == 'S')
 		cub->player.rot_angle = (3 * M_PI) / 2;
-	cub->player.move_speed = 3;
-	cub->player.rot_speed = 2 * (M_PI / 180);
+	cub->player.move_speed = 5;
+	cub->player.rot_speed = 4 * (M_PI / 180);
 }

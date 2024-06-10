@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/08 20:43:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:08:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void ft_hook(void* param)
 			y = cub->mlx.image->instances[0].y - b;
 			cub->mlx.image->instances[0].y = y;
 			cub->mlx.image->instances[0].x = x;
+			cub->render = true;
 			// if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
 			// 	cub->mlx.image->instances[0].y = y;
 			// }
@@ -174,6 +175,7 @@ void ft_hook(void* param)
 			y = cub->mlx.image->instances[0].y - b;
 			cub->mlx.image->instances[0].y = y;
 			cub->mlx.image->instances[0].x = x;
+			cub->render = true;
 			// if (y >= 0)
 			// 	cub->mlx.image->instances[0].y = y;
 		}
@@ -183,14 +185,18 @@ void ft_hook(void* param)
 		cub->player.rot_angle += cub->player.rot_speed;
 		if (cub->player.rot_angle >= 2 * M_PI)
 			cub->player.rot_angle -= 2 * M_PI;
+		cub->render = true;
 	}
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_D))
 	{
 		cub->player.rot_angle -= cub->player.rot_speed;
 		if (cub->player.rot_angle < 0)
 			cub->player.rot_angle += 2 * M_PI;
+		cub->render = true;
 	}
-	ft_render_mini_map(cub);
+	if (cub->render)
+		ft_render_mini_map(cub);
+	cub->render = false; 
 	// for (int y = 0; y < cub->rows * cub->pixel * 3; y++)
 	// {
 	// 	for (int x = 0; x < cub->cols * cub->pixel * 3; x++)

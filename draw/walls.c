@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/10 12:26:10 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:21:45 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,34 @@ void	ft_render_map(t_cub *cub)
 	}
 }
 
-
 void	ft_render(void *param)
 {
-	t_cub	*cub;
+	t_cub		*cub;
+	static int	count;
+	double		save_py;
+	double		save_px;
 
 	cub = param;
 
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx.mlx_ptr);
+	save_px = cub->player.px;
+	save_py = cub->player.py;
 	ft_player_event(cub);
 	if (!cub->render)
 		return ;
-	ft_render_map(cub);
+	for (int i = save_py - 1; i < save_py + 1; i++)
+	{
+		for (int j = save_px - 1; j < save_px + 1; j++)
+		{
+			mlx_put_pixel(cub->mlx.maze_img, j, i, ft_color(0, 0, 0, 255));
+		}
+	}
+	if (!count)
+		ft_render_map(cub);
 	ft_render_player(cub);
 	cub->render = false;
+	count = 1;
 }
 
 void	ft_build_maze(t_cub *cub)

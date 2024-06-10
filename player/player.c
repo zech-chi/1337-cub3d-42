@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/10 12:35:01 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:58:41 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_render_player(t_cub *cub)
 {
-	for (int i = cub->player.py - 2; i < cub->player.py + 2; i++)
+	for (int i = cub->player.py - 1; i < cub->player.py + 1; i++)
 	{
-		for (int j = cub->player.px - 2; j < cub->player.px + 2; j++)
+		for (int j = cub->player.px - 1; j < cub->player.px + 1; j++)
 		{
-			mlx_put_pixel(cub->mlx.maze_img, j, i, ft_color(255,0,0,255));
+			mlx_put_pixel(cub->mlx.maze_img, j, i, ft_color(255, 0, 0, 255));
 		}
 	}
 }
@@ -54,7 +54,7 @@ void	ft_walk_up(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle);
-		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle))
+		if (!ft_iswall2(cub, cub->player.px + 10 * a, cub->player.py + 10 * b, cub->player.angle))
 		{
 			cub->player.py += b;
 			cub->player.px += a;
@@ -95,52 +95,43 @@ void	ft_walk_down(t_cub *cub)
 			cub->player.pr = cub->player.py / cub->pixel;
 			cub->player.pc = cub->player.px / cub->pixel;
 			cub->render = true;
+			printf("trmt taha\n");
 		}
 	}
 }
 
 
+void	ft_turn_left(t_cub *cub)
+{
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT))
+	{
+		cub->player.angle += cub->player.turn_speed;
+		if (cub->player.angle >= 2 * M_PI)
+			cub->player.angle -= 2 * M_PI;
+		cub->render = true;
+		printf("%f\n", cub->player.angle);
+	}
+}
+
+void	ft_turn_right(t_cub *cub)
+{
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT))
+	{
+		cub->player.angle -= cub->player.turn_speed;
+		if (cub->player.angle < 0)
+			cub->player.angle += 2 * M_PI;
+		cub->render = true;
+		printf("%f\n", cub->player.angle);
+	}
+}
+
 void	ft_player_event(t_cub *cub)
 {
-	ft_walk_down(cub);
 	ft_walk_up(cub);
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_A))
-	// {
-	// 	cub->player.angle += cub->player.rot_speed;
-	// 	if (cub->player.angle >= 2 * M_PI)
-	// 		cub->player.angle -= 2 * M_PI;
-	// }
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT) || mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_D))
-	// {
-	// 	cub->player.angle -= cub->player.rot_speed;
-	// 	if (cub->player.angle < 0)
-	// 		cub->player.angle += 2 * M_PI;
-	// }
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
-	// {
-    // 	y = cub->mlx.image->instances[0].y - 5;
-    // 	if (y >= 0)
-    //     	cub->mlx.image->instances[0].y = y;
-	// }
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_K))
-	// {
-	// 	y = cub->mlx.image->instances[0].y + 5;
-	// 	if (y + cub->rows * cub->pixel <= cub->rows * cub->pixel * 5) {
-	// 		cub->mlx.image->instances[0].y = y;
-    // 	}
-	// }
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
-	// {
-	// 	x = cub->mlx.image->instances[0].x - 5;
-	// 	if (x >= 0)
-    //     	cub->mlx.image->instances[0].x = x;
-	// }
-	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_L))
-	// {
-	// 	x = cub->mlx.image->instances[0].x + 5;
-	// 	if (x + cub->cols * cub->pixel <= cub->cols * cub->pixel * 5)
-	// 		cub->mlx.image->instances[0].x = x;
-	// }
+	ft_walk_down(cub);
+	ft_turn_left(cub);
+	ft_turn_right(cub);
+	
 }
 
 void	ft_player_init(t_cub *cub)

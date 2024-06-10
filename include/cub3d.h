@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/10 10:58:05 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:36:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_mlx {
 	mlx_texture_t	*ea;
 	mlx_image_t		*image;
 	mlx_image_t		*maze_img;
+	mlx_image_t		*great_mini_map;
 }	t_mlx;
 
 typedef struct s_player
@@ -79,6 +80,7 @@ typedef struct s_cub {
 	int			fd;
 	bool		render;
 	t_list		*head;
+	bool		mini_map;
 	t_mlx		mlx;
 	t_player	player;
 }	t_cub;
@@ -142,6 +144,7 @@ int		ft_draw_ray(t_cub *cub, double alpha);
 void	ft_draw_rays(t_cub *cub, double start_angle, double end_angle);
 int		ft_iswall(t_cub *cub, int x, int y, double alpha);
 int		ft_between(double alpha, double angle_start, double angle_end);
+void	ft_rendre_great_map(t_cub *cub);
 
 
 

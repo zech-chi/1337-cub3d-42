@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/10 13:09:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:22:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define RED "\e[1;31m"
 # define GREEN "\e[1;32m"
 # define RESET "\e[m"
+# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 1200
+# define NUMBER_RAYS 1200
 
 /* cub3d struct */
 typedef struct s_list
@@ -54,6 +57,16 @@ typedef struct s_player
 	double	turn_speed;
 }	t_player;
 
+typedef struct s_ray
+{
+	double	angle;
+	double	distance;
+	int		down;
+	int		up;
+	int		left;
+	int		right;
+}	t_ray;
+
 typedef struct s_cub
 {
 	char		**map;
@@ -68,12 +81,11 @@ typedef struct s_cub
 	int			cols;
 	int			fd;
 	int			pixel;
-	int			window_height;
-	int			window_width;
 	bool		render;
 	t_list		*head;
 	t_mlx		mlx;
 	t_player	player;
+	t_ray		rays[WINDOW_WIDTH];
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -128,7 +140,7 @@ void	ft_display_list(t_list *head);// to remove
 void	ft_display(t_cub *cub);
 
 /*draw*/
-int32_t ft_color(int32_t r, int32_t g, int32_t b, int32_t a);
+int32_t	ft_color(int32_t r, int32_t g, int32_t b, int32_t a);
 void	ft_build_maze(t_cub *cub);
 /*end draw*/
 
@@ -139,7 +151,12 @@ void	ft_player_event(t_cub *cub);
 /*end player*/
 
 /*math*/
-int	ft_between(double alpha, double angle_start, double angle_end);
+int		ft_between(double alpha, double angle_start, double angle_end);
+double	ft_periodic(double angle);
 /*end math*/
+
+/*raycasting*/
+void	ft_raycasting(t_cub *cub);
+/*end raycasting*/
 
 #endif

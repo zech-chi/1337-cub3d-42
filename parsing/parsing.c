@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/10 12:00:54 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:12:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void	ft_data_init(t_cub *cub)
 	cub->player.pc = -1;
 	cub->fd = -1;
 	cub->pixel = 64;
-	cub->window_height = 800;
-	cub->window_width = 1200;
 	cub->render = true;
 }
 

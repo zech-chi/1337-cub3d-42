@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/10 13:21:45 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:37:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ void	ft_render_map(t_cub *cub)
 	}
 }
 
+void	ft_resetplayer(t_cub *cub, int save_py, int save_px)
+{
+	for (int i = save_py - 1; i < save_py + 1; i++)
+	{
+		for (int j = save_px - 1; j < save_px + 1; j++)
+		{
+			mlx_put_pixel(cub->mlx.maze_img, j, i, ft_color(0, 0, 0, 255));
+		}
+	}
+}
+
 void	ft_render(void *param)
 {
 	t_cub		*cub;
@@ -67,16 +78,19 @@ void	ft_render(void *param)
 			mlx_put_pixel(cub->mlx.maze_img, j, i, ft_color(0, 0, 0, 255));
 		}
 	}
+	// ft_resetplayer(cub, save_py, save_px);
 	if (!count)
 		ft_render_map(cub);
+	ft_raycasting(cub);
 	ft_render_player(cub);
 	cub->render = false;
 	count = 1;
 }
 
+
 void	ft_build_maze(t_cub *cub)
 {
-	// if (!(cub->mlx.mlx_ptr = mlx_init(cub->window_width, cub->window_height, "ziko^2", false)))
+	// if (!(cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2", false)))
 	// {
 	// 	perror(mlx_strerror(mlx_errno));
 	// 	return ;
@@ -86,7 +100,7 @@ void	ft_build_maze(t_cub *cub)
 		perror(mlx_strerror(mlx_errno));
 		return ;
 	}
-	// cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, cub->window_width, cub->window_height);
+	// cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	// if (!cub->mlx.maze_img)
 	// {
 	// 	perror(mlx_strerror(mlx_errno));

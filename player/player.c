@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/10 18:58:41 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:09:51 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_walk_up(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle);
-		if (!ft_iswall2(cub, cub->player.px + 10 * a, cub->player.py + 10 * b, cub->player.angle))
+		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle))
 		{
 			cub->player.py += b;
 			cub->player.px += a;
@@ -106,8 +106,7 @@ void	ft_turn_left(t_cub *cub)
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT))
 	{
 		cub->player.angle += cub->player.turn_speed;
-		if (cub->player.angle >= 2 * M_PI)
-			cub->player.angle -= 2 * M_PI;
+		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 		printf("%f\n", cub->player.angle);
 	}
@@ -118,8 +117,7 @@ void	ft_turn_right(t_cub *cub)
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_RIGHT))
 	{
 		cub->player.angle -= cub->player.turn_speed;
-		if (cub->player.angle < 0)
-			cub->player.angle += 2 * M_PI;
+		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 		printf("%f\n", cub->player.angle);
 	}

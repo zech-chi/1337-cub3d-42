@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/10 12:36:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:59:05 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,26 @@ char	*ft_substr(char *s, unsigned int start, size_t len);
 void	ft_skip_space(char *str, int *i);
 
 /* malloc */
+
 void	*allocate_memory_safely(size_t bytes, t_cub *cub);
 void	ft_free_data(t_cub *cub);
 void	ft_free_list(t_list **head);
 
 /* parsing/parsing.c */
+
+/**
+ * Draws a new instance of an image, it will then share the same
+ * pixel buffer as the image.
+ * 
+ * NOTE: Keep in mind that the instance array gets reallocated, try
+ * to store the return value to the instance! 
+ * NOT the pointer! It will become invalid!
+ * 
+ * WARNING: Try to display as few images on the window as possible,
+ * drawing too many images will cause a loss in performance!
+ * 
+ * @return Index to the instance, or -1 on failure.
+ */
 void	ft_parsing(int ac, char **av, t_cub *cub);
 int		*ft_get_color(char *line, t_cub *cub);
 int		ft_set_color(t_cub *cub, int **color, char *line , int *i);
@@ -137,6 +152,7 @@ void	ft_display_list(t_list *head) ;// to remove
 void    ft_display(t_cub *cub);
 
 /* player */
+
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	ft_player_init(t_cub *cub);
 void	ft_draw_player(t_cub *cub);

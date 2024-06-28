@@ -30,7 +30,7 @@ SRCS =  main.c \
 		render_walls/draw_walls.c \
 		draw_maps/draw_greatmap.c \
 
-OBJS = $(SRCS:.c=.o)
+ 
 
 
 all: $(NAME) clean ## haywaa

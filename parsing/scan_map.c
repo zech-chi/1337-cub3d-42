@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/09 21:09:47 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:06:28 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	ft_check_neighbours(t_cub *cub, int r, int c)
 	return (SUCCESS);
 }
 
-int	ft_scan_map(t_cub *cub)
+void	ft_scan_map(t_cub *cub)
 {
 	int	r;
 	int	c;
@@ -55,14 +55,13 @@ int	ft_scan_map(t_cub *cub)
 			if (ft_search(cub->map[r][c], "NSEW"))
 			{
 				if (cub->player.pr != -1 || cub->player.pc != -1)
-					return (FAILED);
+					exit(FAILED);
 				cub->player.pr = r;
 				cub->player.pc = c;
 				cub->player.sens = cub->map[r][c];
 			}
 			if (ft_search(cub->map[r][c], "0NSEW") && ft_check_neighbours(cub, r, c))
-				return (FAILED);
+				exit(FAILED);
 		}
 	}
-	return (SUCCESS);
 }

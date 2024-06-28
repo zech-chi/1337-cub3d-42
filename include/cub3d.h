@@ -6,31 +6,20 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/10 20:22:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/28 21:47:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <math.h>
+# include "consts.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
 # include <fcntl.h>
 # include "../MLX42/include/MLX42/MLX42.h"
-
-# define BUFFER_SIZE 1
-# define SUCCESS 0
-# define FAILED 1
-# define WHITE "\e[1;37m"
-# define RED "\e[1;31m"
-# define GREEN "\e[1;32m"
-# define RESET "\e[m"
-# define WINDOW_HEIGHT 800
-# define WINDOW_WIDTH 1200
-# define NUMBER_RAYS 1200
 
 /* cub3d struct */
 typedef struct s_list
@@ -47,9 +36,9 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
+	char	sens;
 	int		pr;
 	int		pc;
-	char	sens;
 	double	py;
 	double	px;
 	double	angle;
@@ -61,10 +50,12 @@ typedef struct s_ray
 {
 	double	angle;
 	double	distance;
-	int		down;
-	int		up;
-	int		left;
-	int		right;
+	bool	down;
+	bool	up;
+	bool	left;
+	bool	right;
+	double	xintercept;
+	double	yintercept;
 }	t_ray;
 
 typedef struct s_cub
@@ -119,7 +110,7 @@ int		*ft_get_color(char *line, t_cub *cub);
 int		ft_set_color(t_cub *cub, int **color, char *line, int *i);
 void	ft_scan_file(t_cub *cub, char *path);
 void	ft_create_map(t_cub *cub);
-int		ft_scan_map(t_cub *cub);
+void	ft_scan_map(t_cub *cub);
 
 /* parsing/scan_file.c*/
 int		ft_part1_full(t_cub *cub);
@@ -140,7 +131,7 @@ void	ft_display_list(t_list *head);// to remove
 void	ft_display(t_cub *cub);
 
 /*draw*/
-int32_t	ft_color(int32_t r, int32_t g, int32_t b, int32_t a);
+int		ft_color(int r, int g, int b, int a);
 void	ft_build_maze(t_cub *cub);
 /*end draw*/
 
@@ -153,10 +144,13 @@ void	ft_player_event(t_cub *cub);
 /*math*/
 int		ft_between(double alpha, double angle_start, double angle_end);
 double	ft_periodic(double angle);
+double	ft_min(double a, double b);
+double	ft_get_distance(double x1, double y1, double x2, double y2);
 /*end math*/
 
 /*raycasting*/
-void	ft_raycasting(t_cub *cub);
+// void	ft_raycasting(t_cub *cub);
+void	ft_rays(t_cub *cub);
 /*end raycasting*/
 
 #endif

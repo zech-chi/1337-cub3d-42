@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/28 16:15:31 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/06/28 19:08:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#ifndef CONSTS_H
+# define CONSTS_H
 
-int	main(int ac, char **av)
-{
-	t_cub	cub;
+# include <math.h>
 
-	ft_parsing(ac, av, &cub);
-	ft_display(&cub);
-	ft_build_maze(&cub);
-	// ft_display_list(cub.head);
+# define BUFFER_SIZE 1
 
-	// printf("\n--------------------------------\n");
-	// printf("rows:%d, colos:%d", cub.rows, cub.cols);
-	return (0);
-}
+# define SUCCESS 0
+# define FAILED 1
+
+# define WHITE "\e[1;37m"
+# define RED "\e[1;31m"
+# define GREEN "\e[1;32m"
+# define RESET "\e[m"\
+
+# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 1200
+# define NUMBER_RAYS 1200
+# define PIXEL 32
+
+/*player consts*/
+# define WALK_SPEED 2
+# define TURN_SPEED 2 * (M_PI / 180)
+
+#endif

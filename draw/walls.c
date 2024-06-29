@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/29 19:43:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 20:00:46 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	int	wall_height;
 	int	y;
 
-	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6)) * 0.8;
+	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
 	// wall_height = distance - 500;
 	y = WINDOW_HEIGHT / 2 - wall_height / 2;
 	y = max(y, 0);

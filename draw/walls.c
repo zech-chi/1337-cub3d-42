@@ -6,13 +6,13 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/28 22:20:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:39:04 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int ft_color(int r, int g, int b, int a)
+uint32_t ft_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
@@ -52,17 +52,17 @@ int	min(int a, int b)
 }
 
 
-void	ft_draw_walls(t_cub *cub, double distance, int x, double angle)
+void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 {
 	int	wall_height;
 	int	y;
 
-	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6)) * 0.1;
+	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6)) * 0.8;
 	// wall_height = distance - 500;
 	y = WINDOW_HEIGHT / 2 - wall_height / 2;
 	y = max(y, 0);
-	// for (int y1 = 0; y1 < y; y1++)
-	// 	mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(0, 0, 100, 255));
+	for (int y1 = 0; y1 < y; y1++)
+		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(0, 0, 100, 255));
 	// printf("%d\n", wall_height);
 	while (y < min(WINDOW_HEIGHT / 2 - wall_height / 2 + wall_height, WINDOW_HEIGHT))
 	{
@@ -72,11 +72,11 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle)
 		// 	continue;
 		// }
 		// mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255 * exp(-0.00002 * distance)));
-		mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, 255));
+		mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255 * exp(-0.008 * cub->rays[i].distance)));
 		y++;
 	}
-	// for (int y2 = y; y2 < WINDOW_HEIGHT; y2++)
-	// 	mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(100, 100, 0, 255));
+	for (int y2 = y; y2 < WINDOW_HEIGHT; y2++)
+		mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(100, 100, 0, 255));
 }
 
 // void	ft_render_map(t_cub *cub)
@@ -119,15 +119,15 @@ void	ft_render_walls(t_cub *cub)
 	int	i;
 
 	i = -1;
-	printf("----------------\n");
-	printf("[ ");
+	// printf("----------------\n");
+	// printf("[ ");
 	while (++i < NUMBER_RAYS)
 	{
 		// if (i == 0)
-			ft_draw_walls(cub, cub->rays[i].distance, i, cub->rays[i].angle);
-		printf("%f, ", cub->rays[i].distance);
+			ft_draw_walls(cub, cub->rays[i].distance, i, cub->rays[i].angle, i);
+		// printf("%f, ", cub->rays[i].distance);
 	}
-	printf("]\n\n");
+	// printf("]\n\n");
 }
 
 void	ft_render(void *param)
@@ -139,27 +139,32 @@ void	ft_render(void *param)
 	ft_player_event(cub);
 	if (!cub->render)
 		return ;
-	ft_reset_walls(cub);
+	
+	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
+	ft_render_minimap(cub);
 	cub->render = false;
 }
 
 void	ft_build_maze(t_cub *cub)
 {
-	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2", false);
+
+	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH + 930, WINDOW_HEIGHT, "ziko^2", false);
 	if (!(cub->mlx.mlx_ptr))
 	{
 		perror(mlx_strerror(mlx_errno));
 		return ;
 	}
 	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub->maze_img2 = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL, cub->rows * PIXEL); ///
 	if (!cub->mlx.maze_img)
 	{
 		perror(mlx_strerror(mlx_errno));
 		return;
 	}
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

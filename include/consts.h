@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/28 19:08:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:41:11 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@
 
 /*player consts*/
 # define WALK_SPEED 2
-# define TURN_SPEED 2 * (M_PI / 180)
+# define TURN_SPEED 1.5 * (M_PI / 180)
 
 #endif

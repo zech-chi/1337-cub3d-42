@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/28 21:47:03 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 18:08:43 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,25 @@ typedef struct s_player
 	char	sens;
 	int		pr;
 	int		pc;
-	double	py;
-	double	px;
-	double	angle;
-	double	walk_speed;
-	double	turn_speed;
+	float	py;
+	float	px;
+	float	angle;
+	float	walk_speed;
+	float	turn_speed;
 }	t_player;
 
 typedef struct s_ray
 {
-	double	angle;
-	double	distance;
+	float	angle;
+	float	distance;
 	bool	down;
 	bool	up;
 	bool	left;
 	bool	right;
-	double	xintercept;
-	double	yintercept;
+	float	xintercept;
+	float	yintercept;
+	float	horz_distance;
+	float	vert_distance;
 }	t_ray;
 
 typedef struct s_cub
@@ -75,6 +77,8 @@ typedef struct s_cub
 	bool		render;
 	t_list		*head;
 	t_mlx		mlx;
+	mlx_t		*mlx_ptr2; // to remove
+	mlx_image_t	*maze_img2; // to remove
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
 }	t_cub;
@@ -131,7 +135,7 @@ void	ft_display_list(t_list *head);// to remove
 void	ft_display(t_cub *cub);
 
 /*draw*/
-int		ft_color(int r, int g, int b, int a);
+uint32_t	ft_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void	ft_build_maze(t_cub *cub);
 /*end draw*/
 
@@ -142,15 +146,19 @@ void	ft_player_event(t_cub *cub);
 /*end player*/
 
 /*math*/
-int		ft_between(double alpha, double angle_start, double angle_end);
-double	ft_periodic(double angle);
-double	ft_min(double a, double b);
-double	ft_get_distance(double x1, double y1, double x2, double y2);
+int		ft_between(float alpha, float angle_start, float angle_end);
+float	ft_periodic(float angle);
+float	ft_min(float a, float b);
+float	ft_get_distance(float x1, float y1, float x2, float y2);
 /*end math*/
 
 /*raycasting*/
 // void	ft_raycasting(t_cub *cub);
 void	ft_rays(t_cub *cub);
 /*end raycasting*/
+
+
+
+void	ft_render_minimap(t_cub *cub); /////
 
 #endif

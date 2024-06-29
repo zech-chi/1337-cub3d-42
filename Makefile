@@ -29,7 +29,8 @@ SRCS =  main.c \
 		draw/walls.c \
 		player/player.c \
 		math/math_tools.c \
-		raycasting/rays.c
+		raycasting/rays.c \
+		minimap.c
 
 OBJS = $(SRCS:.c=.o)
 

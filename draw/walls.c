@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/29 18:39:04 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:43:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	y = WINDOW_HEIGHT / 2 - wall_height / 2;
 	y = max(y, 0);
 	for (int y1 = 0; y1 < y; y1++)
-		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(0, 0, 100, 255));
+		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(52, 25, 72,255));
 	// printf("%d\n", wall_height);
 	while (y < min(WINDOW_HEIGHT / 2 - wall_height / 2 + wall_height, WINDOW_HEIGHT))
 	{
@@ -76,7 +76,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 		y++;
 	}
 	for (int y2 = y; y2 < WINDOW_HEIGHT; y2++)
-		mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(100, 100, 0, 255));
+		mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(254,163,3,255));
 }
 
 // void	ft_render_map(t_cub *cub)

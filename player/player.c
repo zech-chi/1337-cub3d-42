@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/28 15:50:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 19:31:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,45 @@ void	ft_turn_right(t_cub *cub)
 	}
 }
 
-void	ft_walk_left(t_cub *cub);
-void	ft_walk_right(t_cub *cub);
+void	ft_walk_left(t_cub *cub)
+{
+	double	a;
+	double	b;
+
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_A))
+	{
+		a = cub->player.walk_speed * cos(cub->player.angle + M_PI_2);
+		b = -1 * cub->player.walk_speed * sin(cub->player.angle + M_PI_2);
+		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle + M_PI_2))
+		{
+			cub->player.py += b;
+			cub->player.px += a;
+			cub->player.pr = cub->player.py / cub->pixel;
+			cub->player.pc = cub->player.px / cub->pixel;
+			cub->render = true;
+		}
+	}
+}
+
+void	ft_walk_right(t_cub *cub)
+{
+	double	a;
+	double	b;
+
+	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_D))
+	{
+		a = cub->player.walk_speed * cos(cub->player.angle - M_PI_2);
+		b = -1 * cub->player.walk_speed * sin(cub->player.angle - M_PI_2);
+		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle - M_PI_2))
+		{
+			cub->player.py += b;
+			cub->player.px += a;
+			cub->player.pr = cub->player.py / cub->pixel;
+			cub->player.pc = cub->player.px / cub->pixel;
+			cub->render = true;
+		}
+	}
+}
 
 void	ft_player_event(t_cub *cub)
 {
@@ -130,8 +167,8 @@ void	ft_player_event(t_cub *cub)
 	ft_walk_down(cub);
 	ft_turn_left(cub);
 	ft_turn_right(cub);
-	// ft_walk_left(cub);
-	// ft_walk_right(cub);
+	ft_walk_left(cub);
+	ft_walk_right(cub);
 }
 
 void	ft_player_init(t_cub *cub)

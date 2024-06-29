@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 18:24:45 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:19:33 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_line(int x1, int y1, int x2, int y2, t_cub *cub, u_int32_t color)
 
 	while (true)
 	{
-		if (!(x1 < 0 || y1 < 0 || x1 > WINDOW_WIDTH || y1 > WINDOW_HEIGHT))
+		if (!(x1 < 0 || y1 < 0 || x1 > cub->cols * PIXEL || y1 > cub->rows * PIXEL))
 			mlx_put_pixel(cub->maze_img2, x1, y1, color);
 
 		if (x1 == x2 && y1 == y2)

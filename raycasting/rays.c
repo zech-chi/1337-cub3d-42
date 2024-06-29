@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 19:17:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:12:16 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ bool	ft_find_wall(float x, float y, t_cub *cub, int i)
 	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ')  //cub.map[r][c] == ' '
 	{
 		// printf("found wall at (r, c) = (%d, %d)\n", r, c);
-		if (i == 0)
-			printf("found wall at (r, c) = (%d, %d)\n", r, c);
+		// if (i == 0)
+		// 	printf("found wall at (r, c) = (%d, %d)\n", r, c);
 		return (true);
 	}
+	(void)i;
 	return (false);
 }
 
@@ -67,24 +68,24 @@ float	ft_horizontal(t_cub *cub, int i)
 	nextx = xintercept;
 	nexty = yintercept;
 
-	if (i == 0)
+	// if (i == 0)
+	// {
+	// 	printf("------start-------\n\n");
+	// 	printf("px = %f\n", cub->player.px);
+	// 	printf("py = %f\n", cub->player.py);
+	// 	printf("xinter = %f\n", xintercept);
+	// 	printf("yinter = %f\n", yintercept);
+	// 	printf("deltax = %f\n", deltax);
+	// 	printf("deltay = %f\n", deltay);
+	// 	printf("rangle = %f\n", cub->rays[i].angle);
+	// }
+	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0 && nexty <= cub->rows * PIXEL)
 	{
-		printf("------start-------\n\n");
-		printf("px = %f\n", cub->player.px);
-		printf("py = %f\n", cub->player.py);
-		printf("xinter = %f\n", xintercept);
-		printf("yinter = %f\n", yintercept);
-		printf("deltax = %f\n", deltax);
-		printf("deltay = %f\n", deltay);
-		printf("rangle = %f\n", cub->rays[i].angle);
-	}
-	while (nextx >= 0 && nextx <= WINDOW_WIDTH && nexty >= 0 && nexty <= WINDOW_HEIGHT)
-	{
-		if (i == 0)
-		{
-			printf("(%f, %f)\n",nexty / PIXEL,  nextx / PIXEL);
-			printf("(%d, %d)\n",  (int)(nexty / PIXEL) , (int)(nextx / PIXEL));
-		}
+		// if (i == 0)
+		// {
+		// 	printf("(%f, %f)\n",nexty / PIXEL,  nextx / PIXEL);
+		// 	printf("(%d, %d)\n",  (int)(nexty / PIXEL) , (int)(nextx / PIXEL));
+		// }
 		if (ft_find_wall(nextx, nexty - cub->rays[i].up + cub->rays[i].down, cub, i))
 		{
 			found_horz_hit = true;
@@ -126,7 +127,7 @@ float	ft_vertical(t_cub *cub, int i)
 		deltay *= -1;
 	nextx = xintercept;
 	nexty = yintercept;
-	while (nextx >= 0 && nextx <= WINDOW_WIDTH && nexty >= 0 && nexty <= WINDOW_HEIGHT)
+	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0 && nexty <= cub->rows * PIXEL)
 	{
 		if (ft_find_wall(nextx - cub->rays[i].left + cub->rays[i].right, nexty, cub, i))
 		{
@@ -176,4 +177,3 @@ void	ft_rays(t_cub *cub)
 		ray_angle -= (M_PI / (3.0 * NUMBER_RAYS));
 	}
 }
- 

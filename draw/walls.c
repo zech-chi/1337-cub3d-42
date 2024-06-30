@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/30 14:01:35 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:19:50 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void	ft_render(void *param)
 	ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
-	ft_render_minimap(cub);
+	// ft_render_minimap(cub);
 	cub->render = false;
 }
 

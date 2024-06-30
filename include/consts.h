@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 22:17:42 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:19:58 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WINDOW_HEIGHT 800
 # define WINDOW_WIDTH 1200
 # define NUMBER_RAYS 1200
-# define PIXEL 32
+# define PIXEL 64
 
 /*player consts*/
 # define WALK_SPEED 1.5

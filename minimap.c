@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 22:19:33 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 18:46:43 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_draw_player(t_cub *cub)
 	}
 	x2 = cub->player.px + 10 * cos(cub->player.angle);
 	y2 = cub->player.py - 10 * sin(cub->player.angle);
-	printf("%f\n", cub->player.angle);
+	// printf("%f\n", cub->player.angle);
 	ft_draw_line(cub->player.px, cub->player.py, x2, y2, cub, ft_color(0, 0, 255, 255));
 }
 

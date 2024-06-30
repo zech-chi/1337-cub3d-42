@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/30 14:01:35 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:44:47 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,26 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	int	y;
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	// wall_height = distance - 500;
 	y = (WINDOW_HEIGHT / 2) - (wall_height / 2);
 	y = max(y, 0);
 	for (int y1 = 0; y1 < y; y1++)
 		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(52, 25, 72,255));
-	// printf("%d\n", wall_height);
 	while (y < min(WINDOW_HEIGHT / 2 - wall_height / 2 + wall_height, WINDOW_HEIGHT))
 	{
-		// if (y < 0 || x < 0 || x > cub->cols * cub->pixel * 2 || y > cub->rows * cub->pixel * 2)
-		// {
-		// 	y++;
-		// 	continue;
-		// }
-		// mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255 * exp(-0.00002 * distance)));
-		if (cub->rays[i].was_vertical)
-			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255 * exp(-0.008 * cub->rays[i].distance)));
+		if (!cub->rays[i].was_vertical)
+		{
+			if (cub->rays[i].up)
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255* exp(-0.005 * cub->rays[i].distance) ));
+			else
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+		}
 		else
-			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(85, 130, 150, 255 * exp(-0.008 * cub->rays[i].distance)));
+		{
+			if (cub->rays[i].right)
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+			else
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+		}
 		y++;
 	}
 	for (int y2 = y; y2 < WINDOW_HEIGHT; y2++)
@@ -117,10 +119,19 @@ void	ft_close_win_event(t_cub *cub)
 	// free and out
 }
 
+void	ft_fix_rays(t_cub *cub)
+{
+	for (int i = 1; i < NUMBER_RAYS - 1; i++) {
+		if (cub->rays[i - 1].was_vertical == cub->rays[i + 1].was_vertical)
+			cub->rays[i].was_vertical = cub->rays[i - 1].was_vertical;
+	}
+}
+
 void	ft_render_walls(t_cub *cub)
 {
 	int	i;
 
+	ft_fix_rays(cub);
 	i = -1;
 	// printf("----------------\n");
 	// printf("[ ");
@@ -129,6 +140,8 @@ void	ft_render_walls(t_cub *cub)
 		// if (i == 0)
 			ft_draw_walls(cub, cub->rays[i].distance, i, cub->rays[i].angle, i);
 		// printf("%f, ", cub->rays[i].distance);
+		// if (i % 50 == 0)
+		// 	printf("\n");
 	}
 	// printf("]\n\n");
 }
@@ -143,7 +156,7 @@ void	ft_render(void *param)
 	if (!cub->render)
 		return ;
 	
-	ft_reset_walls(cub);
+	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
 	ft_render_minimap(cub);

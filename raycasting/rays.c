@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 13:17:27 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 19:00:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,10 +162,17 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
 	cub->rays[i].horz_distance = ft_horizontal(cub, i);
 	cub->rays[i].vert_distance = ft_vertical(cub, i);
 	cub->rays[i].distance = ft_min(cub->rays[i].horz_distance, cub->rays[i].vert_distance);
-	if (cub->rays[i].distance == cub->rays[i].vert_distance)
+	if (cub->rays[i].horz_distance > cub->rays[i].vert_distance)
 		cub->rays[i].was_vertical = true;
-	else
+	else if (cub->rays[i].horz_distance < cub->rays[i].vert_distance)
 		cub->rays[i].was_vertical = false;
+	else
+	{
+		if (i > 0)
+			cub->rays[i].was_vertical = cub->rays[i - 1].was_vertical;
+		else
+			cub->rays[i].was_vertical = true;
+	}
 }
 
 void	ft_rays(t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 18:08:43 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/30 13:13:41 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_ray
 {
 	float	angle;
 	float	distance;
+	bool	was_vertical;
 	bool	down;
 	bool	up;
 	bool	left;

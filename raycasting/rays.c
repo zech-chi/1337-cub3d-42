@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/29 22:12:16 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 13:17:27 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,11 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
 
 	cub->rays[i].horz_distance = ft_horizontal(cub, i);
 	cub->rays[i].vert_distance = ft_vertical(cub, i);
-	cub->rays[i].distance = ft_min(ft_horizontal(cub, i), ft_vertical(cub, i));
+	cub->rays[i].distance = ft_min(cub->rays[i].horz_distance, cub->rays[i].vert_distance);
+	if (cub->rays[i].distance == cub->rays[i].vert_distance)
+		cub->rays[i].was_vertical = true;
+	else
+		cub->rays[i].was_vertical = false;
 }
 
 void	ft_rays(t_cub *cub)

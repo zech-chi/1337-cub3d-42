@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/28 16:28:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/30 17:03:13 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_data_init(t_cub *cub)
 	cub->player.pr = -1;
 	cub->player.pc = -1;
 	cub->fd = -1;
-	cub->pixel = 32;
+	cub->pixel = PIXEL;
 	cub->render = true;
 }
 

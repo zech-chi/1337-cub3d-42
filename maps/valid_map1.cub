@@ -1,6 +1,6 @@
-NO ./textures/imegs/no1.png
-SO ./textures/imegs/so1.png
-WE ./textures/imegs/no2.png
+NO ./textures/imegs/so2.png
+SO ./textures/imegs/north3.png
+WE ./textures/imegs/we1.png
 EA ./textures/imegs/ea1.png
 
 F 220    ,100,0

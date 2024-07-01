@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 18:46:43 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:53:09 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,61 @@
 
 void ft_draw_square(t_cub *cub, int r, int c, uint32_t color)
 {
-	for (int y = r; y < r + PIXEL; y++)
+	for (int y = r; y < r + PIXEL_MINI; y++)
 	{
-		for (int x = c; x < c + PIXEL; x++)
+		for (int x = c; x < c + PIXEL_MINI; x++)
 		{
 			mlx_put_pixel(cub->maze_img2, x, y, color);
 		}
 	}
 }
 
-void	ft_draw_line(int x1, int y1, int x2, int y2, t_cub *cub, u_int32_t color)
+int	ft_scale_d(int prev)
 {
-	int dx = abs(x2 - x1);
-	int dy = abs(y2 - y1);
+	int	new;
+
+	new = (prev * PIXEL_MINI) / PIXEL;
+	return (new);
+}
+float	ft_scale_f(float prev)
+{
+	float	new;
+
+	new = (prev * PIXEL_MINI) / PIXEL;
+	return (new);
+}
+
+void	ft_draw_line(int x2, int y2, t_cub *cub, bool is_player)
+{
+	int dx;
+	int dy;
 	int sx;
 	int sy;
 	int err;
 	int e2;
+	int	a;
+	int	x1;
+	int	y1;
 
+	x1 = ft_scale_f(cub->player.px);
+	y1 = ft_scale_f(cub->player.py);
+	dx = abs(x2 - x1);
+	dy = abs(y2 - y1);
 	sx = (x1 < x2) ? 1 : -1;
 	sy = (y1 < y2) ? 1 : -1;
 	err = dx - dy;
-
 	while (true)
 	{
-		if (!(x1 < 0 || y1 < 0 || x1 > cub->cols * PIXEL || y1 > cub->rows * PIXEL))
-			mlx_put_pixel(cub->maze_img2, x1, y1, color);
+		if (x1 >= 0 && y1 >= 0 && x1 < cub->cols * PIXEL_MINI && y1 < cub->rows * PIXEL_MINI)
+		{
+			if (is_player)
+				mlx_put_pixel(cub->maze_img2, x1, y1, ft_color(0, 0, 255, 255));
+			else
+			{
+				a = max(255 * exp(-0.008 * ft_get_distance(x1, y1, ft_scale_f(cub->player.px), ft_scale_f(cub->player.py))), 0);
+				mlx_put_pixel(cub->maze_img2, x1, y1, ft_color(255, 255, 0, a));
+			}
+		}
 
 		if (x1 == x2 && y1 == y2)
 			break;
@@ -68,33 +97,34 @@ void	ft_draw_player(t_cub *cub)
 	int x2, y2;
 
 	radius = 2;
-	y = cub->player.py - radius;
-	while (y < cub->player.py + radius)
+	y = ft_scale_f(cub->player.py) - radius;
+	while (y < ft_scale_f(cub->player.py) + radius)
 	{
-		x = cub->player.px - radius;
-		while (x < cub->player.px + radius)
+		x = ft_scale_f(cub->player.px) - radius;
+		while (x < ft_scale_f(cub->player.px) + radius)
 		{
-			if (pow(x - cub->player.px, 2) + pow(y - cub->player.py, 2) < pow(radius, 2))
+			if (pow(x - ft_scale_f(cub->player.px), 2) + pow(y - ft_scale_f(cub->player.py), 2) < pow(radius, 2))
 				mlx_put_pixel(cub->maze_img2, x, y, ft_color(255, 0, 0, 255));
 			x++;
 		}
 		y++;
 	}
-	x2 = cub->player.px + 10 * cos(cub->player.angle);
-	y2 = cub->player.py - 10 * sin(cub->player.angle);
+	x2 = ft_scale_f(cub->player.px) + 10 * cos(cub->player.angle);
+	y2 = ft_scale_f(cub->player.py) - 10 * sin(cub->player.angle);
 	// printf("%f\n", cub->player.angle);
-	ft_draw_line(cub->player.px, cub->player.py, x2, y2, cub, ft_color(0, 0, 255, 255));
+	ft_draw_line(x2, y2, cub, true); //  ft_color(0, 0, 255, 255)
 }
 
 void	ft_draw_rays(t_cub *cub)
 {
 	int	x2, y2;
+	float	ray_distance;
 
 	for (int i = 0; i < WINDOW_WIDTH; i++) { // WINDOW_WIDTH
-
-		x2 = cub->player.px + cub->rays[i].distance * cos(cub->rays[i].angle);
-		y2 = cub->player.py - cub->rays[i].distance * sin(cub->rays[i].angle);
-		ft_draw_line(cub->player.px, cub->player.py, x2, y2, cub, ft_color(0, 255, 0, 255));
+		ray_distance = ft_scale_f(cub->rays[i].distance);
+		x2 = ft_scale_f(cub->player.px) + (ray_distance - 1) * cos(cub->rays[i].angle);
+		y2 = ft_scale_f(cub->player.py) - (ray_distance - 1) * sin(cub->rays[i].angle);
+		ft_draw_line(x2, y2, cub, false);
 		// printf("horz_distance = %f\n", cub->rays[i].horz_distance);
 		// printf("vert_distance = %f\n", cub->rays[i].vert_distance);
 		// printf("taken_distance = %f\n", cub->rays[i].distance);
@@ -113,11 +143,11 @@ void	ft_render_minimap(t_cub *cub)
 		for (int c = 0; c < cub->cols; c++)
 		{
 			if (cub->map[r][c] == ' ')
-				ft_draw_square(cub, r * PIXEL, c * PIXEL, ft_color(0, 0, 0, 255));
+				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(0, 0, 0, 255));
 			else if (cub->map[r][c] == '1')
-				ft_draw_square(cub, r * PIXEL, c * PIXEL, ft_color(254,163,3,255));
+				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(38,70,83,255));
 			else if (cub->map[r][c] == '0')
-				ft_draw_square(cub, r * PIXEL, c * PIXEL, ft_color(52, 25, 72,255));
+				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(40, 19, 55, 255));
 		}
 	}
 	ft_draw_rays(cub);

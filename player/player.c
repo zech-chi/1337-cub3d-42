@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/30 18:47:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:01:24 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void	ft_walk_up(t_cub *cub)
 
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_W))
 	{
+		if (ft_between(cub->player.angle, 1.5 * M_PI, 2 * M_PI) && ft_iswall2(cub, cub->player.px + 100, cub->player.py, cub->player.angle))
+			return ;
 		a = cub->player.walk_speed * cos(cub->player.angle);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle);
-		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle))
+		if (!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle))
 		{
 			cub->player.py += b;
 			cub->player.px += a;
@@ -64,6 +66,7 @@ void	ft_walk_up(t_cub *cub)
 		}
 	}
 }
+
 
 void	ft_walk_down(t_cub *cub)
 {
@@ -77,16 +80,16 @@ void	ft_walk_down(t_cub *cub)
 		if (
 			(
 				ft_between(cub->player.angle, 0, M_PI / 2) && \
-				!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle + M_PI)
+				!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle + M_PI)
 			) || (
 				ft_between(cub->player.angle, M_PI, 3 * M_PI / 2) && \
-				!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle - M_PI)
+				!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle - M_PI)
 			) || (
 				ft_between(cub->player.angle, M_PI / 2, M_PI) && \
-				!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle + M_PI)
+				!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle + M_PI)
 			) || (
 				ft_between(cub->player.angle, 3 * M_PI / 2, 2 * M_PI) && \
-				!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle - M_PI)
+				!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle - M_PI)
 			)
 		)
 		{
@@ -130,7 +133,7 @@ void	ft_walk_left(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle + M_PI_2);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle + M_PI_2);
-		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle + M_PI_2))
+		if (!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle + M_PI_2))
 		{
 			cub->player.py += b;
 			cub->player.px += a;
@@ -150,7 +153,7 @@ void	ft_walk_right(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle - M_PI_2);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle - M_PI_2);
-		if (!ft_iswall2(cub, cub->player.px + 2 * a, cub->player.py + 2 * b, cub->player.angle - M_PI_2))
+		if (!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle - M_PI_2))
 		{
 			cub->player.py += b;
 			cub->player.px += a;

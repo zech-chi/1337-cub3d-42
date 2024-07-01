@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 14:19:47 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:53:35 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@
 # define WINDOW_WIDTH 1200
 # define NUMBER_RAYS 1200
 # define PIXEL 1024
+# define PIXEL_MINI 32
+# define N_STEPS 5
 
 /*player consts*/
-# define WALK_SPEED 75
+# define WALK_SPEED 60
 # define TURN_SPEED 2 * (M_PI / 180)
 
 #endif

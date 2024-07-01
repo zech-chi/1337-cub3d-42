@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 13:04:53 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:18:38 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ int		ft_between(float alpha, float angle_start, float angle_end);
 float	ft_periodic(float angle);
 float	ft_min(float a, float b);
 float	ft_get_distance(float x1, float y1, float x2, float y2);
+int	max(int a, int b);
 /*end math*/
 
 /*raycasting*/

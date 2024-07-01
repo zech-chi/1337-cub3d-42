@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/01 18:05:59 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:47:22 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2, 0);
 	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2, WINDOW_HEIGHT);
 	for (int y1 = 0; y1 < top_pixel; y1++)
-		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(52, 25, 72,255));
+		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
 
 	if (!cub->rays[i].was_vertical)
 		cub->offset.x_offset = (int)cub->rays[i].hitx % PIXEL;
@@ -171,7 +171,7 @@ void	ft_render(void *param)
 	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
-	// ft_render_minimap(cub);
+	ft_render_minimap(cub);
 	cub->render = false;
 }
 
@@ -199,7 +199,7 @@ void	ft_build_maze(t_cub *cub)
 		return ;
 	}
 	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->maze_img2 = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL, cub->rows * PIXEL); ///
+	cub->maze_img2 = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI, cub->rows * PIXEL_MINI); ///
 	if (!cub->mlx.maze_img)
 	{
 		perror(mlx_strerror(mlx_errno));
@@ -207,7 +207,7 @@ void	ft_build_maze(t_cub *cub)
 	}
 	ft_load_img(cub);
 	
-	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);

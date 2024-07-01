@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/01 10:56:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:00:07 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 {
 	int	wall_height;
 	int	y;
+	int	xoffset;
+	int yoffset;
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
 	y = (WINDOW_HEIGHT / 2) - (wall_height / 2);
@@ -74,6 +76,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	{
 		if (!cub->rays[i].was_vertical)
 		{
+			xoffset = (int)cub->rays[i].hitx % PIXEL;
 			if (cub->rays[i].up)
 				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 			else
@@ -81,6 +84,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 		}
 		else
 		{
+			yoffset = (int)cub->rays[i].hity % PIXEL;
 			if (cub->rays[i].right)
 				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 			else

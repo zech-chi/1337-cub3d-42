@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/01 11:00:07 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 14:27:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,48 +52,48 @@ int	min(int a, int b)
 }
 
 
-int	ft_update_a(int a)
-{
-	if (a <= 0)
-		return (0);
-	return (a);
-}
-
-
 void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 {
 	int	wall_height;
 	int	y;
-	int	xoffset;
-	int yoffset;
+	int	top_pixel;
+	int	bottom_pixel;
+	int	distance_from_top;
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	y = (WINDOW_HEIGHT / 2) - (wall_height / 2);
-	y = max(y, 0);
-	for (int y1 = 0; y1 < y; y1++)
+	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2, 0);
+	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2, WINDOW_HEIGHT);
+	for (int y1 = 0; y1 < top_pixel; y1++)
 		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(52, 25, 72,255));
-	while (y < min(WINDOW_HEIGHT / 2 - wall_height / 2 + wall_height, WINDOW_HEIGHT))
+
+	if (!cub->rays[i].was_vertical)
+		cub->offset.x_offset = (int)cub->rays[i].hitx % PIXEL;
+	else
+		cub->offset.x_offset = (int)cub->rays[i].hity % PIXEL;
+
+	y = top_pixel;
+	while (y < bottom_pixel)
 	{
+		distance_from_top = y - WINDOW_HEIGHT / 2 + wall_height / 2;
+		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		if (!cub->rays[i].was_vertical)
 		{
-			xoffset = (int)cub->rays[i].hitx % PIXEL;
 			if (cub->rays[i].up)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
+				ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.no_img);
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
+				ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.so_img);
 		}
 		else
 		{
-			yoffset = (int)cub->rays[i].hity % PIXEL;
 			if (cub->rays[i].right)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
+				ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.ea_img);
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
+				ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.we_img);
 		}
 		y++;
 	}
-	for (int y2 = y; y2 < WINDOW_HEIGHT; y2++)
-		mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(254,163,3,255));
+	for (int y2 = bottom_pixel; y2 < WINDOW_HEIGHT; y2++)
+		mlx_put_pixel(cub->mlx.maze_img, x, y2, ft_color(38,70,83,255));
 }
 
 // void	ft_render_map(t_cub *cub)
@@ -175,9 +175,23 @@ void	ft_render(void *param)
 	cub->render = false;
 }
 
+void	ft_load_img(t_cub *cub)
+{
+	mlx_texture_t		*texture;
+
+	texture = mlx_load_png(cub->ea);
+	cub->mlx.ea_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png(cub->no);
+	cub->mlx.no_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png(cub->we);
+	cub->mlx.we_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png(cub->so);
+	cub->mlx.so_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+}
+
 void	ft_build_maze(t_cub *cub)
 {
-
+	
 	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH + 930, WINDOW_HEIGHT , "ziko^2", false);
 	if (!(cub->mlx.mlx_ptr))
 	{
@@ -191,6 +205,8 @@ void	ft_build_maze(t_cub *cub)
 		perror(mlx_strerror(mlx_errno));
 		return;
 	}
+	ft_load_img(cub);
+	
 	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);

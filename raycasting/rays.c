@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 22:34:31 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:10:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,8 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
 	cub->rays[i].angle = ray_angle;
 	cub->rays[i].up = ray_angle > 0 && ray_angle < M_PI;
 	cub->rays[i].down = !cub->rays[i].up;
-	cub->rays[i].right = ray_angle < 0.5 * M_PI || ray_angle > 1.5 * M_PI;
-	cub->rays[i].left = !cub->rays[i].right;
+	cub->rays[i].left = ray_angle > M_PI_2 && ray_angle < 3.0 * M_PI_2;
+	cub->rays[i].right = !cub->rays[i].left;
 
 	cub->rays[i].horz_distance = ft_horizontal(cub, i);
 	cub->rays[i].vert_distance = ft_vertical(cub, i);

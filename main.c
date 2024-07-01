@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 22:20:59 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:48:31 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	main(int ac, char **av)
 	ft_display(&cub);
 	ft_build_maze(&cub);
 	// ft_display_list(cub.head);
-
 	// printf("\n--------------------------------\n");
 	// printf("rows:%d, colos:%d", cub.rows, cub.cols);
 	return (0);
@@ -36,37 +35,25 @@ int	main(int ac, char **av)
 // 	uint8_t	g;
 // 	uint8_t	b;
 // 	uint8_t	a;
-//     // void    *win_ptr;
-//     // void    *img_ptr;
-//     // int     img_width;
-//     // int     img_height;
+// 	int	size;
 
-//     // Initialize MLX
-//     mlx_ptr = mlx_init(256 * 2, 256, "hello", true);
-// 	maze_texture = mlx_load_png("./lightile17.png");
-//     // Create a new window
-//     // win_ptr = mlx_new_window(mlx_ptr, 800, 600, "My Window");
-//     // if (win_ptr == NULL)
-//     //     return (1);
 
-//     // // Load the image
-//     // img_ptr = mlx_xpm_file_to_image(mlx_ptr, "path/to/your/image.xpm", &img_width, &img_height);
-//     // if (img_ptr == NULL)
-//     //     return (1);
+// 	size = 1024;
+//     mlx_ptr = mlx_init(size * 2, size, "hello", true);
+// 	maze_texture = mlx_load_png("./textures/north.png");
 
-//     // // Display the image in the window
-// 	copy = mlx_new_image(mlx_ptr, 256, 256);
-// 	for (int y = 0; y < 256; y++)
+// 	copy = mlx_new_image(mlx_ptr, size, size);
+// 	for (int y = 0; y < size; y++)
 // 	{
-// 		for (int x = 0; x < 256; x++)
+// 		for (int x = 0; x < size; x++)
 // 			mlx_put_pixel(copy, x, y, ft_color(255, 0, 0, 255));
 // 	}
 // 	maze_img =  mlx_texture_to_image(mlx_ptr, maze_texture);
-// 	for(int y = 0; y < 256; y++)
+// 	for(int y = 0; y < size; y++)
 // 	{
-// 		for(int x = 0; x < 256; x++)
+// 		for(int x = 0; x < size; x++)
 // 		{
-// 			int i = (y * 256 + x) * 4;
+// 			int i = (y * size + x) * 4;
 // 			r = maze_img->pixels[i];
 // 			g = maze_img->pixels[i + 1];
 // 			b = maze_img->pixels[i + 2];
@@ -75,7 +62,7 @@ int	main(int ac, char **av)
 // 		}
 // 	}
 // 	mlx_image_to_window(mlx_ptr, maze_img, 0, 0);
-// 	mlx_image_to_window(mlx_ptr, copy, 256, 0);
+// 	mlx_image_to_window(mlx_ptr, copy, size, 0);
 // 	mlx_loop(mlx_ptr);
 // 	return (0);
 // }

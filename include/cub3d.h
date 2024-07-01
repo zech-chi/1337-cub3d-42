@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 22:27:20 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:04:53 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,25 @@ typedef struct s_mlx
 {
 	mlx_t		*mlx_ptr;
 	mlx_image_t	*maze_img;
+	mlx_image_t	*no_img;
+	mlx_image_t	*so_img;
+	mlx_image_t	*we_img;
+	mlx_image_t	*ea_img;
 }	t_mlx;
+
+typedef struct	s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	a;
+}	t_color;
+
+typedef struct s_offset
+{
+	int	x_offset;
+	int	y_offset;
+}	t_offset;
 
 typedef struct s_player
 {
@@ -86,6 +104,8 @@ typedef struct s_cub
 	t_mlx		mlx;
 	mlx_t		*mlx_ptr2; // to remove
 	mlx_image_t	*maze_img2; // to remove
+	t_offset	offset;
+	
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
 }	t_cub;
@@ -144,6 +164,7 @@ void	ft_display(t_cub *cub);
 /*draw*/
 uint32_t	ft_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void	ft_build_maze(t_cub *cub);
+void	ft_draw_img(t_cub *cub, int x, int y, float distance, mlx_image_t *img);
 /*end draw*/
 
 /*player*/

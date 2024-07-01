@@ -27,6 +27,7 @@ SRCS =  main.c \
 		parsing/scan_map.c \
 		linked_list/linked_list.c \
 		draw/walls.c \
+		draw/draw_imgs.c \
 		player/player.c \
 		math/math_tools.c \
 		raycasting/rays.c \
@@ -34,7 +35,7 @@ SRCS =  main.c \
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(NAME) clean
+all: $(NAME) clean  ############
 
 %.o: %.c include/cub3d.h
 	@$(CC) $(CFLAGS) -c $< -o $@  && \

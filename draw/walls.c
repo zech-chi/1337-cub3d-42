@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/30 22:22:15 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:42:06 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 {
 	int	wall_height;
 	int	y;
+	int	xoffset;
+	int yoffset;
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
 	y = (WINDOW_HEIGHT / 2) - (wall_height / 2);
@@ -66,17 +68,19 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	{
 		if (!cub->rays[i].was_vertical)
 		{
+			xoffset = (int)cub->rays[i].hitx % PIXEL;
 			if (cub->rays[i].up)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255* exp(-0.002 * cub->rays[i].distance) ));
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, 255* exp(-0.002 * cub->rays[i].distance) ));
 		}
 		else
 		{
+			yoffset = (int)cub->rays[i].hity % PIXEL;
 			if (cub->rays[i].right)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, 255* exp(-0.002 * cub->rays[i].distance) ));
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, 255* exp(-0.002 * cub->rays[i].distance) ));
 		}
 		y++;
 	}

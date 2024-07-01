@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 22:21:14 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:39:42 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define PIXEL 64
 
 /*player consts*/
-# define WALK_SPEED 1.5
+# define WALK_SPEED 3
 # define TURN_SPEED 1.5 * (M_PI / 180)
 
 #endif

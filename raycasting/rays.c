@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 19:00:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/06/30 22:34:31 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ float	ft_horizontal(t_cub *cub, int i)
 			found_horz_hit = true;
 			hitx = nextx;
 			hity = nexty;
+			cub->rays[i].hithorzx = hitx;
+			cub->rays[i].hithorzy = hity;
 			break;
 		}
 		else
@@ -134,6 +136,8 @@ float	ft_vertical(t_cub *cub, int i)
 			found_vert_hit = true;
 			hitx = nextx;
 			hity = nexty;
+			cub->rays[i].hitvertx = hitx;
+			cub->rays[i].hitverty = hity;
 			break;
 		}
 		else
@@ -172,6 +176,17 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
 			cub->rays[i].was_vertical = cub->rays[i - 1].was_vertical;
 		else
 			cub->rays[i].was_vertical = true;
+	}
+
+	if (cub->rays[i].was_vertical)
+	{
+		cub->rays[i].hitx = cub->rays[i].hitvertx;
+		cub->rays[i].hity = cub->rays[i].hitverty;
+	}
+	else
+	{
+		cub->rays[i].hitx = cub->rays[i].hithorzx;
+		cub->rays[i].hity = cub->rays[i].hithorzy;
 	}
 }
 

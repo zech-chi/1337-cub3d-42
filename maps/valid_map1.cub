@@ -1,7 +1,7 @@
-NO ./textures/north2.png
-SO ./textures/south.png
-WE ./textures/west.png
-EA ./textures/east.png
+NO ./textures/imegs/no1.png
+SO ./textures/imegs/so1.png
+WE ./textures/imegs/no2.png
+EA ./textures/imegs/ea1.png
 
 F 220    ,100,0
 C 225,30,0

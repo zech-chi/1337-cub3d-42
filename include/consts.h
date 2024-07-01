@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/30 18:05:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:33:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # define WINDOW_HEIGHT 800
 # define WINDOW_WIDTH 1200
 # define NUMBER_RAYS 1200
-# define PIXEL 32
+# define PIXEL 1024
 
 /*player consts*/
-# define WALK_SPEED 1.5
+# define WALK_SPEED 75
 # define TURN_SPEED 1.5 * (M_PI / 180)
 
 #endif

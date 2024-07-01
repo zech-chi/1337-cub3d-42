@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/30 20:44:47 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/01 10:56:15 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ int	min(int a, int b)
 }
 
 
+int	ft_update_a(int a)
+{
+	if (a <= 0)
+		return (0);
+	return (a);
+}
+
+
 void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 {
 	int	wall_height;
@@ -67,16 +75,16 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 		if (!cub->rays[i].was_vertical)
 		{
 			if (cub->rays[i].up)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 0, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 		}
 		else
 		{
 			if (cub->rays[i].right)
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 0, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 			else
-				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, 255* exp(-0.005 * cub->rays[i].distance) ));
+				mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(0, 255, 0, ft_update_a(255* exp(-0.0001 * cub->rays[i].distance)) ));
 		}
 		y++;
 	}
@@ -159,7 +167,7 @@ void	ft_render(void *param)
 	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
-	ft_render_minimap(cub);
+	// ft_render_minimap(cub);
 	cub->render = false;
 }
 
@@ -179,7 +187,7 @@ void	ft_build_maze(t_cub *cub)
 		perror(mlx_strerror(mlx_errno));
 		return;
 	}
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
+	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);

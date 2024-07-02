@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 10:06:05 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:33:23 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <pthread.h> // threads
+#include <signal.h>
 # include <fcntl.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 
@@ -85,6 +87,12 @@ typedef struct s_ray
 	float	hitverty;
 }	t_ray;
 
+typedef	struct	s_thread
+{
+	pthread_t		id_background_music;
+	pthread_mutex_t	mtx_stop;
+}	t_thread;
+
 typedef struct s_cub
 {
 	char		**map;
@@ -100,15 +108,16 @@ typedef struct s_cub
 	int			fd;
 	int			pixel;
 	bool		render;
+	bool		stop;
 	int			horizon;
 	t_list		*head;
 	t_mlx		mlx;
 	mlx_t		*mlx_ptr2; // to remove
 	mlx_image_t	*maze_img2; // to remove
-
 	t_offset	offset;
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
+	t_thread	thread;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */

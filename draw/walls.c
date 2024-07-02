@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/02 13:44:49 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:39:51 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	y = top_pixel;
 	while (y < bottom_pixel)
 	{
-		if (y < cub->horizon)
-			distance_from_top = y - WINDOW_HEIGHT / 2 + wall_height / 2;
 		distance_from_top = y - cub->horizon - WINDOW_HEIGHT / 2 + wall_height / 2;
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		if (!cub->rays[i].was_vertical)
@@ -179,7 +177,6 @@ void	ft_close_win_event(t_cub *cub)
 {
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx.mlx_ptr);
-	// free and out
 }
 
 void	ft_fix_rays(t_cub *cub)
@@ -259,7 +256,6 @@ void	ft_build_maze(t_cub *cub)
 		return ;
 	}
 	ft_load_img(cub);
-
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);

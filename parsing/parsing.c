@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 10:24:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:32:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	ft_data_init(t_cub *cub)
 	cub->pixel = PIXEL;
 	cub->render = true;
 	cub->horizon = 150;
+	cub->stop = false;
 }
 
 void	ft_parsing(int ac, char **av, t_cub *cub)

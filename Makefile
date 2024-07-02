@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -Ofast
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -Ofast
 
 SRCS =  main.c \
 		to_remove/display.c \

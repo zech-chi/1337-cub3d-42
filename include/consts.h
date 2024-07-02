@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 10:30:45 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:56:11 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define PIXEL_MINI 32
 # define N_STEPS 5
 
-# define HORIZON 400
-# define LOOK_SPEED 20
+# define HORIZON 300
+# define LOOK_SPEED 50
 
 /*player consts*/
 # define WALK_SPEED 60

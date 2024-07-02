@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 11:48:31 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:26:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 // 	uint8_t	b;
 // 	uint8_t	a;
 // 	int	size;
-
 
 // 	size = 1024;
 //     mlx_ptr = mlx_init(size * 2, size, "hello", true);

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 11:10:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:26:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	ft_find_wall(float x, float y, t_cub *cub, int i)
 	c = x / PIXEL;
 	if (r < 0 || c < 0 || r >= cub->rows || c >= cub->cols)
 		return (true);
-	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ')  //cub.map[r][c] == ' '
+	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ') // cub.map[r][c] == ' '
 	{
 		// printf("found wall at (r, c) = (%d, %d)\n", r, c);
 		// if (i == 0)
@@ -54,11 +54,10 @@ float	ft_horizontal(t_cub *cub, int i)
 
 	found_horz_hit = false;
 	// yintercept = (floor(cub->player.py / PIXEL) + cub->rays[i].down) * PIXEL;
-
 	yintercept = floor(cub->player.py / PIXEL) * PIXEL;
 	yintercept += cub->rays[i].down * PIXEL;
-
-	xintercept = cub->player.px + ((cub->player.py - yintercept) / tan(cub->rays[i].angle));
+	xintercept = cub->player.px + ((cub->player.py - yintercept)
+			/ tan(cub->rays[i].angle));
 	deltay = PIXEL;
 	if (cub->rays[i].up)
 		deltay *= -1;
@@ -67,7 +66,6 @@ float	ft_horizontal(t_cub *cub, int i)
 		deltax *= -1;
 	nextx = xintercept;
 	nexty = yintercept;
-
 	// if (i == 0)
 	// {
 	// 	printf("------start-------\n\n");
@@ -79,21 +77,23 @@ float	ft_horizontal(t_cub *cub, int i)
 	// 	printf("deltay = %f\n", deltay);
 	// 	printf("rangle = %f\n", cub->rays[i].angle);
 	// }
-	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0 && nexty <= cub->rows * PIXEL)
+	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0
+		&& nexty <= cub->rows * PIXEL)
 	{
 		// if (i == 0)
 		// {
 		// 	printf("(%f, %f)\n",nexty / PIXEL,  nextx / PIXEL);
 		// 	printf("(%d, %d)\n",  (int)(nexty / PIXEL) , (int)(nextx / PIXEL));
 		// }
-		if (ft_find_wall(nextx, nexty - cub->rays[i].up + cub->rays[i].down, cub, i))
+		if (ft_find_wall(nextx, nexty - cub->rays[i].up + cub->rays[i].down,
+				cub, i))
 		{
 			found_horz_hit = true;
 			hitx = nextx;
 			hity = nexty;
 			cub->rays[i].hithorzx = hitx;
 			cub->rays[i].hithorzy = hity;
-			break;
+			break ;
 		}
 		else
 		{
@@ -120,7 +120,8 @@ float	ft_vertical(t_cub *cub, int i)
 
 	found_vert_hit = false;
 	xintercept = (floor(cub->player.px / PIXEL) + cub->rays[i].right) * PIXEL;
-	yintercept = cub->player.py + (cub->player.px - xintercept) * tan(cub->rays[i].angle);
+	yintercept = cub->player.py + (cub->player.px - xintercept)
+		* tan(cub->rays[i].angle);
 	deltax = PIXEL;
 	if (cub->rays[i].left)
 		deltax *= -1;
@@ -129,16 +130,18 @@ float	ft_vertical(t_cub *cub, int i)
 		deltay *= -1;
 	nextx = xintercept;
 	nexty = yintercept;
-	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0 && nexty <= cub->rows * PIXEL)
+	while (nextx >= 0 && nextx <= cub->cols * PIXEL && nexty >= 0
+		&& nexty <= cub->rows * PIXEL)
 	{
-		if (ft_find_wall(nextx - cub->rays[i].left + cub->rays[i].right, nexty, cub, i))
+		if (ft_find_wall(nextx - cub->rays[i].left + cub->rays[i].right, nexty,
+				cub, i))
 		{
 			found_vert_hit = true;
 			hitx = nextx;
 			hity = nexty;
 			cub->rays[i].hitvertx = hitx;
 			cub->rays[i].hitverty = hity;
-			break;
+			break ;
 		}
 		else
 		{
@@ -151,21 +154,20 @@ float	ft_vertical(t_cub *cub, int i)
 	return (INT_MAX);
 }
 
-void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
+void	ft_raycasting(t_cub *cub, float ray_angle, int i)
 {
 	// float	hit_x;
 	// float	hit_y;
-
 	ray_angle = ft_periodic(ray_angle);
 	cub->rays[i].angle = ray_angle;
 	cub->rays[i].up = ray_angle > 0 && ray_angle < M_PI;
 	cub->rays[i].down = !cub->rays[i].up;
 	cub->rays[i].left = ray_angle > M_PI_2 && ray_angle < 3.0 * M_PI_2;
 	cub->rays[i].right = !cub->rays[i].left;
-
 	cub->rays[i].horz_distance = ft_horizontal(cub, i);
 	cub->rays[i].vert_distance = ft_vertical(cub, i);
-	cub->rays[i].distance = ft_min(cub->rays[i].horz_distance, cub->rays[i].vert_distance);
+	cub->rays[i].distance = ft_min(cub->rays[i].horz_distance,
+			cub->rays[i].vert_distance);
 	if (cub->rays[i].horz_distance > cub->rays[i].vert_distance)
 		cub->rays[i].was_vertical = true;
 	else if (cub->rays[i].horz_distance < cub->rays[i].vert_distance)
@@ -177,7 +179,6 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int	i)
 		else
 			cub->rays[i].was_vertical = true;
 	}
-
 	if (cub->rays[i].was_vertical)
 	{
 		cub->rays[i].hitx = cub->rays[i].hitvertx;

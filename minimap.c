@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 21:53:09 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/02 09:16:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ void	ft_draw_player(t_cub *cub)
 	int	radius;
 	int x2, y2;
 
+	x2 = ft_scale_f(cub->player.px) + 10 * cos(cub->player.angle);
+	y2 = ft_scale_f(cub->player.py) - 10 * sin(cub->player.angle);
+	// printf("%f\n", cub->player.angle);
+	ft_draw_line(x2, y2, cub, true); //  ft_color(0, 0, 255, 255)
 	radius = 2;
 	y = ft_scale_f(cub->player.py) - radius;
 	while (y < ft_scale_f(cub->player.py) + radius)
@@ -109,11 +113,8 @@ void	ft_draw_player(t_cub *cub)
 		}
 		y++;
 	}
-	x2 = ft_scale_f(cub->player.px) + 10 * cos(cub->player.angle);
-	y2 = ft_scale_f(cub->player.py) - 10 * sin(cub->player.angle);
-	// printf("%f\n", cub->player.angle);
-	ft_draw_line(x2, y2, cub, true); //  ft_color(0, 0, 255, 255)
 }
+
 
 void	ft_draw_rays(t_cub *cub)
 {

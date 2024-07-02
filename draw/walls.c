@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/01 20:47:22 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:31:46 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	int	distance_from_top;
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2, 0);
-	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2, WINDOW_HEIGHT);
+	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon, 0);
+	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon, WINDOW_HEIGHT);
 	for (int y1 = 0; y1 < top_pixel; y1++)
 		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
 
@@ -74,7 +74,11 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	y = top_pixel;
 	while (y < bottom_pixel)
 	{
-		distance_from_top = y - WINDOW_HEIGHT / 2 + wall_height / 2;
+		if (y < cub->horizon)
+			distance_from_top = y - WINDOW_HEIGHT / 2 + wall_height / 2;
+		else
+			distance_from_top = y - cub->horizon - WINDOW_HEIGHT / 2 + wall_height / 2;
+
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		if (!cub->rays[i].was_vertical)
 		{

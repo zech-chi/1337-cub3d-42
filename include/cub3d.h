@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/01 20:18:38 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:06:05 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,13 @@ typedef struct s_cub
 	int			fd;
 	int			pixel;
 	bool		render;
+	int			horizon;
 	t_list		*head;
 	t_mlx		mlx;
 	mlx_t		*mlx_ptr2; // to remove
 	mlx_image_t	*maze_img2; // to remove
+
 	t_offset	offset;
-	
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
 }	t_cub;

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 17:32:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:01:19 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static void	ft_data_init(t_cub *cub)
 	cub->render = true;
 	cub->horizon = 150;
 	cub->stop = false;
+	cub->play_weapon = false;
+	cub->mlx.frame = 0;
+	cub->mlx.cur_index = 0;
 }
 
 void	ft_parsing(int ac, char **av, t_cub *cub)

@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -Ofast
+CFLAGS = -Wall -Wextra -Werror -Ofast #-fsanitize=address 
 
 SRCS =  main.c \
 		to_remove/display.c \
@@ -18,6 +18,7 @@ SRCS =  main.c \
 		tools/strcmp.c \
 		tools/strncmp.c \
 		tools/substr.c \
+		tools/itoa.c \
 		parsing/create_map.c \
 		parsing/get_color.c \
 		parsing/parsing.c \

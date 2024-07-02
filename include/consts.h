@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 14:55:01 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:17:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,14 @@
 # define HORIZON 300
 # define LOOK_SPEED 50
 
+# define WEAPONS 87
+# define WEAPON_WEDTH 640
+# define WEAPON_HEIGHT 359
+# define PATH_WEAPONS "weapon/img"
+# define PNG ".png"
+
 /*player consts*/
-# define WALK_SPEED 60
+# define WALK_SPEED 80
 # define TURN_SPEED 2 * (M_PI / 180)
 
 #endif

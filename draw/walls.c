@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/02 17:39:51 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:59:22 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,25 +207,60 @@ void	ft_render_walls(t_cub *cub)
 	// printf("]\n\n");
 }
 
+mlx_image_t	*ft_play_weapon(t_cub *cub)
+{
+	char			*name;
+	mlx_texture_t	*texture;
+	mlx_image_t		*cur_img;
+
+	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(cub->mlx.cur_index));
+	name = ft_strjoin(name, ft_strdup(PNG));
+	texture = mlx_load_png(name);
+	cur_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);	
+	mlx_image_to_window(cub->mlx.mlx_ptr, cur_img, (WINDOW_WIDTH - WEAPON_WEDTH) / 2 + 930, WINDOW_HEIGHT - WEAPON_HEIGHT);
+	(cub->mlx.cur_index)++;
+	if (cub->mlx.cur_index >= WEAPONS)
+		cub->mlx.cur_index = 0;
+	return (cur_img);
+}
+
 void	ft_render(void *param)
 {
 	t_cub	*cub;
+	static mlx_image_t	*prev_img;
+	static int i;
 
 	cub = param;
+	if (cub->mlx.frame == 5)
+	{
+		if (i != 0)	
+			mlx_delete_image(cub->mlx.mlx_ptr, prev_img);
+		ft_render_walls(cub);
+		prev_img = ft_play_weapon(cub);
+		printf("frame = %d\n", cub->mlx.frame);
+		cub->mlx.frame = 0;
+	}
+	(cub->mlx.frame)++;
 	ft_close_win_event(cub);
 	ft_player_event(cub);
-	if (!cub->render)
-		return ;
+	if (cub->render)
+	{
 	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
-	ft_render_minimap(cub);
+	// ft_render_minimap(cub);
+	}
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	cub->render = false;
+	i = 1;
 }
+
+
 
 void	ft_load_img(t_cub *cub)
 {
 	mlx_texture_t	*texture;
+	char			*name;
 
 	texture = mlx_load_png(cub->ea);
 	cub->mlx.ea_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
@@ -235,6 +270,16 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.we_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png(cub->so);
 	cub->mlx.so_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("target.png");
+	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+
+	for (int i = 0; i < WEAPONS; i++) {
+		name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
+		name = ft_strjoin(name, ft_strdup(PNG));
+		texture = mlx_load_png(name);
+		cub->mlx.weapon[i] = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+		free(name);
+	}
 }
 
 void	ft_build_maze(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 17:33:23 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:56:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct s_mlx
 	mlx_image_t	*so_img;
 	mlx_image_t	*we_img;
 	mlx_image_t	*ea_img;
+	mlx_image_t	*weapon[WEAPONS];
+	mlx_image_t *target;
+	int			frame;
+	int			cur_index;
 }	t_mlx;
 
 typedef struct	s_color
@@ -109,6 +113,7 @@ typedef struct s_cub
 	int			pixel;
 	bool		render;
 	bool		stop;
+	bool		play_weapon;
 	int			horizon;
 	t_list		*head;
 	t_mlx		mlx;
@@ -139,6 +144,7 @@ void	ft_valid_name(char *name);
 int		ft_open_file(char *path);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 void	ft_skip_space(char *str, int *i);
+char	*ft_itoa(int n);
 
 /* malloc */
 void	*allocate_memory_safely(size_t bytes, t_cub *cub);

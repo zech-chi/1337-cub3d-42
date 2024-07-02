@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/02 10:30:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:02:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,23 @@ void	ft_look_down(t_cub *cub)
 }
 
 
+// void	ft_play_weapon(t_cub *cub)
+// {
+// 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_P))
+// 	{
+// 		printf("p pressd\n");
+// 		// cub->play_weapon = true;
+// 		printf("\n\n\n");
+// 		for (int i = 0; i < WEAPONS; i++) {
+// 			mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.black_img, 930, 0);
+// 			mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.weapon[i], 930, 0);
+// 			for (size_t i = 0; i < 99999999999999999999; i++);0
+
+// 			printf("%d\n", i);
+// 		}
+// 	}
+// }
+
 void	ft_player_event(t_cub *cub)
 {
 	ft_walk_up(cub);
@@ -198,6 +215,7 @@ void	ft_player_event(t_cub *cub)
 	ft_walk_right(cub);
 	ft_look_up(cub);
 	ft_look_down(cub);
+	// ft_play_weapon(cub);
 }
 
 void	ft_player_init(t_cub *cub)

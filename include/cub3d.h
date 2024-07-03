@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 23:39:35 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:20:25 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,26 @@ void	ft_rays(t_cub *cub);
 void	mouse_func(double xpos, double ypos, void *param);
 void	ft_enable_mouse(t_cub *cub);
 void	ft_disable_mouse(t_cub *cub);
+void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 // mouse
 
+// walk
+void	ft_walk_up(t_cub *cub);
+void	ft_walk_down(t_cub *cub);
+void	ft_walk_left(t_cub *cub);
+void	ft_walk_right(t_cub *cub);
+// walk
 
-void	ft_render_minimap(t_cub *cub); /////
+// turn
+void	ft_turn_left(t_cub *cub);
+void	ft_turn_right(t_cub *cub);
+// turn
+
+// look
+void	ft_look_up(t_cub *cub);
+void	ft_look_down(t_cub *cub);
+// look
+
+void	ft_render_minimap(t_cub *cub); ////
 
 #endif

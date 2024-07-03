@@ -30,6 +30,10 @@ SRCS =  main.c \
 		draw/walls.c \
 		draw/draw_imgs.c \
 		player/player.c \
+		player/mouse.c \
+		player/walk.c \
+		player/turn.c \
+		player/look.c \
 		math/math_tools.c \
 		raycasting/rays.c \
 		minimap.c

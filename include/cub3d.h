@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 14:20:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:56:16 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_mlx
 	mlx_image_t		*ea_img;
 	mlx_image_t		*weapon[WEAPONS];
 	mlx_image_t 	*target;
+	mlx_image_t		*minimap;
+	mlx_image_t		*minimap_big;  // to remove
 	int				frame;
 	int				cur_index;
 	mouse_mode_t	status;
@@ -118,8 +120,6 @@ typedef struct s_cub
 	int			horizon;
 	t_list		*head;
 	t_mlx		mlx;
-	mlx_t		*mlx_ptr2; // to remove
-	mlx_image_t	*maze_img2; // to remove
 	t_offset	offset;
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
@@ -228,5 +228,13 @@ void	ft_look_down(t_cub *cub);
 // look
 
 void	ft_render_minimap(t_cub *cub); ////
+
+// big minimap
+void 	ft_draw_square(t_cub *cub, int r, int c, uint32_t color);
+void	ft_draw_line(int x2, int y2, t_cub *cub, bool is_player);
+void	ft_draw_player(t_cub *cub);
+void	ft_draw_rays(t_cub *cub);
+float	ft_scale_f(float prev);
+
 
 #endif

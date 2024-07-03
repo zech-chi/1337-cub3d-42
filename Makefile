@@ -36,7 +36,8 @@ SRCS =  main.c \
 		player/look.c \
 		math/math_tools.c \
 		raycasting/rays.c \
-		minimap.c
+		minimap/minimap.c \
+		minimap/minimap_big.c
 
 OBJS = $(SRCS:.c=.o)
 

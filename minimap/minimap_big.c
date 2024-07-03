@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_big.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 14:45:17 by zech-chi         ###   ########.fr       */
+/*   Created: 2024/07/03 17:50:23 by zech-chi          #+#    #+#             */
+/*   Updated: 2024/07/03 17:51:40 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#include "../include/cub3d.h"
 
 void ft_draw_square(t_cub *cub, int r, int c, uint32_t color)
 {
@@ -18,24 +18,9 @@ void ft_draw_square(t_cub *cub, int r, int c, uint32_t color)
 	{
 		for (int x = c; x < c + PIXEL_MINI; x++)
 		{
-			mlx_put_pixel(cub->maze_img2, x, y, color);
+			mlx_put_pixel(cub->mlx.minimap_big, x, y, color);
 		}
 	}
-}
-
-int	ft_scale_d(int prev)
-{
-	int	new;
-
-	new = (prev * PIXEL_MINI) / PIXEL;
-	return (new);
-}
-float	ft_scale_f(float prev)
-{
-	float	new;
-
-	new = (prev * PIXEL_MINI) / PIXEL;
-	return (new);
 }
 
 void	ft_draw_line(int x2, int y2, t_cub *cub, bool is_player)
@@ -62,11 +47,11 @@ void	ft_draw_line(int x2, int y2, t_cub *cub, bool is_player)
 		if (x1 >= 0 && y1 >= 0 && x1 < cub->cols * PIXEL_MINI && y1 < cub->rows * PIXEL_MINI)
 		{
 			if (is_player)
-				mlx_put_pixel(cub->maze_img2, x1, y1, ft_color(0, 0, 255, 255));
+				mlx_put_pixel(cub->mlx.minimap_big, x1, y1, ft_color(0, 0, 255, 255));
 			else
 			{
 				a = max(255 * exp(-0.008 * ft_get_distance(x1, y1, ft_scale_f(cub->player.px), ft_scale_f(cub->player.py))), 0);
-				mlx_put_pixel(cub->maze_img2, x1, y1, ft_color(255, 255, 0, a));
+				mlx_put_pixel(cub->mlx.minimap_big, x1, y1, ft_color(255, 255, 0, a));
 			}
 		}
 
@@ -108,13 +93,12 @@ void	ft_draw_player(t_cub *cub)
 		while (x < ft_scale_f(cub->player.px) + radius)
 		{
 			if (pow(x - ft_scale_f(cub->player.px), 2) + pow(y - ft_scale_f(cub->player.py), 2) < pow(radius, 2))
-				mlx_put_pixel(cub->maze_img2, x, y, ft_color(255, 0, 0, 255));
+				mlx_put_pixel(cub->mlx.minimap_big, x, y, ft_color(255, 0, 0, 255));
 			x++;
 		}
 		y++;
 	}
 }
-
 
 void	ft_draw_rays(t_cub *cub)
 {
@@ -137,20 +121,3 @@ void	ft_draw_rays(t_cub *cub)
 	}
 }
 
-void	ft_render_minimap(t_cub *cub)
-{
-	for (int r = 0; r < cub->rows; r++)
-	{
-		for (int c = 0; c < cub->cols; c++)
-		{
-			if (cub->map[r][c] == ' ')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(0, 0, 0, 255));
-			else if (cub->map[r][c] == '1')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(38,70,83,255));
-			else if (cub->map[r][c] == '0')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(40, 19, 55, 255));
-		}
-	}
-	ft_draw_rays(cub);
-	ft_draw_player(cub);
-}

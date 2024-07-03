@@ -1,7 +1,7 @@
-NO ./textures/north6.png
-SO ./textures/south6.png
-EA ./textures/east6.png
-WE ./textures/west6.png
+NO ./textures/north2.png
+SO ./textures/imegs/no1.png
+WE ./textures/imegs/we1.png
+EA ./textures/east2.png
 F       150,110,12
 
 

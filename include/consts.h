@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 18:51:51 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:31:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define PNG ".png"
 
 /*player consts*/
+# define POS_MINIMAP 25
 # define RADIUS 2
 # define SENS_LENGTH 15
 # define N_STEPS 3

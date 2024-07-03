@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 18:44:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:37:16 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,11 +247,11 @@ void	ft_render(void *param)
 	if (cub->render)
 	{
 	// ft_reset_walls(cub);
-	ft_rays(cub);
-	ft_render_walls(cub);
-	ft_render_minimap(cub);
+		ft_rays(cub);
+		ft_render_walls(cub);
+		ft_render_minimap(cub);
+		// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	}
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	cub->render = false;
 	// i = 1;
 }
@@ -286,7 +286,7 @@ void	ft_load_img(t_cub *cub)
 
 void	ft_build_maze(t_cub *cub)
 {
-	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH + 930, WINDOW_HEIGHT + 500, "ziko^2",
+	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2",
 			false);
 	if (!(cub->mlx.mlx_ptr))
 	{
@@ -298,7 +298,7 @@ void	ft_build_maze(t_cub *cub)
 	cub->mlx.minimap = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI,
 			cub->rows * PIXEL_MINI); ///
 
-	cub->mlx.minimap_big = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI, cub->rows * PIXEL_MINI);
+	// cub->mlx.minimap_big = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI, cub->rows * PIXEL_MINI);
 	if (!cub->mlx.maze_img)
 	{
 		perror(mlx_strerror(mlx_errno));
@@ -307,9 +307,9 @@ void	ft_build_maze(t_cub *cub)
 	ft_load_img(cub);
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, 930, 0);
+	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, POS_MINIMAP, POS_MINIMAP);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

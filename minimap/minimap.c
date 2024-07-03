@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 18:49:21 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 20:16:36 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,19 +173,19 @@ void	ft_draw_map(t_cub *cub)
 
 void	ft_render_minimap(t_cub *cub)
 {
-	for (int r = 0; r < cub->rows; r++)
-	{
-		for (int c = 0; c < cub->cols; c++)
-		{
-			if (cub->map[r][c] == ' ')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(0, 0, 0, 255));
-			else if (cub->map[r][c] == '1')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(38,70,83,255));
-			else if (cub->map[r][c] == '0')
-				ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(40, 19, 55, 255));
-		}
-	}
-	ft_draw_rays(cub);
-	ft_draw_player(cub);
+	// for (int r = 0; r < cub->rows; r++)
+	// {
+	// 	for (int c = 0; c < cub->cols; c++)
+	// 	{
+	// 		if (cub->map[r][c] == ' ')
+	// 			ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(0, 0, 0, 255));
+	// 		else if (cub->map[r][c] == '1')
+	// 			ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(38,70,83,255));
+	// 		else if (cub->map[r][c] == '0')
+	// 			ft_draw_square(cub, r * PIXEL_MINI, c * PIXEL_MINI, ft_color(40, 19, 55, 255));
+	// 	}
+	// }
+	// ft_draw_rays(cub);
+	// ft_draw_player(cub);
 	ft_draw_map(cub);
 }

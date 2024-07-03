@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/02 19:59:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:17:22 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,7 +248,7 @@ void	ft_render(void *param)
 	// ft_reset_walls(cub);
 	ft_rays(cub);
 	ft_render_walls(cub);
-	// ft_render_minimap(cub);
+	ft_render_minimap(cub);
 	}
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	cub->render = false;
@@ -281,6 +281,18 @@ void	ft_load_img(t_cub *cub)
 		free(name);
 	}
 }
+void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+{
+	t_cub *cub = param;
+    (void)mods;
+    if (action == MLX_PRESS)
+    {
+        if (button == MLX_MOUSE_BUTTON_LEFT)
+			ft_enable_mouse(cub);
+        if (button == MLX_MOUSE_BUTTON_RIGHT)
+			ft_disable_mouse(cub);
+    }
+}
 
 void	ft_build_maze(t_cub *cub)
 {
@@ -301,6 +313,8 @@ void	ft_build_maze(t_cub *cub)
 		return ;
 	}
 	ft_load_img(cub);
+	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
+	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->maze_img2, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 20:09:49 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 22:11:33 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,62 @@ int	main(int ac, char **av)
 	pthread_join(cub.thread.id_background_music, NULL);
 	return (0);
 }
+
+// // Mouse hook function
+// void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+// {
+//     (void)param;
+// 	t_cub *cub = param;
+//     (void)mods;
+// 	int x;
+// 	int	y;
+//     if (action == MLX_PRESS)
+//     {
+//         if (button == MLX_MOUSE_BUTTON_LEFT)
+//         {
+//             printf("Left mouse button pressed\n");
+// 			mlx_get_mouse_pos(cub->mlx.mlx_ptr, &x, &y);
+// 			printf("%d, %d\n", x, y);
+//         }
+//         else if (button == MLX_MOUSE_BUTTON_RIGHT)
+//         {
+//             printf("Right mouse button pressed\n");
+// 			mlx_get_mouse_pos(cub->mlx.mlx_ptr, &x, &y);
+// 			printf("%d, %d\n", x, y);
+//         }
+//         else if (button == MLX_MOUSE_BUTTON_MIDDLE)
+//         {
+//             printf("Middle mouse button pressed\n");
+// 			mlx_get_mouse_pos(cub->mlx.mlx_ptr, &x, &y);
+// 			printf("%d, %d\n", x, y);
+//         }
+//         // else if (button == MLX_MOUSE_BUTTON_SCROLL_UP)
+//         // {
+//         //     printf("Scroll up\n");
+//         // }
+//         // else if (button == MLX_MOUSE_BUTTON_SCROLL_DOWN)
+//         // {
+//         //     printf("Scroll down\n");
+//         // }
+//     }
+// }
+
+// int main()
+// {
+//     t_cub cub;
+
+//     cub.mlx.mlx_ptr = mlx_init(800, 600, "test_Mouse", false);
+//     if (!cub.mlx.mlx_ptr)
+//     {
+//         fprintf(stderr, "Error initializing mlx\n");
+//         return (1);
+//     }
+
+//     mlx_mouse_hook(cub.mlx.mlx_ptr, mouse_hook, &cub);
+
+// 	mlx_set_cursor_mode(cub.mlx.mlx_ptr, MLX_MOUSE_NORMAL);
+//     mlx_loop(cub.mlx.mlx_ptr);
+
+//     return (0);
+// }
+

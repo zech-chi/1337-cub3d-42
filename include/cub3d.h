@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 19:56:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:39:35 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ typedef struct s_list
 
 typedef struct s_mlx
 {
-	mlx_t		*mlx_ptr;
-	mlx_image_t	*maze_img;
-	mlx_image_t	*no_img;
-	mlx_image_t	*so_img;
-	mlx_image_t	*we_img;
-	mlx_image_t	*ea_img;
-	mlx_image_t	*weapon[WEAPONS];
-	mlx_image_t *target;
-	int			frame;
-	int			cur_index;
+	mlx_t			*mlx_ptr;
+	mlx_image_t		*maze_img;
+	mlx_image_t		*no_img;
+	mlx_image_t		*so_img;
+	mlx_image_t		*we_img;
+	mlx_image_t		*ea_img;
+	mlx_image_t		*weapon[WEAPONS];
+	mlx_image_t 	*target;
+	int				frame;
+	int				cur_index;
+	mouse_mode_t	status;
 }	t_mlx;
 
 typedef struct	s_color
@@ -202,6 +203,11 @@ int	max(int a, int b);
 void	ft_rays(t_cub *cub);
 /*end raycasting*/
 
+/// mouse
+void	mouse_func(double xpos, double ypos, void *param);
+void	ft_enable_mouse(t_cub *cub);
+void	ft_disable_mouse(t_cub *cub);
+// mouse
 
 
 void	ft_render_minimap(t_cub *cub); /////

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/02 19:02:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:30:32 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,82 @@ void	ft_look_down(t_cub *cub)
 // 	}
 // }
 
+// void mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+// {
+//     (void)param;
+//     (void)mods;
+//     if (action == MLX_PRESS)
+//     {
+//         if (button == MLX_MOUSE_BUTTON_LEFT)
+//         {
+//             printf("Left mouse button pressed\n");
+//         }
+//         else if (button == MLX_MOUSE_BUTTON_RIGHT)
+//         {
+//             printf("Right mouse button pressed\n");
+//         }
+//         else if (button == MLX_MOUSE_BUTTON_MIDDLE)
+//         {
+//             printf("Middle mouse button pressed\n");
+//         }
+//     }
+// }
+void	ft_enable_mouse(t_cub *cub)
+{
+	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_E))
+	// {
+		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_HIDDEN);
+		cub->mlx.status = MLX_MOUSE_HIDDEN;
+	// }
+}
+void	ft_disable_mouse(t_cub *cub)
+{
+	// if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_I))
+	// {
+		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_NORMAL);
+		cub->mlx.status = MLX_MOUSE_NORMAL;
+	// }
+}
+
+void	mouse_func(double xpos, double ypos, void *param)
+{
+	t_cub	*cub;
+
+	cub = param;
+	if (cub->mlx.status == MLX_MOUSE_NORMAL)
+		return ;
+	(void)ypos;
+	if (ypos > (WINDOW_HEIGHT / 2))
+	{
+		if (cub->horizon > -(HORIZON))
+		{
+			(cub->horizon) -= LOOK_SPEED;
+			cub->render = true;
+		}
+	}
+	else if (ypos < (WINDOW_HEIGHT / 2))
+	{
+		if (cub->horizon < HORIZON)
+		{
+			(cub->horizon) += LOOK_SPEED;
+			cub->render = true;
+		}
+	}
+	if (xpos > (WINDOW_WIDTH / 2 + 930) + 10)
+	{
+		cub->player.angle -= cub->player.turn_speed;
+		cub->player.angle = ft_periodic(cub->player.angle);
+		cub->render = true;
+	}
+	else if (xpos < (WINDOW_WIDTH / 2 + 930) - 10)
+	{
+		cub->player.angle += cub->player.turn_speed;
+		cub->player.angle = ft_periodic(cub->player.angle);
+		cub->render = true;
+	}
+	mlx_set_mouse_pos(cub->mlx.mlx_ptr, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
+}
+
 void	ft_player_event(t_cub *cub)
 {
 	ft_walk_up(cub);
@@ -215,6 +291,9 @@ void	ft_player_event(t_cub *cub)
 	ft_walk_right(cub);
 	ft_look_up(cub);
 	ft_look_down(cub);
+	// ft_enable_mouse(cub);
+	// ft_disable_mouse(cub);
+	// mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	// ft_play_weapon(cub);
 }
 

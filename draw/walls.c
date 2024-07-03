@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 17:20:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:44:13 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,8 +308,8 @@ void	ft_build_maze(t_cub *cub)
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, 0, cub->rows * PIXEL_MINI + 10);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 930, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, 930, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

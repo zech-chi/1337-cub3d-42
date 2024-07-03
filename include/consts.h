@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 17:47:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:51:51 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@
 
 # define WINDOW_HEIGHT 800
 # define WINDOW_WIDTH 1200
-# define MINIMAP_HEIGHT 401
-# define MINIMAP_WIDTH 401
+# define MINIMAP_HEIGHT 201
+# define MINIMAP_WIDTH 201
+# define MINIMAP_RADIUS 100.5
 
 # define NUMBER_RAYS 1200
 # define PIXEL 1024
-# define PIXEL_MINI 32
+# define PIXEL_MINI 15
 # define LEFT_RIGHT_STEP 2
 
 # define ZONE 7
@@ -51,7 +52,7 @@
 # define PNG ".png"
 
 /*player consts*/
-# define RADIUS 4
+# define RADIUS 2
 # define SENS_LENGTH 15
 # define N_STEPS 3
 # define SCALE 150

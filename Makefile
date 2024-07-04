@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast #-fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address 
 
 SRCS =  main.c \
 		to_remove/display.c \
@@ -34,6 +34,7 @@ SRCS =  main.c \
 		player/walk.c \
 		player/turn.c \
 		player/look.c \
+		music/play_music.c \
 		math/math_tools.c \
 		raycasting/rays.c \
 		minimap/minimap.c \

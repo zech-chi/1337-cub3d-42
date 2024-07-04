@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 20:16:36 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:31:04 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,8 @@ void	ft_draw_map(t_cub *cub)
 					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(255, 255, 255, 255));
 				else if (cub->map[r][c] == '0')
 					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0,255));
+				else if (cub->map[r][c] == 'D')
+					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(30,129,176, 255));
 			}
 			else if (pow(newx - px, 2) + pow(newy - py, 2) < pow(MINIMAP_RADIUS, 2))
 				mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0, 255));

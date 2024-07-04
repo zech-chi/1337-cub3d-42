@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/02 11:26:10 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:29:39 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	ft_find_wall(float x, float y, t_cub *cub, int i)
 	c = x / PIXEL;
 	if (r < 0 || c < 0 || r >= cub->rows || c >= cub->cols)
 		return (true);
-	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ') // cub.map[r][c] == ' '
+	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ' || cub->map[r][c] == 'D') // cub.map[r][c] == ' '
 	{
 		// printf("found wall at (r, c) = (%d, %d)\n", r, c);
 		// if (i == 0)

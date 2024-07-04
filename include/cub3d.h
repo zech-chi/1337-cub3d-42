@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 17:56:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:14:30 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,5 +236,9 @@ void	ft_draw_player(t_cub *cub);
 void	ft_draw_rays(t_cub *cub);
 float	ft_scale_f(float prev);
 
-
+// play music
+void	ft_mtx_init(t_cub *cub);
+void	*ft_routine(void *args);
+void	ft_mtx_set_stop(t_cub *cub);
+// play music
 #endif

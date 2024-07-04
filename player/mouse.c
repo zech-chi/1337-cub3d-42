@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:59:01 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 14:05:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/03 21:52:00 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ void	mouse_func(double xpos, double ypos, void *param)
 			cub->render = true;
 		}
 	}
-	if (xpos > (WINDOW_WIDTH / 2 + 930) + ZONE)
+	if (xpos > (WINDOW_WIDTH / 2) + ZONE)
 	{
 		cub->player.angle -= TURN_SPEED;
 		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 	}
-	else if (xpos < (WINDOW_WIDTH / 2 + 930) - ZONE)
+	else if (xpos < (WINDOW_WIDTH / 2) - ZONE)
 	{
 		cub->player.angle += TURN_SPEED;
 		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 	}
-	mlx_set_mouse_pos(cub->mlx.mlx_ptr, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
+	mlx_set_mouse_pos(cub->mlx.mlx_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 }
 
 void	ft_disable_mouse(t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 21:31:04 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:07:47 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ void	ft_draw_rays_minimap(t_cub *cub)
 	for (int i = 0; i < WINDOW_WIDTH; i++)
 	{
 		ray_distance = ft_scale_f(cub->rays[i].distance);
-		x2 = MINIMAP_WIDTH / 2 + (ray_distance) * cos(cub->rays[i].angle);
-		y2 = MINIMAP_HEIGHT / 2 - (ray_distance) * sin(cub->rays[i].angle);
+		x2 = MINIMAP_WIDTH / 2 + (ray_distance - 1) * cos(cub->rays[i].angle);
+		y2 = MINIMAP_HEIGHT / 2 - (ray_distance - 1) * sin(cub->rays[i].angle);
 		ft_draw_line2(x2, y2, cub, false);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 20:31:59 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:46:37 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define _3PI2 (1.5 * M_PI)
 # define _2PI (2.0 * M_PI)
 
-# define WINDOW_HEIGHT 800
+# define WINDOW_HEIGHT 675l
 # define WINDOW_WIDTH 1200
 # define MINIMAP_HEIGHT 201
 # define MINIMAP_WIDTH 201
@@ -45,11 +45,11 @@
 # define HORIZON 300
 # define LOOK_SPEED 50
 
-# define WEAPONS 87
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359
-# define PATH_WEAPONS "weapon/img"
+# define PATH_WEAPONS "weapon/Sequence 0"
 # define PNG ".png"
+# define WEAPONS 11489
 
 /*player consts*/
 # define POS_MINIMAP 25

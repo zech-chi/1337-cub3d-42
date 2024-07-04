@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 21:14:30 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:53:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_mlx
 	mlx_image_t 	*target;
 	mlx_image_t		*minimap;
 	mlx_image_t		*minimap_big;  // to remove
+	mlx_image_t		*sky;
 	int				frame;
 	int				cur_index;
 	mouse_mode_t	status;
@@ -117,6 +118,7 @@ typedef struct s_cub
 	bool		render;
 	bool		stop;
 	bool		play_weapon;
+	bool		light_on;
 	int			horizon;
 	t_list		*head;
 	t_mlx		mlx;
@@ -226,6 +228,10 @@ void	ft_turn_right(t_cub *cub);
 void	ft_look_up(t_cub *cub);
 void	ft_look_down(t_cub *cub);
 // look
+
+// light
+void	ft_light_event(t_cub *cub);
+// light
 
 void	ft_render_minimap(t_cub *cub); ////
 

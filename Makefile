@@ -34,6 +34,7 @@ SRCS =  main.c \
 		player/walk.c \
 		player/turn.c \
 		player/look.c \
+		player/light.c \
 		music/play_music.c \
 		math/math_tools.c \
 		raycasting/rays.c \

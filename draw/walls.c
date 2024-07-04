@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 20:37:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:53:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,15 +213,15 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 	mlx_texture_t	*texture;
 	mlx_image_t		*cur_img;
 
-	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(cub->mlx.cur_index));
+	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(cub->mlx.cur_index + 10000));
 	name = ft_strjoin(name, ft_strdup(PNG));
 	texture = mlx_load_png(name);
-	cur_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);	
-	mlx_image_to_window(cub->mlx.mlx_ptr, cur_img, (WINDOW_WIDTH - WEAPON_WEDTH) / 2 + 930, WINDOW_HEIGHT - WEAPON_HEIGHT);
+	cur_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	// mlx_resize_image(cur_img, 1200, 675);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cur_img, 0, 0);
 	(cub->mlx.cur_index)++;
-	cub->mlx.cur_index = cub->mlx.cur_index % (WEAPONS - 15);
-	// if (cub->mlx.cur_index >= WEAPONS - 15)
-	// 	cub->mlx.cur_index = 0;
+	if (cub->mlx.cur_index >= WEAPONS)
+		cub->mlx.cur_index = 0;
 	return (cur_img);
 }
 
@@ -229,21 +229,22 @@ void	ft_render(void *param)
 {
 	t_cub	*cub;
 	// static mlx_image_t	*prev_img;
-	// static int i;
+	static int i;
 
 	cub = param;
-	// if (cub->mlx.frame ==3)
+	// if (cub->mlx.frame == 1)
 	// {
-	// 	if (i != 0)	
+	// 	if (i != 0)
 	// 		mlx_delete_image(cub->mlx.mlx_ptr, prev_img);
-	// 	ft_render_walls(cub);
+	// 	// ft_render_walls(cub);
 	// 	prev_img = ft_play_weapon(cub);
-	// 	printf("frame = %d\n", cub->mlx.frame);
+	// 	// printf("frame = %d\n", cub->mlx.frame);
 	// 	cub->mlx.frame = 0;
 	// }
 	// (cub->mlx.frame)++;
 	ft_close_win_event(cub);
 	ft_player_event(cub);
+	ft_light_event(cub);
 	if (cub->render)
 	{
 	// ft_reset_walls(cub);
@@ -253,7 +254,7 @@ void	ft_render(void *param)
 		// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	}
 	cub->render = false;
-	// i = 1;
+	i = 1;
 }
 
 
@@ -286,6 +287,8 @@ void	ft_load_img(t_cub *cub)
 
 void	ft_build_maze(t_cub *cub)
 {
+	mlx_texture_t	*texture;
+
 	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2",
 			false);
 	if (!(cub->mlx.mlx_ptr))
@@ -305,6 +308,9 @@ void	ft_build_maze(t_cub *cub)
 		return ;
 	}
 	ft_load_img(cub);
+	texture = mlx_load_png("sky.png");
+	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.sky, 0, 0);
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);

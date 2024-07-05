@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/05 15:01:56 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:11:37 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,8 +261,19 @@ void	ft_render(void *param)
 	t_cub	*cub;
 	static mlx_image_t	*prev_img;
 	static int i;
+	int static time;
+	int static	check;
+	
 
 	cub = param;
+	if (time <= 200)
+	{
+		time++;
+		return ;
+	}
+	if (check == 0)
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+	check = 1;
 	if (cub->mlx.frame == 3)
 	{
 		if (i != 0)
@@ -343,6 +354,9 @@ void	ft_build_maze(t_cub *cub)
 	texture = mlx_load_png("sky.png");
 	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.sky, 0, 0);
+	texture = mlx_load_png("start_background.png");
+	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/05 12:11:43 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 20:09:20 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_mlx
 	mlx_image_t		*minimap;
 	mlx_image_t		*minimap_big;  // to remove
 	mlx_image_t		*sky;
+	mlx_image_t		*background_start;
 	bool			init_state;
 	bool			normal_shoot1;
 	bool			normal_shoot2;

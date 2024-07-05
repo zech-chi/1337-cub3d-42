@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 22:46:22 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/04 22:58:28 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 10:31:39 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ void	ft_light_event(t_cub *cub)
 		cub->light_on = false;
 		cub->render = true;
 	}
-	
 }

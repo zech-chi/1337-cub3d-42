@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/04 22:47:20 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 10:47:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	ft_data_init(t_cub *cub)
 	cub->mlx.cur_index = 0;
 	cub->mlx.status = MLX_MOUSE_NORMAL;
 	cub->light_on = false;
+	cub->mlx.init_state = true;
+	cub->mlx.normal_shoot1 = false;
+	cub->mlx.normal_shoot2 = false;
+	cub->mlx.zome_shoot1 = false;
+	cub->mlx.zome_shoot2 = false;
+	cub->mlx.reload = false;
 }
 
 void	ft_parsing(int ac, char **av, t_cub *cub)

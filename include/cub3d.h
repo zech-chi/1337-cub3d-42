@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/04 22:53:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:11:43 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef struct s_mlx
 	mlx_image_t		*minimap;
 	mlx_image_t		*minimap_big;  // to remove
 	mlx_image_t		*sky;
+	bool			init_state;
+	bool			normal_shoot1;
+	bool			normal_shoot2;
+	bool			zome_shoot1;
+	bool			zome_shoot2;
+	bool			reload;
+	bool			walk;
 	int				frame;
 	int				cur_index;
 	mouse_mode_t	status;
@@ -232,6 +239,12 @@ void	ft_look_down(t_cub *cub);
 // light
 void	ft_light_event(t_cub *cub);
 // light
+
+// weapon
+void	ft_weapon_event(t_cub *cub);
+mlx_image_t	*ft_play_init_state(t_cub *cub);
+mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, bool *state, char *path);
+// weapon
 
 void	ft_render_minimap(t_cub *cub); ////
 

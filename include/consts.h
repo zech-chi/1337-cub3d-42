@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/04 22:46:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:08:32 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,13 @@
 
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359
-# define PATH_WEAPONS "weapon/Sequence 0"
+# define PATH_WEAPONS_INIT_STATE "weapon/init_state/img0.png"
+# define PATH_WEAPONS_NORM_SHOOT_1 "weapon/normal_shoot1/img"
+# define FRAMES_SHOOT1 11
+# define PATH_WEAPONS_RELOAD "weapon/reload/img"
+# define FRAMES_RELOAD 83
 # define PNG ".png"
-# define WEAPONS 11489
+# define WEAPONS 637
 
 /*player consts*/
 # define POS_MINIMAP 25

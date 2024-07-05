@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/05 12:11:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:02:22 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void	ft_weapon_event(t_cub *cub)
 	{
 		ft_reset_weapon_event(cub);
 		cub->mlx.reload = true;
+	}
+	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_2))
+	{
+		ft_reset_weapon_event(cub);
+		cub->mlx.normal_shoot2 = true;
+	}
+	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_3))
+	{
+		ft_reset_weapon_event(cub);
+		cub->mlx.zome_shoot1 = true;
+	}
+	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_4))
+	{
+		ft_reset_weapon_event(cub);
+		cub->mlx.zome_shoot2 = true;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/05 12:10:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:01:56 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,6 +245,12 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 		cur_img = ft_play_init_state(cub);
 	else if (cub->mlx.normal_shoot1)
 		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, &(cub->mlx.normal_shoot1), PATH_WEAPONS_NORM_SHOOT_1);
+	else if (cub->mlx.normal_shoot2)
+		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT2, &(cub->mlx.normal_shoot2), PATH_WEAPONS_NORM_SHOOT_2);
+	else if (cub->mlx.zome_shoot1)
+		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, &(cub->mlx.zome_shoot1), PATH_WEAPONS_ZOME_SHOOT_1);
+	else if (cub->mlx.zome_shoot2)
+		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME2, &(cub->mlx.zome_shoot2), PATH_WEAPONS_ZOME_SHOOT_2);
 	else if (cub->mlx.reload)
 		cur_img = ft_play_weapon_status(cub, FRAMES_RELOAD, &(cub->mlx.reload), PATH_WEAPONS_RELOAD);
 	return (cur_img);

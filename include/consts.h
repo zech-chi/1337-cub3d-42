@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/05 12:08:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:01:47 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@
 # define PATH_WEAPONS_INIT_STATE "weapon/init_state/img0.png"
 # define PATH_WEAPONS_NORM_SHOOT_1 "weapon/normal_shoot1/img"
 # define FRAMES_SHOOT1 11
+# define PATH_WEAPONS_NORM_SHOOT_2 "weapon/normal_shoot2/img"
+# define FRAMES_SHOOT2 42
+# define PATH_WEAPONS_ZOME_SHOOT_1 "weapon/zome_shoot1/img"
+# define FRAMES_ZOME1 20
+# define PATH_WEAPONS_ZOME_SHOOT_2 "weapon/zome_shoot2/img"
+# define FRAMES_ZOME2 44
 # define PATH_WEAPONS_RELOAD "weapon/reload/img"
 # define FRAMES_RELOAD 83
 # define PNG ".png"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/05 20:11:37 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/06 10:30:34 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ void	ft_render(void *param)
 	
 
 	cub = param;
-	if (time <= 200)
+	if (time <= 2) // 200
 	{
 		time++;
 		return ;
@@ -317,7 +317,8 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.so_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png("target.png");
 	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-
+	texture = mlx_load_png("door.png");
+	cub->mlx.door = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	// for (int i = 15; i < WEAPONS; i++) {
 	// 	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
 	// 	name = ft_strjoin(name, ft_strdup(PNG));

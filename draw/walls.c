@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/06 11:47:10 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:41:32 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,18 +245,40 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 	mlx_image_t		*cur_img;
 
 	cur_img = NULL;
-	if (cub->mlx.init_state)
+	if (cub->mlx.reload)
+	{
+		cub->mlx.weapon_magazin_index = 0;
+		cur_img = ft_play_weapon_status(cub, FRAMES_RELOAD, PATH_WEAPONS_RELOAD);
+	}
+	else if (cub->mlx.init_state || cub->mlx.weapon_magazin_index == 9)
+	{
 		cur_img = ft_play_init_state(cub);
+		ft_set_weapon_normal(cub);
+	}
 	else if (cub->mlx.normal_shoot1)
-		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, &(cub->mlx.normal_shoot1), PATH_WEAPONS_NORM_SHOOT_1);
+		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, PATH_WEAPONS_NORM_SHOOT_1);
 	else if (cub->mlx.normal_shoot2)
-		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT2, &(cub->mlx.normal_shoot2), PATH_WEAPONS_NORM_SHOOT_2);
+	{
+		if (cub->mlx.weapon_magazin_index == 0)
+			cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT2, PATH_WEAPONS_NORM_SHOOT_2);
+		else
+		{
+			cur_img = ft_play_init_state(cub);
+			ft_set_weapon_normal(cub);
+		}
+	}
 	else if (cub->mlx.zome_shoot1)
-		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, &(cub->mlx.zome_shoot1), PATH_WEAPONS_ZOME_SHOOT_1);
+		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, PATH_WEAPONS_ZOME_SHOOT_1);
 	else if (cub->mlx.zome_shoot2)
-		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME2, &(cub->mlx.zome_shoot2), PATH_WEAPONS_ZOME_SHOOT_2);
-	else if (cub->mlx.reload)
-		cur_img = ft_play_weapon_status(cub, FRAMES_RELOAD, &(cub->mlx.reload), PATH_WEAPONS_RELOAD);
+	{
+		if (cub->mlx.weapon_magazin_index == 0)
+			cur_img = ft_play_weapon_status(cub, FRAMES_ZOME2, PATH_WEAPONS_ZOME_SHOOT_2);
+		else
+		{
+			cur_img = ft_play_init_state(cub);
+			ft_set_weapon_normal(cub);
+		}
+	}
 	return (cur_img);
 }
 
@@ -296,7 +318,10 @@ bool	ft_play_starting(t_cub *cub)
 		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	}
 	else if (time == 225)
+	{
 		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin, WEAPON_MAGAZIN_X, WEAPON_MAGAZIN_Y);
+	}
 	time++;
 	return (true);
 }
@@ -312,7 +337,7 @@ void	ft_render(void *param)
 		return ;
 	if (cub->mlx.frame == 3)
 	{
-		if (i != 0)
+		if (i != 0 && prev_img)
 			mlx_delete_image(cub->mlx.mlx_ptr, prev_img);
 		// ft_render_walls(cub);
 		prev_img = ft_play_weapon(cub);
@@ -355,6 +380,8 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.door = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png("black.png");
 	cub->mlx.black = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("weapon_magazine/0.png");
+	cub->mlx.weapon_magazin = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	// for (int i = 15; i < WEAPONS; i++) {
 	// 	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
 	// 	name = ft_strjoin(name, ft_strdup(PNG));

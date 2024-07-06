@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 11:04:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:29:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void	ft_draw_map(t_cub *cub)
 				r = oldy / PIXEL_MINI;
 				c = oldx / PIXEL_MINI;
 				if (cub->map[r][c] == ' ')
-					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0, 255));
+					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(150, 0, 0, 255));
 				else if (cub->map[r][c] == '1')
 					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(255, 255, 255, 255));
 				else if (cub->map[r][c] == '0')
@@ -171,7 +171,7 @@ void	ft_draw_map(t_cub *cub)
 				}
 			}
 			else if (pow(newx - px, 2) + pow(newy - py, 2) < pow(MINIMAP_RADIUS, 2))
-				mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0, 255));
+				mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(150, 0, 0, 255));
 			oldx++;
 		}
 		oldy++;

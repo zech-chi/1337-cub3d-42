@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 11:23:20 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:46:45 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_mlx
 	mlx_image_t		*black;
 	mlx_image_t		*background_start;
 	mlx_image_t		*door;
+	mlx_image_t		*weapon_magazin;
 	bool			init_state;
 	bool			normal_shoot1;
 	bool			normal_shoot2;
@@ -54,6 +55,7 @@ typedef struct s_mlx
 	bool			walk;
 	int				frame;
 	int				cur_index;
+	int				weapon_magazin_index;
 	mouse_mode_t	status;
 }	t_mlx;
 
@@ -246,9 +248,11 @@ void	ft_light_event(t_cub *cub);
 // light
 
 // weapon
+void	ft_reset_weapon_event(t_cub *cub);
+void	ft_set_weapon_normal(t_cub *cub);
 void	ft_weapon_event(t_cub *cub);
 mlx_image_t	*ft_play_init_state(t_cub *cub);
-mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, bool *state, char *path);
+mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path);
 // weapon
 
 void	ft_render_minimap(t_cub *cub); ////

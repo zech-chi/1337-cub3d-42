@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 11:17:01 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:29:41 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@
 # define HORIZON 300
 # define LOOK_SPEED 15
 
+# define WEAPON_MAGAZIN_X 20
+# define WEAPON_MAGAZIN_Y 600
+# define WEAPON_MAGAZINE 10
+# define PATH_WEAPON_MAGAZINE "weapon_magazine/"
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359
 # define PATH_WEAPONS_INIT_STATE "weapon/init_state/img0.png"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/05 15:02:22 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/06 13:50:57 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	ft_reset_weapon_event(t_cub *cub)
 	cub->mlx.zome_shoot2 = false;
 	cub->mlx.walk = false;
 	cub->mlx.reload = false;
+}
+
+void	ft_set_weapon_normal(t_cub *cub)
+{
+	ft_reset_weapon_event(cub);
+	cub->mlx.init_state = true;
 }
 
 bool	ft_there_is_active_event(t_cub *cub)
@@ -61,6 +67,22 @@ void	ft_weapon_event(t_cub *cub)
 	}
 }
 
+void	ft_draw_weapon_magazine(t_cub *cub)
+{
+	char			*name;
+	mlx_texture_t	*texture;
+
+	name = NULL;
+	name = ft_strjoin(ft_strdup(PATH_WEAPON_MAGAZINE), ft_itoa(cub->mlx.weapon_magazin_index));
+	name = ft_strjoin(name, ft_strdup(PNG));
+	texture = mlx_load_png(name);
+	if (cub->mlx.weapon_magazin)
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
+	cub->mlx.weapon_magazin = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin, WEAPON_MAGAZIN_X, WEAPON_MAGAZIN_Y);
+	free(name);
+}
+
 mlx_image_t	*ft_play_init_state(t_cub *cub)
 {
 	char			*name;
@@ -75,7 +97,7 @@ mlx_image_t	*ft_play_init_state(t_cub *cub)
 	return (cur_img);
 }
 
-mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, bool *state, char *path)
+mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 {
 	char			*name;
 	mlx_texture_t	*texture;
@@ -92,8 +114,13 @@ mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, bool *state, char *path
 	if (index > size)
 	{
 		index = 0;
-		(*state) = false;
-		cub->mlx.init_state = true;
+		if (!cub->mlx.reload)
+			cub->mlx.weapon_magazin_index++;
+		if (cub->mlx.normal_shoot2 || cub->mlx.zome_shoot2)
+			cub->mlx.weapon_magazin_index = 9;
+		printf("%d\n", cub->mlx.weapon_magazin_index);
+		ft_draw_weapon_magazine(cub);
+		ft_set_weapon_normal(cub);
 	}
 	return (cur_img);
 }

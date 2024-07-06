@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/05 15:01:47 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:17:01 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define _3PI2 (1.5 * M_PI)
 # define _2PI (2.0 * M_PI)
 
-# define WINDOW_HEIGHT 675l
+# define WINDOW_HEIGHT 675
 # define WINDOW_WIDTH 1200
 # define MINIMAP_HEIGHT 201
 # define MINIMAP_WIDTH 201
@@ -43,7 +43,7 @@
 
 # define ZONE 7
 # define HORIZON 300
-# define LOOK_SPEED 50
+# define LOOK_SPEED 15
 
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359

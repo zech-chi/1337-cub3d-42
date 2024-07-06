@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/06 10:30:34 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:47:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,11 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	{
 		distance_from_top = y - cub->horizon - WINDOW_HEIGHT / 2 + wall_height / 2;
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
-		if (!cub->rays[i].was_vertical)
+		if (cub->rays[i].found_door)
+		{
+			ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.door);
+		}
+		else if (!cub->rays[i].was_vertical)
 		{
 			if (cub->rays[i].up)
 				ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.no_img);
@@ -256,24 +260,56 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 	return (cur_img);
 }
 
+bool	ft_play_starting(t_cub *cub)
+{
+	static	int	time;
+	mlx_texture_t	*texture;
+
+
+	if (time > 225)
+		return (false);
+	else if (time == 25)
+	{
+		texture = mlx_load_png("start_imgs/1.png");
+		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	}
+	else if (time == 75)
+	{
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+		texture = mlx_load_png("start_imgs/2.png");
+		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	}
+	else if (time == 125)
+	{
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+		texture = mlx_load_png("start_imgs/3.png");
+		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	}
+	else if (time == 175)
+	{
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+		texture = mlx_load_png("start_imgs/4.png");
+		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	}
+	else if (time == 225)
+		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+	time++;
+	return (true);
+}
+
 void	ft_render(void *param)
 {
 	t_cub	*cub;
 	static mlx_image_t	*prev_img;
 	static int i;
-	int static time;
-	int static	check;
-	
 
 	cub = param;
-	if (time <= 2) // 200
-	{
-		time++;
+	if (ft_play_starting(cub))
 		return ;
-	}
-	if (check == 0)
-		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
-	check = 1;
 	if (cub->mlx.frame == 3)
 	{
 		if (i != 0)
@@ -290,7 +326,7 @@ void	ft_render(void *param)
 	ft_light_event(cub);
 	if (cub->render)
 	{
-	// ft_reset_walls(cub);
+		// ft_reset_walls(cub);
 		ft_rays(cub);
 		ft_render_walls(cub);
 		ft_render_minimap(cub);
@@ -299,8 +335,6 @@ void	ft_render(void *param)
 	cub->render = false;
 	i = 1;
 }
-
-
 
 void	ft_load_img(t_cub *cub)
 {
@@ -319,6 +353,8 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png("door.png");
 	cub->mlx.door = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("black.png");
+	cub->mlx.black = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	// for (int i = 15; i < WEAPONS; i++) {
 	// 	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
 	// 	name = ft_strjoin(name, ft_strdup(PNG));
@@ -331,8 +367,6 @@ void	ft_load_img(t_cub *cub)
 
 void	ft_build_maze(t_cub *cub)
 {
-	mlx_texture_t	*texture;
-
 	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2",
 			false);
 	if (!(cub->mlx.mlx_ptr))
@@ -352,12 +386,8 @@ void	ft_build_maze(t_cub *cub)
 		return ;
 	}
 	ft_load_img(cub);
-	texture = mlx_load_png("sky.png");
-	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.sky, 0, 0);
-	texture = mlx_load_png("start_background.png");
-	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.black, 0, 0);
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);

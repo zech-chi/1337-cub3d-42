@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 13:50:15 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/04 20:07:47 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:04:18 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ void	ft_draw_map(t_cub *cub)
 	int	c;
 	int	px;
 	int	py;
+	// int	pr;
+	// int	pc;
 
 	px = MINIMAP_WIDTH / 2;
 	py = MINIMAP_HEIGHT / 2;
@@ -161,7 +163,12 @@ void	ft_draw_map(t_cub *cub)
 				else if (cub->map[r][c] == '0')
 					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0,255));
 				else if (cub->map[r][c] == 'D')
-					mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(30,129,176, 255));
+				{
+					if (r == cub->player.pr && c == cub->player.pc)
+						mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0, 255));
+					else
+						mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(30,129,176, 255));
+				}
 			}
 			else if (pow(newx - px, 2) + pow(newy - py, 2) < pow(MINIMAP_RADIUS, 2))
 				mlx_put_pixel(cub->mlx.minimap, newx, newy, ft_color(0, 0, 0, 255));

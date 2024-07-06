@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 10:18:40 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:23:20 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_mlx
 	mlx_image_t 	*target;
 	mlx_image_t		*minimap;
 	mlx_image_t		*minimap_big;  // to remove
-	mlx_image_t		*sky;
+	mlx_image_t		*black;
 	mlx_image_t		*background_start;
 	mlx_image_t		*door;
 	bool			init_state;
@@ -102,6 +102,9 @@ typedef struct s_ray
 	float	hithorzy;
 	float	hitvertx;
 	float	hitverty;
+	bool	found_door_horz;
+	bool	found_door_vert;
+	bool	found_door;
 }	t_ray;
 
 typedef	struct	s_thread

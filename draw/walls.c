@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/06 13:41:32 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:08:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle)))
 		* ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon, 0);
-	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon, WINDOW_HEIGHT);
+	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, 0);
+	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, WINDOW_HEIGHT);
 	for (int y1 = 0; y1 < top_pixel; y1++)
 		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
 	if (!cub->rays[i].was_vertical)
@@ -121,7 +121,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	y = top_pixel;
 	while (y < bottom_pixel)
 	{
-		distance_from_top = y - cub->horizon - WINDOW_HEIGHT / 2 + wall_height / 2;
+		distance_from_top = y - cub->horizon - cub->player.head_bobbing_offset - WINDOW_HEIGHT / 2 + wall_height / 2;
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		if (cub->rays[i].found_door)
 		{
@@ -332,10 +332,11 @@ void	ft_render(void *param)
 	static mlx_image_t	*prev_img;
 	static int i;
 
+
 	cub = param;
 	if (ft_play_starting(cub))
 		return ;
-	if (cub->mlx.frame == 3)
+	if (cub->mlx.frame == 2)
 	{
 		if (i != 0 && prev_img)
 			mlx_delete_image(cub->mlx.mlx_ptr, prev_img);
@@ -358,6 +359,7 @@ void	ft_render(void *param)
 		// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	}
 	cub->render = false;
+	cub->player.is_walking = false;
 	i = 1;
 }
 

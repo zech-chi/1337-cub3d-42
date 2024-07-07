@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 14:12:39 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/07 13:54:53 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,23 @@ void	ft_player_init(t_cub *cub)
 		cub->player.angle = (3 * M_PI) / 2;
 	cub->player.walk_speed = WALK_SPEED;
 	cub->player.turn_speed = TURN_SPEED;
+	cub->player.bobbing_amplitude = 5.0;
+	cub->player.bobbing_frequency = 5.0;
+	cub->player.bobbing_time = 0.0;
+	cub->player.bobbing_speed = 0.1;
+	cub->player.is_walking = false;
+	cub->player.head_bobbing_offset = 0.0;
+}
+
+void ft_update_head_bobbing(t_cub *cub)
+{
+	if (cub->player.is_walking) {
+		cub->player.bobbing_time += cub->player.bobbing_speed;
+		cub->player.head_bobbing_offset = sin(cub->player.bobbing_time * cub->player.bobbing_frequency) * cub->player.bobbing_amplitude;
+	} else {
+		cub->player.bobbing_time = 0.0;
+		cub->player.head_bobbing_offset = 0.0;
+	}
 }
 
 void	ft_player_event(t_cub *cub)
@@ -44,4 +61,5 @@ void	ft_player_event(t_cub *cub)
 	ft_look_down(cub);
 	ft_turn_left(cub);
 	ft_turn_right(cub);
+	ft_update_head_bobbing(cub);
 }

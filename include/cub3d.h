@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 14:16:27 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:18:39 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,7 @@ typedef struct s_player
 	float	angle;
 	float	walk_speed;
 	float	turn_speed;
-<<<<<<< HEAD
 	bool	jump;
-=======
 	//
 	float bobbing_amplitude;
 	float bobbing_frequency;
@@ -94,7 +92,6 @@ typedef struct s_player
 	float bobbing_speed;
 	bool is_walking;
 	float head_bobbing_offset;
->>>>>>> 31b40b08f198e990c1cfa1f24777e265e45e48fa
 }	t_player;
 
 typedef struct s_ray

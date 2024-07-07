@@ -6,9 +6,10 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 11:32:07 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:16:27 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -83,7 +84,17 @@ typedef struct s_player
 	float	angle;
 	float	walk_speed;
 	float	turn_speed;
+<<<<<<< HEAD
 	bool	jump;
+=======
+	//
+	float bobbing_amplitude;
+	float bobbing_frequency;
+	float bobbing_time;
+	float bobbing_speed;
+	bool is_walking;
+	float head_bobbing_offset;
+>>>>>>> 31b40b08f198e990c1cfa1f24777e265e45e48fa
 }	t_player;
 
 typedef struct s_ray
@@ -205,6 +216,7 @@ void	ft_draw_img(t_cub *cub, int x, int y, float distance, mlx_image_t *img);
 void	ft_player_init(t_cub *cub);
 void	ft_render_player(t_cub *cub);
 void	ft_player_event(t_cub *cub);
+void	ft_update_head_bobbing(t_cub *cub);
 /*end player*/
 
 /*math*/

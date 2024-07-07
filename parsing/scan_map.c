@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 21:18:24 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/07 10:23:12 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,49 @@ static int	ft_check_neighbours(t_cub *cub, int r, int c)
 	return (SUCCESS);
 }
 
+void	ft_check_neighbours_door(t_cub *cub)
+{
+	int r;
+	int	c;
+
+	r = -1;
+	while ( ++r< cub->rows)
+	{
+		c = -1;
+		while (++c < cub->cols)
+		{
+			if (cub->map[r][c] == 'D')
+			{
+				if (cub->map[r - 1][c] == '1' && cub->map[r + 1][c] == '1')
+				{
+					if ((cub->map[r][c - 1] == '1' || cub->map[r][c + 1] == '1')
+						|| ((cub->map[r][c - 1] == 'D' || cub->map[r][c + 1] == 'D')))
+					{
+						ft_putstr_fd("Error: invalid door position!", 2, 1, RED);
+						exit(FAILED);
+					}
+				}
+				else if (cub->map[r][c - 1] == '1' && cub->map[r][c + 1] == '1')
+				{
+					if ((cub->map[r - 1][c] == '1' || cub->map[r + 1][c] == '1')
+						|| cub->map[r - 1][c] == 'D' || cub->map[r + 1][c] == 'D')
+					{
+						ft_putstr_fd("Error: invalid door position!", 2, 1, RED);
+
+						exit(FAILED);
+					}
+				}
+				else
+				{
+					ft_putstr_fd("Error: invalid door position!", 2, 1, RED);
+					exit(FAILED);
+				}
+			}
+		}
+	}
+	
+}
+
 void	ft_scan_map(t_cub *cub)
 {
 	int	r;
@@ -64,4 +107,5 @@ void	ft_scan_map(t_cub *cub)
 				exit(FAILED);
 		}
 	}
+	ft_check_neighbours_door(cub);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 14:12:39 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/07 13:43:31 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ void	ft_player_init(t_cub *cub)
 	cub->player.walk_speed = WALK_SPEED;
 	cub->player.turn_speed = TURN_SPEED;
 }
+void	ft_jump(t_cub *cub)
+{
+	int static	time;
+
+	if (cub->player.jump)
+	{
+		if (time == 0)
+			cub->horizon -= JUMP;
+		time++;
+		if ((time % 5) == 0)
+			cub->render = true;
+		if (time == 50)
+		{
+			cub->player.jump = false;
+			cub->render = true;
+			time = 0;
+		}
+	}
+	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
+	{
+		if (cub->player.jump)
+			return ;
+		cub->horizon += JUMP;
+		cub->player.jump = true;
+		cub->render = true;
+	}
+}
 
 void	ft_player_event(t_cub *cub)
 {
@@ -44,4 +71,5 @@ void	ft_player_event(t_cub *cub)
 	ft_look_down(cub);
 	ft_turn_left(cub);
 	ft_turn_right(cub);
+	ft_jump(cub);
 }

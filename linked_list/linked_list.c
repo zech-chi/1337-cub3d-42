@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:30:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 14:57:18 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:30:05 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,4 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	else
 		*lst = new;
-}
-
-// to remove 
-void	ft_display_list(t_list *head)
-{
-	while (head)
-	{
-		printf("%s\n", head->content);
-		head = head->next;
-	}
 }

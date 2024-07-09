@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 16:17:17 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:29:24 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	int	top_pixel;
 	int	bottom_pixel;
 	int	distance_from_top;
-	// int	yhorizon;
 
-	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle)))
-		* ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
+	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
 	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset  + cub->player.offeset_jump, 0);
 	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset  + cub->player.offeset_jump, WINDOW_HEIGHT);
 	// for (int y1 = 0; y1 < top_pixel; y1++)
@@ -282,21 +280,21 @@ bool	ft_play_starting(t_cub *cub)
 	else if (time == 75)
 	{
 		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
-		texture = mlx_load_png("start_imgs/2.png");
+		texture = mlx_load_png(PATH_GAME_START_1);
 		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	}
 	else if (time == 125)
 	{
 		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
-		texture = mlx_load_png("start_imgs/3.png");
+		texture = mlx_load_png(PATH_GAME_START_2);
 		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	}
 	else if (time == 175)
 	{
 		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
-		texture = mlx_load_png("start_imgs/4.png");
+		texture = mlx_load_png(PATH_GAME_START_3);
 		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	}
@@ -348,7 +346,6 @@ void	ft_render(void *param)
 void	ft_load_img(t_cub *cub)
 {
 	mlx_texture_t	*texture;
-	// char			*name;
 
 	texture = mlx_load_png(cub->ea);
 	cub->mlx.ea_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
@@ -358,38 +355,29 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.we_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png(cub->so);
 	cub->mlx.so_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("target.png");
+	texture = mlx_load_png(PATH_TARGET);
 	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("door.png");
+	texture = mlx_load_png(PATH_DOOR);
 	cub->mlx.door = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("black.png");
+	texture = mlx_load_png(PATH_BLACK);
 	cub->mlx.black = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("weapon_magazine/0.png");
+	texture = mlx_load_png(PATH_WEAPON_MAGAZINE_0);
 	cub->mlx.weapon_magazin = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("circle.png");
+	texture = mlx_load_png(PATH_CIRCLE);
 	cub->mlx.circle = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("target.png");
-	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("start_imgs/1.png");
+	texture = mlx_load_png(PATH_GAME_START_0);
 	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	texture = mlx_load_png("sky4.png");
+	texture = mlx_load_png(PATH_SKY);
 	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	cub->mlx.canva = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	cub->mlx.copy = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 	cub->mlx.copy_circle = mlx_new_image(cub->mlx.mlx_ptr, cub->mlx.circle->width, cub->mlx.circle->height);
-	// for (int i = 15; i < WEAPONS; i++) {
-	// 	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
-	// 	name = ft_strjoin(name, ft_strdup(PNG));
-	// 	texture = mlx_load_png(name);
-	// 	cub->mlx.weapon[i - 15] = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	// 	free(name);
-	// }
 }
 
 
 void	ft_build_maze(t_cub *cub)
 {
-	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "ziko^2",
+	cub->mlx.mlx_ptr = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, WIN_NAME,
 			false);
 	if (!(cub->mlx.mlx_ptr))
 	{
@@ -400,7 +388,7 @@ void	ft_build_maze(t_cub *cub)
 			WINDOW_HEIGHT);
 	cub->mlx.minimap = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH,
 			MINIMAP_HEIGHT); ///
-	cub->mlx.player_rays_minimap = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH,
+	cub->mlx.player_rays = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH,
 			MINIMAP_HEIGHT); ///
 
 	// cub->mlx.minimap_big = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI, cub->rows * PIXEL_MINI);
@@ -419,7 +407,7 @@ void	ft_build_maze(t_cub *cub)
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.canva, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, POS_MINIMAP, POS_MINIMAP);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.player_rays_minimap, POS_MINIMAP, POS_MINIMAP);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.player_rays, POS_MINIMAP, POS_MINIMAP);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.circle, POS_MINIMAP - 16, POS_MINIMAP - 16);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 - 20, WINDOW_HEIGHT / 2 - 8);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);

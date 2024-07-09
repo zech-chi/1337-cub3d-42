@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:21:52 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/29 18:09:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:45:57 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,12 @@ float	ft_min(float a, float b)
 float	ft_get_distance(float x1, float y1, float x2, float y2)
 {
 	return (sqrt(pow(y2 - y1, 2) + pow(x2 - x1, 2)));
+}
+
+float	ft_scale_f(float prev)
+{
+	float	new;
+
+	new = (prev * PIXEL_MINI) / PIXEL;
+	return (new);
 }

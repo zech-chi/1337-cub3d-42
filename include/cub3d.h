@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 16:21:18 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:30:33 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # include "../MLX42/include/MLX42/MLX42.h"
 
 /* cub3d struct */
+
+typedef struct s_vector
+{
+	int	x;
+	int	y;
+}	t_vector;
+
 typedef struct s_list
 {
 	char			*content;
@@ -42,8 +49,7 @@ typedef struct s_mlx
 	mlx_image_t		*ea_img;
 	mlx_image_t		*weapon[WEAPONS];
 	mlx_image_t		*minimap;
-	mlx_image_t		*player_rays_minimap;
-	mlx_image_t		*minimap_big;  // to remove
+	mlx_image_t		*player_rays;
 	mlx_image_t		*black;
 	mlx_image_t		*background_start;
 	mlx_image_t		*door;
@@ -207,9 +213,6 @@ int		ft_set_coordonates_textures(char **texture, char *line, int *i);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
-void	ft_display_list(t_list *head);// to remove 
-/*to remove*/
-void	ft_display(t_cub *cub);
 
 /*draw*/
 uint32_t	ft_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
@@ -224,7 +227,8 @@ int		ft_between(float alpha, float angle_start, float angle_end);
 float	ft_periodic(float angle);
 float	ft_min(float a, float b);
 float	ft_get_distance(float x1, float y1, float x2, float y2);
-int	max(int a, int b);
+int		max(int a, int b);
+float	ft_scale_f(float prev);
 /*end math*/
 
 /*raycasting*/
@@ -273,15 +277,10 @@ mlx_image_t	*ft_play_init_state(t_cub *cub);
 mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path);
 // weapon
 
-void	ft_render_minimap(t_cub *cub); ////
-
-// big minimap
-void 	ft_draw_square(t_cub *cub, int r, int c, uint32_t color);
-void	ft_draw_line(int x2, int y2, t_cub *cub, bool is_player);
-void	ft_draw_player(t_cub *cub);
-void	ft_draw_rays(t_cub *cub);
-float	ft_scale_f(float prev);
-
+// minimap
+void	ft_render_minimap(t_cub *cub);
+void	ft_draw_line(t_vector start, t_vector end, t_cub *cub);
+void	ft_draw_pixel(t_cub *cub, t_vector old, t_vector new, t_vector pos_p);
 // play music
 void	ft_mtx_init(t_cub *cub);
 void	*ft_routine(void *args);

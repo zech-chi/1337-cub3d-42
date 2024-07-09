@@ -5,7 +5,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address 
 
 SRCS =  main.c \
-		to_remove/display.c \
 		get_next_line/get_next_line_utils.c \
 		get_next_line/get_next_line.c \
 		malloc/free_data.c \
@@ -45,7 +44,9 @@ SRCS =  main.c \
 		math/math_tools.c \
 		raycasting/rays.c \
 		minimap/minimap.c \
-		minimap/minimap_big.c
+		minimap/draw_line.c \
+		minimap/draw_map_tools.c
+
 
 OBJS = $(SRCS:.c=.o)
 

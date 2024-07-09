@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 16:13:49 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:54:35 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,34 @@
 # define HORIZON 300
 # define LOOK_SPEED 15
 
+# define WIN_NAME "ziko^2"
+# define PATH_WEAPONS_INIT_STATE "images/weapon/init_state/0.png"
+# define PATH_WEAPONS_NORM_SHOOT_1 "images/weapon/normal_shoot/img"
+# define PATH_WEAPONS_ZOME_SHOOT_1 "images/weapon/zome_shoot/img"
+# define PATH_WEAPONS_RELOAD "images/weapon/reload/img"
+# define PATH_TARGET "images/target/target.png"
+# define PATH_DOOR "images/door/door.png"
+# define PATH_BLACK "images/black/black.png"
+# define PATH_WEAPON_MAGAZINE "images/weapon_magazine/"
+# define PATH_WEAPON_MAGAZINE_0 "images/weapon_magazine/0.png"
+# define PATH_CIRCLE "images/circle/circle.png"
+# define PATH_GAME_START_0 "images/game_start/1.png"
+# define PATH_GAME_START_1 "images/game_start/2.png"
+# define PATH_GAME_START_2 "images/game_start/3.png"
+# define PATH_GAME_START_3 "images/game_start/4.png"
+# define PATH_SKY "images/sky/sky4.png"
+# define PNG ".png"
+
+
+
 # define WEAPON_MAGAZIN_X 20
 # define WEAPON_MAGAZIN_Y 600
 # define WEAPON_MAGAZINE 10
-# define PATH_WEAPON_MAGAZINE "weapon_magazine/"
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359
-# define PATH_WEAPONS_INIT_STATE "weapon/init_state/img0.png"
-# define PATH_WEAPONS_NORM_SHOOT_1 "weapon/normal_shoot1/img"
 # define FRAMES_SHOOT1 11
-# define PATH_WEAPONS_ZOME_SHOOT_1 "weapon/zome_shoot1/img"
 # define FRAMES_ZOME1 20
-# define PATH_WEAPONS_RELOAD "weapon/reload/img"
 # define FRAMES_RELOAD 83
-# define PNG ".png"
 # define WEAPONS 637
 
 /*player consts*/

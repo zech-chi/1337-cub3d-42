@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 14:53:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:07:32 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define PI2 M_PI_2
 # define _3PI2 (1.5 * M_PI)
 # define _2PI (2.0 * M_PI)
+# define _5PI (5 * M_PI)
 
 # define WINDOW_HEIGHT 675
 # define WINDOW_WIDTH 1200
@@ -67,7 +68,7 @@
 # define WEAPONS 637
 
 /*player consts*/
-# define JUMP  150
+# define SPEED_JUMP (M_PI / 4.0)
 # define POS_MINIMAP 25
 # define RADIUS 2
 # define SENS_LENGTH 15

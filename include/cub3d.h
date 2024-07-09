@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 14:53:45 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:04:11 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ typedef struct s_player
 	float	walk_speed;
 	float	turn_speed;
 	bool	jump;
+	float	offeset_jump;
+	float	amplitude_jump;
+	float	frequency_jump;
 	float bobbing_amplitude;
 	float bobbing_frequency;
 	float bobbing_time;

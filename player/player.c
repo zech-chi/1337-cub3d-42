@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 14:54:19 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:03:00 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	ft_player_init(t_cub *cub)
 	cub->player.bobbing_speed = 0.1;
 	cub->player.is_walking = false;
 	cub->player.head_bobbing_offset = 0.0;
+	cub->player.offeset_jump = 0;
+	cub->player.jump = false;
+	cub->player.amplitude_jump = 110;
+	cub->player.frequency_jump = 0.2;
 }
 
 void ft_update_head_bobbing(t_cub *cub)
@@ -53,29 +57,34 @@ void ft_update_head_bobbing(t_cub *cub)
 		cub->player.head_bobbing_offset = 0.0;
 	}
 }
+float	ft_calculate_jump(t_cub *cub, float x)
+{
+	return ((cub->player.amplitude_jump * sin(cub->player.frequency_jump * x)));
+}
+
 void	ft_jump(t_cub *cub)
 {
-	int static	time;
+	static float	time;
 
 	if (cub->player.jump)
 	{
-		if (time == 0)
-			cub->horizon -= JUMP;
-		time++;
-		if ((time % 5) == 0)
+		time+= SPEED_JUMP;
+		if (time <= _5PI)
+		{
+			cub->player.offeset_jump = ft_calculate_jump(cub, time);
 			cub->render = true;
-		if (time == 50)
+		}
+		else
 		{
 			cub->player.jump = false;
-			cub->render = true;
 			time = 0;
+			cub->player.offeset_jump = 0;
 		}
 	}
 	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_J))
 	{
-		if (cub->player.jump)
-			return ;
-		cub->horizon += JUMP;
+		time+= SPEED_JUMP;
+		cub->player.offeset_jump = ft_calculate_jump(cub, time);
 		cub->player.jump = true;
 		cub->render = true;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/08 19:48:14 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:05:56 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 
 	wall_height = (cub->pixel / (distance * cos(cub->player.angle - angle)))
 		* ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, 0);
-	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, WINDOW_HEIGHT);
+	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset  + cub->player.offeset_jump, 0);
+	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset  + cub->player.offeset_jump, WINDOW_HEIGHT);
 	// for (int y1 = 0; y1 < top_pixel; y1++)
 	// 	mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
 	if (!cub->rays[i].was_vertical)
@@ -122,7 +122,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	y = top_pixel;
 	while (y < bottom_pixel)
 	{
-		distance_from_top = y - cub->horizon - cub->player.head_bobbing_offset - WINDOW_HEIGHT / 2 + wall_height / 2;
+		distance_from_top = y - cub->horizon - cub->player.head_bobbing_offset - cub->player.offeset_jump - WINDOW_HEIGHT / 2 + wall_height / 2;
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 255)); ///
 		if (cub->rays[i].found_door)

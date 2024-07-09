@@ -37,6 +37,7 @@ SRCS =  main.c \
 		player/light.c \
 		player/weapon.c \
 		music/play_music.c \
+		music/action_sound.c \
 		math/math_tools.c \
 		raycasting/rays.c \
 		minimap/minimap.c \

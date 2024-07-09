@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 13:50:57 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:07:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 	mlx_image_t		*cur_img;
 	static int		index;
 
+	if (index == 14)
+	{
+		if (cub->mlx.reload)
+			ft_play_action_sound(cub);
+	}
 	name = ft_strjoin(ft_strdup(path), ft_itoa(index));
 	name = ft_strjoin(name, ft_strdup(PNG));
 	texture = mlx_load_png(name);

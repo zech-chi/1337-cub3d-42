@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:06:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 13:42:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:05:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	ft_walk_left(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle + M_PI_2);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle + M_PI_2);
-		if (!ft_iswall2(cub, cub->player.px + LEFT_RIGHT_STEP * a, cub->player.py + LEFT_RIGHT_STEP * b, cub->player.angle + M_PI_2))
+		if (!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle + M_PI_2))
 		{
 			cub->player.py += b;
 			cub->player.px += a;
@@ -152,7 +152,7 @@ void	ft_walk_right(t_cub *cub)
 	{
 		a = cub->player.walk_speed * cos(cub->player.angle - M_PI_2);
 		b = -1 * cub->player.walk_speed * sin(cub->player.angle - M_PI_2);
-		if (!ft_iswall2(cub, cub->player.px + LEFT_RIGHT_STEP * a, cub->player.py + LEFT_RIGHT_STEP * b, cub->player.angle - M_PI_2))
+		if (!ft_iswall2(cub, cub->player.px + N_STEPS * a, cub->player.py + N_STEPS * b, cub->player.angle - M_PI_2))
 		{
 			cub->player.py += b;
 			cub->player.px += a;

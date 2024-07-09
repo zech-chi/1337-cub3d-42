@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/07 14:08:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:48:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_reset_walls(t_cub *cub)
 		for (int x = 0; x < WINDOW_WIDTH; x++)
 		{
 			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 0));
+			mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 0));
 		}
 	}
 }
@@ -112,8 +113,8 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 		* ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
 	top_pixel = max(WINDOW_HEIGHT / 2 - wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, 0);
 	bottom_pixel = min(WINDOW_HEIGHT / 2 + wall_height / 2 + cub->horizon + cub->player.head_bobbing_offset, WINDOW_HEIGHT);
-	for (int y1 = 0; y1 < top_pixel; y1++)
-		mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
+	// for (int y1 = 0; y1 < top_pixel; y1++)
+	// 	mlx_put_pixel(cub->mlx.maze_img, x, y1, ft_color(40, 19, 55, 255));
 	if (!cub->rays[i].was_vertical)
 		cub->offset.x_offset = (int)cub->rays[i].hitx % PIXEL;
 	else
@@ -123,6 +124,7 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 	{
 		distance_from_top = y - cub->horizon - cub->player.head_bobbing_offset - WINDOW_HEIGHT / 2 + wall_height / 2;
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
+		mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 255)); ///
 		if (cub->rays[i].found_door)
 		{
 			ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.door);
@@ -288,14 +290,14 @@ bool	ft_play_starting(t_cub *cub)
 	mlx_texture_t	*texture;
 
 
+	// else if (time == 25)
+	// {
+	// 	texture = mlx_load_png("start_imgs/1.png");
+	// 	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	// 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
+	// }
 	if (time > 225)
 		return (false);
-	else if (time == 25)
-	{
-		texture = mlx_load_png("start_imgs/1.png");
-		cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-		mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
-	}
 	else if (time == 75)
 	{
 		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
@@ -352,11 +354,10 @@ void	ft_render(void *param)
 	ft_light_event(cub);
 	if (cub->render)
 	{
-		// ft_reset_walls(cub);
+		ft_reset_walls(cub);
 		ft_rays(cub);
 		ft_render_walls(cub);
 		ft_render_minimap(cub);
-		// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 + 930, WINDOW_HEIGHT / 2);
 	}
 	cub->render = false;
 	cub->player.is_walking = false;
@@ -384,6 +385,17 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.black = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png("weapon_magazine/0.png");
 	cub->mlx.weapon_magazin = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("circle.png");
+	cub->mlx.circle = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("target.png");
+	cub->mlx.target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("start_imgs/1.png");
+	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png("sky4.png");
+	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	cub->mlx.canva = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	cub->mlx.copy = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	cub->mlx.copy_circle = mlx_new_image(cub->mlx.mlx_ptr, cub->mlx.circle->width, cub->mlx.circle->height);
 	// for (int i = 15; i < WEAPONS; i++) {
 	// 	name = ft_strjoin(ft_strdup(PATH_WEAPONS), ft_itoa(i));
 	// 	name = ft_strjoin(name, ft_strdup(PNG));
@@ -405,8 +417,10 @@ void	ft_build_maze(t_cub *cub)
 	}
 	cub->mlx.maze_img = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH,
 			WINDOW_HEIGHT);
-	cub->mlx.minimap = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI,
-			cub->rows * PIXEL_MINI); ///
+	cub->mlx.minimap = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH,
+			MINIMAP_HEIGHT); ///
+	cub->mlx.player_rays_minimap = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH,
+			MINIMAP_HEIGHT); ///
 
 	// cub->mlx.minimap_big = mlx_new_image(cub->mlx.mlx_ptr, cub->cols * PIXEL_MINI, cub->rows * PIXEL_MINI);
 	if (!cub->mlx.maze_img)
@@ -420,8 +434,14 @@ void	ft_build_maze(t_cub *cub)
 	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
 	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	// mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap_big, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.sky, 0, 0);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.canva, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.maze_img, 0, 0);
 	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.minimap, POS_MINIMAP, POS_MINIMAP);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.player_rays_minimap, POS_MINIMAP, POS_MINIMAP);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.circle, POS_MINIMAP - 16, POS_MINIMAP - 16);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.target, WINDOW_WIDTH / 2 - 20, WINDOW_HEIGHT / 2 - 8);
+	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.background_start, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

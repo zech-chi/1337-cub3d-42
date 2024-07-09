@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:08:46 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 14:19:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:57:54 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_turn_left(t_cub *cub)
 	{
 		cub->player.angle += cub->player.turn_speed;
 		cub->player.angle = ft_periodic(cub->player.angle);
+		cub->angle_minimap += cub->player.turn_speed;
+		cub->angle_minimap = ft_periodic(cub->angle_minimap);
 		cub->render = true;
 	}
 }
@@ -28,6 +30,8 @@ void	ft_turn_right(t_cub *cub)
 	{
 		cub->player.angle -= cub->player.turn_speed;
 		cub->player.angle = ft_periodic(cub->player.angle);
+		cub->angle_minimap -= cub->player.turn_speed;
+		cub->angle_minimap = ft_periodic(cub->angle_minimap);
 		cub->render = true;
 	}
 }

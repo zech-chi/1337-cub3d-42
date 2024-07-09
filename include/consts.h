@@ -6,9 +6,10 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 12:23:37 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:16:44 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CONSTS_H
 # define CONSTS_H
@@ -66,12 +67,15 @@
 # define WEAPONS 637
 
 /*player consts*/
+# define JUMP  150
 # define POS_MINIMAP 25
 # define RADIUS 2
 # define SENS_LENGTH 15
-# define N_STEPS 10
+# define N_STEPS 7
 # define SCALE 150
 # define WALK_SPEED 100
 # define TURN_SPEED 2.5 * (M_PI / 180)
 
+
+# define RELOAD_SOUND_PATH "music/reload_sound.mp3"
 #endif

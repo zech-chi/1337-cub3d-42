@@ -6,9 +6,10 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 13:28:53 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:17:18 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -34,18 +35,24 @@ typedef struct s_mlx
 {
 	mlx_t			*mlx_ptr;
 	mlx_image_t		*maze_img;
+	mlx_image_t		*canva;
 	mlx_image_t		*no_img;
 	mlx_image_t		*so_img;
 	mlx_image_t		*we_img;
 	mlx_image_t		*ea_img;
 	mlx_image_t		*weapon[WEAPONS];
-	mlx_image_t 	*target;
 	mlx_image_t		*minimap;
+	mlx_image_t		*player_rays_minimap;
 	mlx_image_t		*minimap_big;  // to remove
 	mlx_image_t		*black;
 	mlx_image_t		*background_start;
 	mlx_image_t		*door;
 	mlx_image_t		*weapon_magazin;
+	mlx_image_t		*circle;
+	mlx_image_t		*target;
+	mlx_image_t		*sky;
+	mlx_image_t		*copy;
+	mlx_image_t		*copy_circle;
 	bool			init_state;
 	bool			normal_shoot1;
 	bool			normal_shoot2;
@@ -83,7 +90,7 @@ typedef struct s_player
 	float	angle;
 	float	walk_speed;
 	float	turn_speed;
-	//
+	bool	jump;
 	float bobbing_amplitude;
 	float bobbing_frequency;
 	float bobbing_time;
@@ -119,6 +126,7 @@ typedef struct s_ray
 typedef	struct	s_thread
 {
 	pthread_t		id_background_music;
+	pthread_t		id_sound;
 	pthread_mutex_t	mtx_stop;
 }	t_thread;
 
@@ -147,6 +155,7 @@ typedef struct s_cub
 	t_player	player;
 	t_ray		rays[WINDOW_WIDTH];
 	t_thread	thread;
+	float		angle_minimap;
 }	t_cub;
 
 /* get_next_line/get_next_line_utils.c */
@@ -275,6 +284,9 @@ float	ft_scale_f(float prev);
 // play music
 void	ft_mtx_init(t_cub *cub);
 void	*ft_routine(void *args);
+void	*ft_routine2(void *args);
 void	ft_mtx_set_stop(t_cub *cub);
+bool	ft_mtx_get_stop(t_cub *cub);
+void	ft_play_action_sound(t_cub *cub);
 // play music
 #endif

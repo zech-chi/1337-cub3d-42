@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_music.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:12:02 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/03 21:13:04 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:01:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	*ft_routine(void *args)
 			exit(1);
 		if (pid == 0)
 		{
-			execlp("afplay", "afplay", "music/war.mp3", (char *)NULL);
+			execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL);
 			exit(1);
 		}
-		while (!waitpid(pid, 0, WNOHANG) && !ft_mtx_get_stop(cub));
+		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
 	}
 	kill(pid, SIGTERM);
 	return (NULL);

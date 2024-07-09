@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_line_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 15:09:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/03 21:20:57 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:33:09 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static int	ft_check_internal_char(char *line)
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N'
 			&& line[i] != 'S' && line[i] != 'E' && line[i] != 'W'
-			&& line[i] != '\n' && line[i] != ' ' && line[i] != 'D')
+			&& line[i] != '\n' && line[i] != ' ' && line[i] != 'D'
+			&& line[i] != 'T')
 			return (FAILED);
 		i++;
 	}

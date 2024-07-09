@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 16:12:56 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:34:09 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	ft_data_init(t_cub *cub)
 	cub->mlx.weapon_magazin = NULL;
 	cub->angle_minimap = 0;
 	cub->player.jump = false;
+	cub->mlx.index_weapon = 0;
 }
 
 void	ft_parsing(int ac, char **av, t_cub *cub)

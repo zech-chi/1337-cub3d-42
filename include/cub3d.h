@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 19:30:33 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:41:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ typedef struct s_mlx
 	mlx_image_t		*circle;
 	mlx_image_t		*target;
 	mlx_image_t		*sky;
-	mlx_image_t		*copy;
-	mlx_image_t		*copy_circle;
+	mlx_image_t		*shoot_target;
+	int				index_weapon;
 	bool			init_state;
 	bool			normal_shoot1;
 	bool			zome_shoot1;
@@ -98,12 +98,12 @@ typedef struct s_player
 	float	offeset_jump;
 	float	amplitude_jump;
 	float	frequency_jump;
-	float bobbing_amplitude;
-	float bobbing_frequency;
-	float bobbing_time;
-	float bobbing_speed;
-	bool is_walking;
-	float head_bobbing_offset;
+	float	bobbing_amplitude;
+	float	bobbing_frequency;
+	float	bobbing_time;
+	float	bobbing_speed;
+	bool	is_walking;
+	float	head_bobbing_offset;
 }	t_player;
 
 typedef struct s_ray
@@ -128,6 +128,10 @@ typedef struct s_ray
 	bool	found_door_horz;
 	bool	found_door_vert;
 	bool	found_door;
+	bool	found_shoot_target_horz;
+	bool	found_shoot_target_vert;
+	bool	found_shoot_target;
+
 }	t_ray;
 
 typedef	struct	s_thread

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:57:25 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/08 21:04:09 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:10:25 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,66 +46,60 @@
 
 void *ft_routine2(void *args)
 {
-	pid_t	pid;
+	int	pid;
 	t_cub	*cub;
 
 	cub = (t_cub *)args;
-	printf("I was here\n");
-	pid = fork();
-	if (pid == -1)
+	while (!ft_mtx_get_stop(cub))
 	{
-		perror("fork failed");
-		exit(1);
-	}
-	else if (pid == 0)
-	{
-		printf("check reload\n");
-		// if (cub->reload)
-		// {
-			printf("playing sound\n");
-			if (execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL) == -1)
+		if (cub->mlx.reload && cub->mlx.index_weapon == 20)
+		{
+			if (cub->player.is_walking)
+				sleep(2);
+			pid = fork();
+			if (pid < 0)
+				exit(1);
+			if (pid == 0)
 			{
-				perror("execlp failed");
+				execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL);
 				exit(1);
 			}
-		// }
-		printf("oops\n");
-		exit(0);
+			while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
+			if (ft_mtx_get_stop(cub))
+				kill(pid, SIGTERM);
+		}
+		usleep(500);
 	}
-	printf("parent job\n");
-	while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
-	if (ft_mtx_get_stop(cub))
-		kill(pid, SIGTERM);
 	return (NULL);
 }
 
-void	ft_play_action_sound(t_cub *cub)
-{
-	// pthread_create(&cub->thread.id_sound, NULL, ft_routine2, &cub);
-	// pthread_detach(cub->thread.id_sound);
-		pid_t	pid;
+// void	ft_play_action_sound(t_cub *cub)
+// {
+// 	// pthread_create(&cub->thread.id_sound, NULL, ft_routine2, &cub);
+// 	// pthread_detach(cub->thread.id_sound);
+// 		pid_t	pid;
 
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork failed");
-		exit(1);
-	}
-	else if (pid == 0)
-	{
-		printf("playing sound\n");
-		if (execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL) == -1)
-		{
-			perror("execlp failed");
-			exit(1);
-		}
-		printf("oops\n");
-		exit(0);
-	}
-	printf("parent job\n");
-	(void)cub;
-	// while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
-	// if (ft_mtx_get_stop(cub))
-	// 	kill(pid, SIGTERM);
-}
+// 	pid = fork();
+// 	if (pid == -1)
+// 	{
+// 		perror("fork failed");
+// 		exit(1);
+// 	}
+// 	else if (pid == 0)
+// 	{
+// 		printf("playing sound\n");
+// 		if (execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL) == -1)
+// 		{
+// 			perror("execlp failed");
+// 			exit(1);
+// 		}
+// 		printf("oops\n");
+// 		exit(0);
+// 	}
+// 	printf("parent job\n");
+// 	(void)cub;
+// 	// while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
+// 	// if (ft_mtx_get_stop(cub))
+// 	// 	kill(pid, SIGTERM);
+// }
 

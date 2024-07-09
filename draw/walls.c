@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 19:29:24 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:44:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,9 @@ void	ft_draw_walls(t_cub *cub, double distance, int x, double angle, int i)
 		cub->offset.y_offset = (distance_from_top) * ((float)PIXEL / wall_height);
 		mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 255)); ///
 		if (cub->rays[i].found_door)
-		{
 			ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.door);
-		}
+		else if (cub->rays[i].found_shoot_target)
+			ft_draw_img(cub, x, y, cub->rays[i].distance, cub->mlx.shoot_target);
 		else if (!cub->rays[i].was_vertical)
 		{
 			if (cub->rays[i].up)
@@ -369,9 +369,9 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.background_start = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	texture = mlx_load_png(PATH_SKY);
 	cub->mlx.sky = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	texture = mlx_load_png(PATH_SHOOT_TARGET);
+	cub->mlx.shoot_target = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
 	cub->mlx.canva = mlx_new_image(cub->mlx.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->mlx.copy = mlx_new_image(cub->mlx.mlx_ptr, MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	cub->mlx.copy_circle = mlx_new_image(cub->mlx.mlx_ptr, cub->mlx.circle->width, cub->mlx.circle->height);
 }
 
 

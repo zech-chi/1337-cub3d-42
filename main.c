@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 16:52:45 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:22:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int ac, char **av)
 	ft_parsing(ac, av, &cub);
 	ft_mtx_init(&cub);
 	// pthread_create(&cub.thread.id_background_music, NULL, ft_routine, &cub);
+	pthread_create(&cub.thread.id_sound, NULL, ft_routine2, &cub);
+	pthread_detach(cub.thread.id_sound);
 	ft_build_maze(&cub);
 	ft_mtx_set_stop(&cub);
 	// pthread_join(cub.thread.id_background_music, NULL);

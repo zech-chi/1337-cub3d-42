@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/06 10:46:54 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:44:42 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 	yintercept;
 */
 
-bool	ft_find_wall(float x, float y, t_cub *cub, int i, bool *found_door)
+bool	ft_find_wall(float x, float y, t_cub *cub, int i, bool *found_door, bool *found_shoot_target)
 {
 	int	r;
 	int	c;
@@ -29,13 +29,15 @@ bool	ft_find_wall(float x, float y, t_cub *cub, int i, bool *found_door)
 	c = x / PIXEL;
 	if (r < 0 || c < 0 || r >= cub->rows || c >= cub->cols)
 		return (true);
-	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ' || cub->map[r][c] == 'D') // cub.map[r][c] == ' '
+	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ' || cub->map[r][c] == 'D' || cub->map[r][c] == 'T') // cub.map[r][c] == ' '
 	{
 		// printf("found wall at (r, c) = (%d, %d)\n", r, c);
 		// if (i == 0)
 		// 	printf("found wall at (r, c) = (%d, %d)\n", r, c);
 		if (cub->map[r][c] == 'D')
 			(*found_door) = true;
+		else if (cub->map[r][c] == 'T')
+			(*found_shoot_target) = true;
 		return (true);
 	}
 	(void)i;
@@ -88,7 +90,7 @@ float	ft_horizontal(t_cub *cub, int i)
 		// 	printf("(%d, %d)\n",  (int)(nexty / PIXEL) , (int)(nextx / PIXEL));
 		// }
 		if (ft_find_wall(nextx, nexty - cub->rays[i].up + cub->rays[i].down,
-				cub, i, &cub->rays[i].found_door_horz))
+				cub, i, &cub->rays[i].found_door_horz, &cub->rays[i].found_shoot_target_horz))
 		{
 			found_horz_hit = true;
 			hitx = nextx;
@@ -136,7 +138,7 @@ float	ft_vertical(t_cub *cub, int i)
 		&& nexty <= cub->rows * PIXEL)
 	{
 		if (ft_find_wall(nextx - cub->rays[i].left + cub->rays[i].right, nexty,
-				cub, i, &cub->rays[i].found_door_vert))
+				cub, i, &cub->rays[i].found_door_vert, &cub->rays[i].found_shoot_target_vert))
 		{
 			found_vert_hit = true;
 			hitx = nextx;
@@ -186,12 +188,14 @@ void	ft_raycasting(t_cub *cub, float ray_angle, int i)
 		cub->rays[i].hitx = cub->rays[i].hitvertx;
 		cub->rays[i].hity = cub->rays[i].hitverty;
 		cub->rays[i].found_door = cub->rays[i].found_door_vert;
+		cub->rays[i].found_shoot_target = cub->rays[i].found_shoot_target_vert;
 	}
 	else
 	{
 		cub->rays[i].hitx = cub->rays[i].hithorzx;
 		cub->rays[i].hity = cub->rays[i].hithorzy;
 		cub->rays[i].found_door = cub->rays[i].found_door_horz;
+		cub->rays[i].found_shoot_target = cub->rays[i].found_shoot_target_horz;
 	}
 }
 
@@ -207,6 +211,9 @@ void	ft_rays(t_cub *cub)
 		cub->rays[i].found_door_horz = false;
 		cub->rays[i].found_door_vert = false;
 		cub->rays[i].found_door = false;
+		cub->rays[i].found_shoot_target_horz = false;
+		cub->rays[i].found_shoot_target_vert = false;
+		cub->rays[i].found_shoot_target = false;
 		ft_raycasting(cub, ray_angle, i);
 		ray_angle -= (M_PI / (3.0 * NUMBER_RAYS));
 	}

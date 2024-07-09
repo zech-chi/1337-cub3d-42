@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/07 10:23:12 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:33:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_scan_map(t_cub *cub)
 				cub->player.pc = c;
 				cub->player.sens = cub->map[r][c];
 			}
-			if (ft_search(cub->map[r][c], "0NSEWD") && ft_check_neighbours(cub, r, c))
+			if (ft_search(cub->map[r][c], "0NSEWDT") && ft_check_neighbours(cub, r, c))
 				exit(FAILED);
 		}
 	}

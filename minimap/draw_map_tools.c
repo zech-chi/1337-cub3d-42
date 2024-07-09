@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map_tools.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 19:23:48 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 19:24:46 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:54:20 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	ft_draw_inside(t_cub *cub, t_vector new, t_vector old)
 			mlx_put_pixel(cub->mlx.minimap, new.x, new.y, \
 			ft_color(139, 69, 19, 255));
 	}
+	else if (cub->map[r][c] == 'T')
+		mlx_put_pixel(cub->mlx.minimap, new.x, new.y, ft_color(0, 150, 0, 255));
 }
 
 void	ft_draw_pixel(t_cub *cub, t_vector old, t_vector new, t_vector pos_p)

@@ -32,10 +32,14 @@ SRCS =  main.c \
 		player/player.c \
 		player/mouse.c \
 		player/walk.c \
+		player/walk_check.c \
 		player/turn.c \
 		player/look.c \
 		player/light.c \
-		player/weapon.c \
+		player/headbob.c \
+		player/jump.c \
+		player/weapon1.c \
+		player/weapon2.c \
 		music/play_music.c \
 		music/action_sound.c \
 		math/math_tools.c \

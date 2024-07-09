@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 15:04:11 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:21:18 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ typedef struct s_mlx
 	mlx_image_t		*copy_circle;
 	bool			init_state;
 	bool			normal_shoot1;
-	bool			normal_shoot2;
 	bool			zome_shoot1;
-	bool			zome_shoot2;
 	bool			reload;
 	bool			walk;
 	int				frame;
@@ -219,12 +217,7 @@ void	ft_build_maze(t_cub *cub);
 void	ft_draw_img(t_cub *cub, int x, int y, float distance, mlx_image_t *img);
 /*end draw*/
 
-/*player*/
-void	ft_player_init(t_cub *cub);
-void	ft_render_player(t_cub *cub);
-void	ft_player_event(t_cub *cub);
-void	ft_update_head_bobbing(t_cub *cub);
-/*end player*/
+
 
 /*math*/
 int		ft_between(float alpha, float angle_start, float angle_end);
@@ -241,35 +234,40 @@ void	ft_rays(t_cub *cub);
 
 /// mouse
 void	mouse_func(double xpos, double ypos, void *param);
-void	ft_enable_mouse(t_cub *cub);
-void	ft_disable_mouse(t_cub *cub);
 void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 // mouse
 
+
+
+/*player*/
+void	ft_player_init(t_cub *cub);
+void	ft_player_event(t_cub *cub);
 // walk
 void	ft_walk_up(t_cub *cub);
 void	ft_walk_down(t_cub *cub);
 void	ft_walk_left(t_cub *cub);
 void	ft_walk_right(t_cub *cub);
-// walk
-
+// walk_check
+bool	ft_iswall2(t_cub *cub, int x, int y, double alpha);
+bool	ft_can_walk_up(t_cub *cub);
+bool	ft_can_walk_down(t_cub *cub, double a, double b);
 // turn
 void	ft_turn_left(t_cub *cub);
 void	ft_turn_right(t_cub *cub);
-// turn
-
 // look
 void	ft_look_up(t_cub *cub);
 void	ft_look_down(t_cub *cub);
-// look
-
 // light
 void	ft_light_event(t_cub *cub);
-// light
+// jump
+void	ft_jump(t_cub *cub);
+// headbob
+void ft_head_bobbing(t_cub *cub);
+/*end player*/
+
 
 // weapon
 void	ft_reset_weapon_event(t_cub *cub);
-void	ft_set_weapon_normal(t_cub *cub);
 void	ft_weapon_event(t_cub *cub);
 mlx_image_t	*ft_play_init_state(t_cub *cub);
 mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path);

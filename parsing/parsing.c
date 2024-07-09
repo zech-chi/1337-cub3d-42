@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 14:54:08 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:12:56 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ static void	ft_data_init(t_cub *cub)
 	cub->light_on = false;
 	cub->mlx.init_state = true;
 	cub->mlx.normal_shoot1 = false;
-	cub->mlx.normal_shoot2 = false;
 	cub->mlx.zome_shoot1 = false;
-	cub->mlx.zome_shoot2 = false;
 	cub->mlx.reload = false;
 	cub->mlx.weapon_magazin_index = 0;
 	cub->mlx.weapon_magazin = NULL;

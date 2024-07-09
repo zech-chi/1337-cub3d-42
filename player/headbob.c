@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   look.c                                             :+:      :+:    :+:   */
+/*   headbob.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/03 14:09:33 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 15:12:11 by zelabbas         ###   ########.fr       */
+/*   Created: 2024/07/09 15:17:04 by zelabbas          #+#    #+#             */
+/*   Updated: 2024/07/09 15:24:58 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_look_up(t_cub *cub)
+void	ft_head_bobbing(t_cub *cub)
 {
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_UP))
+	if (cub->player.is_walking)
 	{
-		if (cub->horizon < HORIZON)
-		{
-			(cub->horizon) += LOOK_SPEED;
-			cub->render = true;
-		}
+		cub->player.bobbing_time += cub->player.bobbing_speed;
+		cub->player.head_bobbing_offset = sin(cub->player.bobbing_time * \
+		cub->player.bobbing_frequency) * cub->player.bobbing_amplitude;
+		if (cub->player.head_bobbing_offset < 0)
+			cub->player.head_bobbing_offset *= -1;
 	}
-}
-
-void	ft_look_down(t_cub *cub)
-{
-	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_DOWN))
+	else
 	{
-		if (cub->horizon > -(HORIZON))
-		{
-			(cub->horizon) -= LOOK_SPEED;
-			cub->render = true;
-		}
+		cub->player.bobbing_time = 0.0;
+		cub->player.head_bobbing_offset = 0.0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 15:05:56 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:17:17 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,32 +255,13 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 	else if (cub->mlx.init_state || cub->mlx.weapon_magazin_index == 9)
 	{
 		cur_img = ft_play_init_state(cub);
-		ft_set_weapon_normal(cub);
+		ft_reset_weapon_event(cub);
+		cub->mlx.init_state = true;
 	}
 	else if (cub->mlx.normal_shoot1)
 		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, PATH_WEAPONS_NORM_SHOOT_1);
-	else if (cub->mlx.normal_shoot2)
-	{
-		if (cub->mlx.weapon_magazin_index == 0)
-			cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT2, PATH_WEAPONS_NORM_SHOOT_2);
-		else
-		{
-			cur_img = ft_play_init_state(cub);
-			ft_set_weapon_normal(cub);
-		}
-	}
 	else if (cub->mlx.zome_shoot1)
 		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, PATH_WEAPONS_ZOME_SHOOT_1);
-	else if (cub->mlx.zome_shoot2)
-	{
-		if (cub->mlx.weapon_magazin_index == 0)
-			cur_img = ft_play_weapon_status(cub, FRAMES_ZOME2, PATH_WEAPONS_ZOME_SHOOT_2);
-		else
-		{
-			cur_img = ft_play_init_state(cub);
-			ft_set_weapon_normal(cub);
-		}
-	}
 	return (cur_img);
 }
 

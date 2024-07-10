@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:59:01 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 18:21:26 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/10 22:00:25 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,17 @@ modifier_key_t mods, void *param)
 
 	cub = param;
 	(void)mods;
-
 	if (ft_there_is_active_event(cub))
 		return ;
 	if (action == MLX_PRESS)
 	{
 		if (button == MLX_MOUSE_BUTTON_LEFT)
 		{
-			// mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_HIDDEN);
-			// cub->mlx.status = MLX_MOUSE_HIDDEN;
 			ft_reset_weapon_event(cub);
 			cub->mlx.normal_shoot1 = true;
 		}
 		if (button == MLX_MOUSE_BUTTON_RIGHT)
 		{
-			// mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_NORMAL);
-			// cub->mlx.status = MLX_MOUSE_NORMAL;
 			ft_reset_weapon_event(cub);
 			cub->mlx.zome_shoot1 = true;
 		}

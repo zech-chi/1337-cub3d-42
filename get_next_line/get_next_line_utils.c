@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/05/31 12:19:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/10 21:58:42 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strdup(char *str)
 	while (str[++i])
 		s_dup[i] = str[i];
 	s_dup[i] = '\0';
-	return (s_dup); 
+	return (s_dup);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

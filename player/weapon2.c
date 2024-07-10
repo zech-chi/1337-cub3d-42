@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:18:50 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/10 19:06:30 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/10 22:01:03 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	ft_weapon_event(t_cub *cub)
 		return ;
 	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_1))
 	{
-		// ft_reset_weapon_event(cub);
-		// cub->mlx.normal_shoot1 = true;
 		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_NORMAL);
 		cub->mlx.status = MLX_MOUSE_NORMAL;
 	}
@@ -45,8 +43,6 @@ void	ft_weapon_event(t_cub *cub)
 	}
 	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_2))
 	{
-		// ft_reset_weapon_event(cub);
-		// cub->mlx.zome_shoot1 = true;
 		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_HIDDEN);
 		cub->mlx.status = MLX_MOUSE_HIDDEN;
 	}

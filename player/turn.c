@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:08:46 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 19:10:24 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/10 22:00:36 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_turn_left(t_cub *cub)
 {
 	int	x;
-
 
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_LEFT))
 	{

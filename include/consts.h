@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 22:37:22 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:16:08 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define PATH_GAME_START_1 "images/game_start/2.png"
 # define PATH_GAME_START_2 "images/game_start/3.png"
 # define PATH_GAME_START_3 "images/game_start/4.png"
-# define PATH_SKY "images/sky/sky4.png"
+# define PATH_SKY "images/sky/sky3.png"
 # define PATH_SHOOT_TARGET "images/shoot_target/shoot_target.png"
 # define PNG ".png"
 

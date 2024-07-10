@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 22:41:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:22:29 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,9 @@ void	ft_jump(t_cub *cub);
 // headbob
 void ft_head_bobbing(t_cub *cub);
 /*end player*/
-
+//check events
+bool	ft_there_is_active_event(t_cub *cub);
+//
 
 // weapon
 void	ft_reset_weapon_event(t_cub *cub);

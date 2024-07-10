@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 18:22:29 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:51:27 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,32 +106,59 @@ typedef struct s_player
 	float	head_bobbing_offset;
 }	t_player;
 
-typedef struct s_ray
+typedef struct s_horz_data
 {
-	float	angle;
-	float	distance;
-	bool	was_vertical;
-	bool	down;
-	bool	up;
-	bool	left;
-	bool	right;
+	float	deltax;
+	float	deltay;
 	float	xintercept;
 	float	yintercept;
-	float	horz_distance;
-	float	vert_distance;
+	float	nextx;
+	float	nexty;
 	float	hitx;
 	float	hity;
 	float	hithorzx;
 	float	hithorzy;
+	float	horz_distance;
+	bool	found_horz_hit;
+	bool	found_door_horz;
+	bool	found_shoot_target_horz;
+}	t_horz_data;
+
+typedef struct	s_vert_data
+{
+	float	deltax;
+	float	deltay;
+	float	xintercept;
+	float	yintercept;
+	float	nextx;
+	float	nexty;
+	bool	found_vert_hit;
+	float	hitx;
+	float	hity;
+	float	vert_distance;
 	float	hitvertx;
 	float	hitverty;
-	bool	found_door_horz;
 	bool	found_door_vert;
-	bool	found_door;
-	bool	found_shoot_target_horz;
 	bool	found_shoot_target_vert;
-	bool	found_shoot_target;
+}	t_vert_data;
 
+typedef struct s_ray
+{
+	float		angle;
+	float		distance;
+	bool		was_vertical;
+	bool		down;
+	bool		up;
+	bool		left;
+	bool		right;
+	float		xintercept;
+	float		yintercept;
+	float		hitx;
+	float		hity;
+	bool		found_door;
+	bool		found_shoot_target;
+	t_horz_data	horz;
+	t_vert_data	vert;
 }	t_ray;
 
 typedef	struct	s_thread
@@ -236,7 +263,9 @@ float	ft_scale_f(float prev);
 /*end math*/
 
 /*raycasting*/
-// void	ft_raycasting(t_cub *cub);
+bool	ft_find_wall(float x, float y, t_cub *cub, int i, bool *found_door, bool *found_shoot_target);
+float	ft_vertical(t_cub *cub, int i);
+float	ft_horizontal(t_cub *cub, int i);
 void	ft_rays(t_cub *cub);
 /*end raycasting*/
 
@@ -295,4 +324,5 @@ void	ft_mtx_set_stop(t_cub *cub);
 bool	ft_mtx_get_stop(t_cub *cub);
 void	ft_play_action_sound(t_cub *cub);
 // play music
+
 #endif

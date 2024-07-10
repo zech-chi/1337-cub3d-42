@@ -43,6 +43,8 @@ SRCS =  main.c \
 		music/action_sound.c \
 		math/math_tools.c \
 		raycasting/rays.c \
+		raycasting/horizontal.c \
+		raycasting/vertical.c \
 		minimap/minimap.c \
 		minimap/draw_line.c \
 		minimap/draw_map_tools.c

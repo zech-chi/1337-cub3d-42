@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:12:02 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/08 21:01:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 03:41:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_mtx_set_stop(t_cub *cub)
 
 void	*ft_routine(void *args)
 {
-	int	pid;
+	int		pid;
 	t_cub	*cub;
 
 	cub = (t_cub *)args;
@@ -47,10 +47,11 @@ void	*ft_routine(void *args)
 			exit(1);
 		if (pid == 0)
 		{
-			execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL);
+			execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *) NULL);
 			exit(1);
 		}
-		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
+		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
+			;
 	}
 	kill(pid, SIGTERM);
 	return (NULL);

@@ -18,8 +18,6 @@ static void	ft_check_reaload_sound(t_cub *cub)
 
 	if (cub->mlx.reload && cub->mlx.index_weapon == 20)
 	{
-		if (cub->player.is_walking)
-			sleep(2);
 		pid = fork();
 		if (pid < 0)
 			exit(1);
@@ -41,8 +39,6 @@ static void	ft_check_shoot_sound(t_cub *cub)
 
 	if ((cub->mlx.zome_shoot1 || cub->mlx.normal_shoot1) && cub->mlx.weapon_magazin_index < 9)
 	{
-		if (cub->player.is_walking)
-			sleep(2);
 		pid = fork();
 		if (pid < 0)
 			exit(1);

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 01:46:26 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 17:19:13 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:50:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	ft_draw_walls(t_cub *cub, int i)
 
 	wall_height = (cub->pixel / (cub->rays[i].distance * cos(cub->player.angle \
 	- cub->rays[i].angle))) * ((WINDOW_WIDTH / 2) / tan(M_PI / 6));
-	top_pixel = ft_max_d(WINDOW_HEIGHT / 2 - wall_height / 2 , 0);
-	bottom_pixel = ft_min(WINDOW_HEIGHT / 2 + wall_height / 2 , WINDOW_HEIGHT);
+	top_pixel = ft_max_d(WINDOW_HEIGHT / 2 - wall_height / 2, 0);
+	bottom_pixel = ft_min(WINDOW_HEIGHT / 2 + wall_height / 2, WINDOW_HEIGHT);
 	ft_set_offeset(cub, i);
 	ft_draw_floor_ceil(cub, i, top_pixel, false);
 	y = top_pixel;

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 04:15:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:35:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,10 @@ void	ft_free_mlx(t_cub *cub)
 	if (!cub->mlx.mlx_ptr)
 		return ;
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.maze_img);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.canva);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.no_img);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.so_img);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.we_img);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.ea_img);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.minimap);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.player_rays);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.black);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.door);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.circle);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.target);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.sky);
-	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.shoot_target);
 	mlx_terminate(cub->mlx.mlx_ptr);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:45:36 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:37:18 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ static int	ft_search(char c, char *str)
 	return (0);
 }
 
+static int	ft_check_neighbours(t_cub *cub, int r, int c)
+{
+	if (r == 0 || r == cub->rows - 1 || c == 0 || c == cub->cols - 1)
+		return (FAILED);
+	if (cub->map[r - 1][c] == ' ')
+		return (FAILED);
+	if (cub->map[r][c + 1] == ' ')
+		return (FAILED);
+	if (cub->map[r + 1][c] == ' ')
+		return (FAILED);
+	if (cub->map[r][c - 1] == ' ')
+		return (FAILED);
+	return (SUCCESS);
+}
+
 static void	ft_scan_map_help(t_cub *cub, int r, int c)
 {
 	if (ft_search(cub->map[r][c], "NSEW"))
@@ -40,7 +55,7 @@ static void	ft_scan_map_help(t_cub *cub, int r, int c)
 		cub->player.pc = c;
 		cub->player.sens = cub->map[r][c];
 	}
-	if (ft_search(cub->map[r][c], "0NSEWDT") && ft_check_neighbours(cub, r, c))
+	if (ft_search(cub->map[r][c], "0NSEW") && ft_check_neighbours(cub, r, c))
 	{
 		ft_putstr_fd("Invalid map", 2, 1, RED);
 		ft_free_data(cub);
@@ -62,5 +77,4 @@ void	ft_scan_map(t_cub *cub)
 			ft_scan_map_help(cub, r, c);
 		}
 	}
-	ft_check_neighbours_door(cub);
 }

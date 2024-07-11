@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:28:55 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/10 21:18:10 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:39:42 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	ft_init_horz_data(t_cub *cub, int i)
 {
-	cub->rays[i].horz.found_shoot_target_horz = false;
-	cub->rays[i].horz.found_door_horz = false;
 	cub->rays[i].horz.found_horz_hit = false;
 	cub->rays[i].horz.yintercept = floor(cub->player.py / PIXEL) * PIXEL;
 	cub->rays[i].horz.yintercept += cub->rays[i].down * PIXEL;
@@ -41,15 +39,8 @@ static bool	ft_check_wall_horz(t_cub *cub, int i)
 	c = cub->rays[i].horz.nextx / PIXEL;
 	if (r < 0 || c < 0 || r >= cub->rows || c >= cub->cols)
 		return (true);
-	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ' \
-	|| cub->map[r][c] == 'D' || cub->map[r][c] == 'T')
-	{
-		if (cub->map[r][c] == 'D')
-			cub->rays[i].horz.found_door_horz = true;
-		else if (cub->map[r][c] == 'T')
-			cub->rays[i].horz.found_shoot_target_horz = true;
+	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ')
 		return (true);
-	}
 	return (false);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 21:24:18 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:39:56 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,11 @@ static void	ft_raycasting(t_cub *cub, int i)
 	{
 		cub->rays[i].hitx = cub->rays[i].vert.hitvertx;
 		cub->rays[i].hity = cub->rays[i].vert.hitverty;
-		cub->rays[i].found_door = cub->rays[i].vert.found_door_vert;
-		cub->rays[i].found_shoot_target = \
-		cub->rays[i].vert.found_shoot_target_vert;
 	}
 	else
 	{
 		cub->rays[i].hitx = cub->rays[i].horz.hithorzx;
 		cub->rays[i].hity = cub->rays[i].horz.hithorzy;
-		cub->rays[i].found_door = cub->rays[i].horz.found_door_horz;
-		cub->rays[i].found_shoot_target = \
-		cub->rays[i].horz.found_shoot_target_horz;
 	}
 }
 
@@ -50,8 +44,6 @@ void	ft_rays(t_cub *cub)
 	while (++i < NUMBER_RAYS)
 	{
 		ray_angle = ft_periodic(ray_angle);
-		cub->rays[i].found_door = false;
-		cub->rays[i].found_shoot_target = false;
 		cub->rays[i].angle = ray_angle;
 		cub->rays[i].up = ray_angle > 0 && ray_angle < M_PI;
 		cub->rays[i].down = !cub->rays[i].up;

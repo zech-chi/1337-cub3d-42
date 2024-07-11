@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:06:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 05:40:29 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:39:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_walk_up(t_cub *cub)
 			cub->player.pr = cub->player.py / cub->pixel;
 			cub->player.pc = cub->player.px / cub->pixel;
 			cub->render = true;
-			cub->player.is_walking = true;
 		}
 	}
 }
@@ -54,7 +53,6 @@ void	ft_walk_down(t_cub *cub)
 			cub->player.pr = cub->player.py / cub->pixel;
 			cub->player.pc = cub->player.px / cub->pixel;
 			cub->render = true;
-			cub->player.is_walking = true;
 		}
 	}
 }
@@ -76,7 +74,6 @@ void	ft_walk_left(t_cub *cub)
 			cub->player.pr = cub->player.py / cub->pixel;
 			cub->player.pc = cub->player.px / cub->pixel;
 			cub->render = true;
-			cub->player.is_walking = true;
 		}
 	}
 }
@@ -98,7 +95,6 @@ void	ft_walk_right(t_cub *cub)
 			cub->player.pr = cub->player.py / cub->pixel;
 			cub->player.pc = cub->player.px / cub->pixel;
 			cub->render = true;
-			cub->player.is_walking = true;
 		}
 	}
 }

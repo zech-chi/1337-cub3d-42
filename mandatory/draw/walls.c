@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 17:09:12 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:50:00 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_render(void *param)
 		ft_render_walls(cub);
 	}
 	cub->render = false;
-	cub->player.is_walking = false;
 }
 
 void	ft_build_maze(t_cub *cub)

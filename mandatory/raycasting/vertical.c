@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:36:16 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/10 21:18:22 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:40:08 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	ft_init_vert_data(t_cub *cub, int i)
 {
-	cub->rays[i].vert.found_shoot_target_vert = false;
-	cub->rays[i].vert.found_door_vert = false;
 	cub->rays[i].vert.found_vert_hit = false;
 	cub->rays[i].vert.xintercept = (floor(cub->player.px / PIXEL) \
 	+ cub->rays[i].right) * PIXEL;
@@ -42,15 +40,8 @@ static bool	ft_check_wall_vert(t_cub *cub, int i)
 	cub->rays[i].right) / PIXEL;
 	if (r < 0 || c < 0 || r >= cub->rows || c >= cub->cols)
 		return (true);
-	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ' || \
-	cub->map[r][c] == 'D' || cub->map[r][c] == 'T')
-	{
-		if (cub->map[r][c] == 'D')
-			cub->rays[i].vert.found_door_vert = true;
-		else if (cub->map[r][c] == 'T')
-			cub->rays[i].vert.found_shoot_target_vert = true;
+	if (cub->map[r][c] == '1' || cub->map[r][c] == ' ')
 		return (true);
-	}
 	return (false);
 }
 

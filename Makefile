@@ -27,7 +27,6 @@ SRCSMAN =  mandatory/main.c \
 		mandatory/parsing/scan_line_1.c \
 		mandatory/parsing/scan_line_2.c \
 		mandatory/parsing/scan_map.c \
-		mandatory/parsing/scan_map_tools.c \
 		mandatory/linked_list/linked_list.c \
 		mandatory/draw/walls.c \
 		mandatory/draw/walls_tools.c \

@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 16:58:26 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:39:07 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,6 @@ void	ft_player_init(t_cub *cub)
 	cub->map[r][c] = '0';
 	cub->player.walk_speed = WALK_SPEED;
 	cub->player.turn_speed = TURN_SPEED;
-	cub->player.bobbing_amplitude = 15.0;
-	cub->player.bobbing_frequency = 2.0;
-	cub->player.bobbing_time = 0.0;
-	cub->player.bobbing_speed = 0.1;
-	cub->player.is_walking = false;
-	cub->player.head_bobbing_offset = 0.0;
-	cub->player.offeset_jump = 0;
-	cub->player.jump = false;
-	cub->player.amplitude_jump = 110;
-	cub->player.frequency_jump = 0.2;
 	ft_set_player_angle(cub);
 }
 

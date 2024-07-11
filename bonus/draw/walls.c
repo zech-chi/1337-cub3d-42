@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 02:04:08 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:10:21 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ void	ft_close_win_event(t_cub *cub)
 
 void	ft_render(void *param)
 {
-	t_cub	*cub;
+	t_cub		*cub;
 
 	cub = param;
 	if (ft_play_starting(cub))
 		return ;
 	ft_play_weapon_frame(cub);
+	if (cub->mlx.reload || cub->mlx.zome_shoot1 || cub->mlx.normal_shoot1)
+		return ;
 	ft_weapon_event(cub);
 	ft_close_win_event(cub);
 	ft_player_event(cub);

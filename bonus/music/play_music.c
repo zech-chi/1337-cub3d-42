@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:12:02 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 03:41:10 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:58:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	*ft_routine(void *args)
 			exit(1);
 		if (pid == 0)
 		{
-			execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *) NULL);
+			execlp("afplay", "afplay", WAR_SOUND_PATH, (char *) NULL);
 			exit(1);
 		}
 		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
-			;
+			usleep(1000);
 	}
 	kill(pid, SIGTERM);
 	return (NULL);

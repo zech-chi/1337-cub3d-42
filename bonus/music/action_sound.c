@@ -12,32 +12,62 @@
 
 #include "../include/cub3d.h"
 
-void	*ft_routine2(void *args)
+static void	ft_check_reaload_sound(t_cub *cub)
 {
 	int		pid;
+
+	if (cub->mlx.reload && cub->mlx.index_weapon == 20)
+	{
+		if (cub->player.is_walking)
+			sleep(2);
+		pid = fork();
+		if (pid < 0)
+			exit(1);
+		if (pid == 0)
+		{
+			execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *) NULL);
+			exit(1);
+		}
+		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
+			;
+		if (ft_mtx_get_stop(cub))
+			kill(pid, SIGTERM);
+	}
+}
+
+static void	ft_check_shoot_sound(t_cub *cub)
+{
+	int		pid;
+
+	if ((cub->mlx.zome_shoot1 || cub->mlx.normal_shoot1) && cub->mlx.weapon_magazin_index < 9)
+	{
+		if (cub->player.is_walking)
+			sleep(2);
+		pid = fork();
+		if (pid < 0)
+			exit(1);
+		if (pid == 0)
+		{
+			execlp("afplay", "afplay", SHOOT_SOUND_PATH, (char *) NULL);
+			exit(1);
+		}
+		while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
+			;
+		if (ft_mtx_get_stop(cub))
+			kill(pid, SIGTERM);
+	}
+}
+
+void	*ft_routine2(void *args)
+{
 	t_cub	*cub;
 
 	cub = (t_cub *)args;
 	while (!ft_mtx_get_stop(cub))
 	{
-		if (cub->mlx.reload && cub->mlx.index_weapon == 20)
-		{
-			if (cub->player.is_walking)
-				sleep(2);
-			pid = fork();
-			if (pid < 0)
-				exit(1);
-			if (pid == 0)
-			{
-				execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *) NULL);
-				exit(1);
-			}
-			while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
-				;
-			if (ft_mtx_get_stop(cub))
-				kill(pid, SIGTERM);
-		}
-		usleep(500);
+		ft_check_reaload_sound(cub);
+		ft_check_shoot_sound(cub);
+		usleep(1000);
 	}
 	return (NULL);
 }

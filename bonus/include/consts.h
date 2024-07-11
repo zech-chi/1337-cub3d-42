@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 18:09:34 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:40:36 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 # define WEAPON_MAGAZINE 10
 # define WEAPON_WEDTH 640
 # define WEAPON_HEIGHT 359
-# define FRAMES_SHOOT1 11
+# define FRAMES_SHOOT1 18
 # define FRAMES_ZOME1 20
 # define FRAMES_RELOAD 83
 # define WEAPONS 637
@@ -85,5 +85,7 @@
 # define WALK_SPEED 100
 # define TURN_SPEED 0.07853981634  // 4.5 * (M_PI / 180)
 
-# define RELOAD_SOUND_PATH "music/reload_sound.mp3"
+# define RELOAD_SOUND_PATH "bonus/music/reload_sound.mp3"
+# define WAR_SOUND_PATH "bonus/music/war.mp3"
+# define SHOOT_SOUND_PATH "bonus/music/shoot_sound.mp3"
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:31:03 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 20:20:25 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,16 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 		cub->mlx.init_state = true;
 	}
 	else if (cub->mlx.normal_shoot1)
+	{
 		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, \
 		PATH_WEAPONS_NORM_SHOOT_1);
+	}
 	else if (cub->mlx.zome_shoot1)
+	{
 		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, \
 		PATH_WEAPONS_ZOME_SHOOT_1);
+	}
+	
 	return (cur_img);
 }
 

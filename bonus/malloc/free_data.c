@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 04:15:15 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:10:57 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_free_mlx(t_cub *cub)
 
 void	ft_free_data(t_cub *cub)
 {
+	ft_mtx_set_stop(cub);
 	free(cub->no);
 	free(cub->so);
 	free(cub->we);

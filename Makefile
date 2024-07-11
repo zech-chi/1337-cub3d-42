@@ -27,7 +27,9 @@ SRCS =  main.c \
 		parsing/scan_map.c \
 		linked_list/linked_list.c \
 		draw/walls.c \
+		draw/walls_tools.c \
 		draw/draw_imgs.c \
+		draw/mlx_tools.c \
 		player/player.c \
 		player/mouse.c \
 		player/walk.c \
@@ -42,6 +44,7 @@ SRCS =  main.c \
 		music/play_music.c \
 		music/action_sound.c \
 		math/math_tools.c \
+		math/math_tools2.c \
 		raycasting/rays.c \
 		raycasting/horizontal.c \
 		raycasting/vertical.c \

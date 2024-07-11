@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 20:51:27 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 02:07:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_mlx
 	mlx_image_t		*so_img;
 	mlx_image_t		*we_img;
 	mlx_image_t		*ea_img;
-	mlx_image_t		*weapon[WEAPONS];
 	mlx_image_t		*minimap;
 	mlx_image_t		*player_rays;
 	mlx_image_t		*black;
@@ -248,17 +247,23 @@ int		ft_lstsize(t_list *lst);
 /*draw*/
 uint32_t	ft_color(uint32_t r, uint32_t g, uint32_t b, uint32_t a);
 void	ft_build_maze(t_cub *cub);
-void	ft_draw_img(t_cub *cub, int x, int y, float distance, mlx_image_t *img);
+void	ft_draw_img(t_cub *cub, int x, int y, mlx_image_t *img);
+void	ft_render_walls(t_cub *cub);
 /*end draw*/
-
-
+// mlx_tools
+void		ft_mlx_init(t_cub *cub);
+void		ft_load_img(t_cub *cub);
+void		ft_mlx_image_to_window(t_cub *cub, mlx_image_t *img, int x, int y);
+mlx_image_t	*ft_get_image(t_cub *cub, char *path);
+mlx_image_t	*ft_mlx_new_image(t_cub *cub, uint32_t width, uint32_t height);
 
 /*math*/
 int		ft_between(float alpha, float angle_start, float angle_end);
 float	ft_periodic(float angle);
 float	ft_min(float a, float b);
+int		ft_min_d(int a, int b);
 float	ft_get_distance(float x1, float y1, float x2, float y2);
-int		max(int a, int b);
+int		ft_max_d(int a, int b);
 float	ft_scale_f(float prev);
 /*end math*/
 
@@ -273,8 +278,6 @@ void	ft_rays(t_cub *cub);
 void	mouse_func(double xpos, double ypos, void *param);
 void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 // mouse
-
-
 
 /*player*/
 void	ft_player_init(t_cub *cub);
@@ -300,17 +303,15 @@ void	ft_light_event(t_cub *cub);
 void	ft_jump(t_cub *cub);
 // headbob
 void ft_head_bobbing(t_cub *cub);
-/*end player*/
-//check events
-bool	ft_there_is_active_event(t_cub *cub);
-//
-
 // weapon
-void	ft_reset_weapon_event(t_cub *cub);
-void	ft_weapon_event(t_cub *cub);
+bool	ft_there_is_active_event(t_cub *cub);
+void		ft_reset_weapon_event(t_cub *cub);
+void		ft_weapon_event(t_cub *cub);
 mlx_image_t	*ft_play_init_state(t_cub *cub);
 mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path);
-// weapon
+mlx_image_t	*ft_play_weapon(t_cub *cub);
+void		ft_play_weapon_frame(t_cub *cub);
+/*end player*/
 
 // minimap
 void	ft_render_minimap(t_cub *cub);

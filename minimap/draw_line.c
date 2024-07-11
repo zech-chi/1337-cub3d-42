@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:44:30 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 18:51:19 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 02:01:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	ft_draw_point(t_cub *cub, t_vector cur, t_vector start)
 		pow(cur.y - start.y, 2) >= pow(MINIMAP_RADIUS, 2))
 			return (false);
 		distance = ft_get_distance(start.x, start.y, cur.x, cur.y);
-		a = max(255 * exp(-0.025 * distance), 0);
+		a = ft_max_d(255 * exp(-0.025 * distance), 0);
 		color = ft_color(255, 255, 0, a);
 		mlx_put_pixel(cub->mlx.player_rays, cur.x, cur.y, color);
 	}

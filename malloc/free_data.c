@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/02 14:58:14 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:16:16 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,27 @@ void	ft_free_list(t_list **head)
 	}
 }
 
+void	ft_free_mlx(t_cub *cub)
+{
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.maze_img);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.canva);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.no_img);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.so_img);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.we_img);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.ea_img);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.minimap);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.player_rays);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.black);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.background_start);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.door);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.circle);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.target);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.sky);
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.shoot_target);
+	mlx_terminate(cub->mlx.mlx_ptr);
+}
+
 void	ft_free_data(t_cub *cub)
 {
 	free(cub->no);
@@ -50,5 +71,7 @@ void	ft_free_data(t_cub *cub)
 	free(cub->line);
 	ft_free_matirx(cub->map);
 	ft_free_list(&(cub->head));
-	close(cub->fd);
+	ft_free_mlx(cub);
+	if (cub->fd != -1)
+		close(cub->fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   consts.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 18:16:08 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:40:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@
 # define N_STEPS 7
 # define SCALE 150
 # define WALK_SPEED 100
-# define TURN_SPEED 2.5 * (M_PI / 180)
+# define TURN_SPEED 4.5 * (M_PI / 180)
 
 
 # define RELOAD_SOUND_PATH "music/reload_sound.mp3"

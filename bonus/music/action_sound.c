@@ -29,10 +29,11 @@ void	*ft_routine2(void *args)
 				exit(1);
 			if (pid == 0)
 			{
-				execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *)NULL);
+				execlp("afplay", "afplay", RELOAD_SOUND_PATH, (char *) NULL);
 				exit(1);
 			}
-			while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub));
+			while (!waitpid(pid, NULL, WNOHANG) && !ft_mtx_get_stop(cub))
+				;
 			if (ft_mtx_get_stop(cub))
 				kill(pid, SIGTERM);
 		}

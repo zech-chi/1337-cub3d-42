@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 00:40:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 06:21:38 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,23 @@
 # define LOOK_SPEED 15
 
 # define WIN_NAME "ziko^2"
-# define PATH_WEAPONS_INIT_STATE "images/weapon/init_state/0.png"
-# define PATH_WEAPONS_NORM_SHOOT_1 "images/weapon/normal_shoot/img"
-# define PATH_WEAPONS_ZOME_SHOOT_1 "images/weapon/zome_shoot/img"
-# define PATH_WEAPONS_RELOAD "images/weapon/reload/img"
-# define PATH_TARGET "images/target/target.png"
-# define PATH_DOOR "images/door/door.png"
-# define PATH_BLACK "images/black/black.png"
-# define PATH_WEAPON_MAGAZINE "images/weapon_magazine/"
-# define PATH_WEAPON_MAGAZINE_0 "images/weapon_magazine/0.png"
-# define PATH_CIRCLE "images/circle/circle.png"
-# define PATH_GAME_START_0 "images/game_start/1.png"
-# define PATH_GAME_START_1 "images/game_start/2.png"
-# define PATH_GAME_START_2 "images/game_start/3.png"
-# define PATH_GAME_START_3 "images/game_start/4.png"
-# define PATH_SKY "images/sky/sky3.png"
-# define PATH_SHOOT_TARGET "images/shoot_target/shoot_target.png"
+# define PATH_WEAPONS_INIT_STATE "bonus/images/weapon/init_state/0.png"
+# define PATH_WEAPONS_NORM_SHOOT_1 "bonus/images/weapon/normal_shoot/img"
+# define PATH_WEAPONS_ZOME_SHOOT_1 "bonus/images/weapon/zome_shoot/img"
+# define PATH_WEAPONS_RELOAD "bonus/images/weapon/reload/img"
+# define PATH_TARGET "bonus/images/target/target.png"
+# define PATH_DOOR "bonus/images/door/door.png"
+# define PATH_BLACK "bonus/images/black/black.png"
+# define PATH_WEAPON_MAGAZINE "bonus/images/weapon_magazine/"
+# define PATH_WEAPON_MAGAZINE_0 "bonus/images/weapon_magazine/0.png"
+# define PATH_CIRCLE "bonus/images/circle/circle.png"
+# define PATH_GAME_START_0 "bonus/images/game_start/1.png"
+# define PATH_GAME_START_1 "bonus/images/game_start/2.png"
+# define PATH_GAME_START_2 "bonus/images/game_start/3.png"
+# define PATH_GAME_START_3 "bonus/images/game_start/4.png"
+# define PATH_SKY "bonus/images/sky/sky3.png"
+# define PATH_SHOOT_TARGET "bonus/images/shoot_target/shoot_target.png"
 # define PNG ".png"
-
-
 
 # define WEAPON_MAGAZIN_X 20
 # define WEAPON_MAGAZIN_Y 600

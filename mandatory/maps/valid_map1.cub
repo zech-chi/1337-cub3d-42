@@ -2,8 +2,8 @@ NO ./mandatory/images/textures/north3.png
 SO ./mandatory/images/textures/so1.png
 WE ./mandatory/images/textures/so2.png
 EA ./mandatory/images/textures/we1.png
-F 220    ,100,0
-C 225,30,0
+F 95, 89, 108
+C 0, 214, 194
 
 
 

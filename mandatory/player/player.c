@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 21:10:21 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 15:35:35 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:58:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ void	ft_player_event(t_cub *cub)
 	ft_walk_down(cub);
 	ft_walk_left(cub);
 	ft_walk_right(cub);
-	ft_look_up(cub);
-	ft_look_down(cub);
 	ft_turn_left(cub);
 	ft_turn_right(cub);
-	ft_jump(cub);
-	ft_head_bobbing(cub);
 }

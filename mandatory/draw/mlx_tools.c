@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 01:40:59 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:29:26 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:03:10 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,13 @@ void	ft_load_img(t_cub *cub)
 	cub->mlx.no_img = ft_get_image(cub, cub->no);
 	cub->mlx.we_img = ft_get_image(cub, cub->we);
 	cub->mlx.so_img = ft_get_image(cub, cub->so);
-	cub->mlx.target = ft_get_image(cub, PATH_TARGET);
-	cub->mlx.door = ft_get_image(cub, PATH_DOOR);
-	cub->mlx.black = ft_get_image(cub, PATH_BLACK);
-	cub->mlx.weapon_magazin = ft_get_image(cub, PATH_WEAPON_MAGAZINE_0);
-	cub->mlx.circle = ft_get_image(cub, PATH_CIRCLE);
-	cub->mlx.background_start = ft_get_image(cub, PATH_GAME_START_0);
-	cub->mlx.sky = ft_get_image(cub, PATH_SKY);
-	cub->mlx.shoot_target = ft_get_image(cub, PATH_SHOOT_TARGET);
-	cub->mlx.canva = ft_mlx_new_image(cub, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// cub->mlx.background_start = ft_get_image(cub, PATH_GAME_START_0);
+	// cub->mlx.sky = ft_get_image(cub, PATH_SKY);
+	// cub->mlx.shoot_target = ft_get_image(cub, PATH_SHOOT_TARGET);
+	// cub->mlx.canva = ft_mlx_new_image(cub, WINDOW_WIDTH, WINDOW_HEIGHT);
 	cub->mlx.maze_img = ft_mlx_new_image(cub, WINDOW_WIDTH, WINDOW_HEIGHT);
-	cub->mlx.minimap = ft_mlx_new_image(cub, MINIMAP_WIDTH, MINIMAP_HEIGHT);
-	cub->mlx.player_rays = ft_mlx_new_image(cub, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	// cub->mlx.minimap = ft_mlx_new_image(cub, MINIMAP_WIDTH, MINIMAP_HEIGHT);
+	// cub->mlx.player_rays = ft_mlx_new_image(cub, MINIMAP_WIDTH, MINIMAP_HEIGHT);
 }
 
 void	ft_mlx_image_to_window(t_cub *cub, mlx_image_t *img, int x, int y)

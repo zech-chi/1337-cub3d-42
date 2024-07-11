@@ -4,11 +4,9 @@ NAMEBON = cub3Dbonus
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast #-fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address -g
 
 SRCSMAN =  mandatory/main.c \
-		mandatory/music/play_music.c \
-		mandatory/music/action_sound.c \
 		mandatory/get_next_line/get_next_line_utils.c \
 		mandatory/get_next_line/get_next_line.c \
 		mandatory/malloc/free_data.c \
@@ -36,24 +34,14 @@ SRCSMAN =  mandatory/main.c \
 		mandatory/draw/draw_imgs.c \
 		mandatory/draw/mlx_tools.c \
 		mandatory/player/player.c \
-		mandatory/player/mouse.c \
 		mandatory/player/walk.c \
 		mandatory/player/walk_check.c \
 		mandatory/player/turn.c \
-		mandatory/player/look.c \
-		mandatory/player/light.c \
-		mandatory/player/headbob.c \
-		mandatory/player/jump.c \
-		mandatory/player/weapon1.c \
-		mandatory/player/weapon2.c \
 		mandatory/math/math_tools.c \
 		mandatory/math/math_tools2.c \
 		mandatory/raycasting/rays.c \
 		mandatory/raycasting/horizontal.c \
 		mandatory/raycasting/vertical.c \
-		mandatory/minimap/minimap.c \
-		mandatory/minimap/draw_line.c \
-		mandatory/minimap/draw_map_tools.c
 
 SRCSBON =  bonus/main.c \
 		bonus/music/play_music.c \
@@ -122,7 +110,7 @@ $(NAMEBON): $(OBJSBON)
 	$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
 clean:
-	$(RM) $(OBJS) $(OBJSBON)
+	$(RM) $(OBJSMAN) $(OBJSBON)
 
 fclean: clean
 	$(RM) $(NAME) $(NAMEBON)

@@ -6,18 +6,11 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:48:55 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 02:08:31 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 17:12:03 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	ft_update_a(int a)
-{
-	if (a <= 0)
-		return (0);
-	return (a);
-}
 
 void	ft_draw_img(t_cub *cub, int i, int y, mlx_image_t *img)
 {
@@ -31,9 +24,6 @@ void	ft_draw_img(t_cub *cub, int i, int y, mlx_image_t *img)
 	color.g = img->pixels[j + 1];
 	color.b = img->pixels[j + 2];
 	color.a = img->pixels[j + 3];
-	if (!cub->light_on)
-		color.a *= exp(-0.0001 * distance);
 	mlx_put_pixel(cub->mlx.maze_img, i, y, \
-	ft_color(color.r, color.g, color.b, \
-	ft_update_a(color.a)));
+	ft_color(color.r, color.g, color.b, color.a));
 }

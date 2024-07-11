@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 03:06:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:17:23 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 
 static void	ft_data_init2(t_cub *cub)
 {
-	cub->play_weapon = false;
 	cub->mlx.frame = 0;
 	cub->mlx.cur_index = 0;
 	cub->mlx.status = MLX_MOUSE_NORMAL;
-	cub->light_on = false;
 	cub->mlx.init_state = true;
 	cub->mlx.normal_shoot1 = false;
 	cub->mlx.zome_shoot1 = false;
 	cub->mlx.reload = false;
 	cub->mlx.weapon_magazin_index = 0;
-	cub->mlx.weapon_magazin = NULL;
-	cub->angle_minimap = 0;
-	cub->player.jump = false;
 	cub->mlx.index_weapon = 0;
+	cub->mlx.maze_img = NULL;
+	cub->mlx.canva = NULL;
+	cub->mlx.no_img = NULL;
+	cub->mlx.so_img = NULL;
+	cub->mlx.we_img = NULL;
+	cub->mlx.ea_img = NULL;
+	cub->mlx.minimap = NULL;
+	cub->mlx.player_rays = NULL;
+	cub->mlx.black = NULL;
+	cub->mlx.background_start = NULL;
+	cub->mlx.door = NULL;
+	cub->mlx.weapon_magazin = NULL;
+	cub->mlx.circle = NULL;
+	cub->mlx.target = NULL;
+	cub->mlx.sky = NULL;
+	cub->mlx.shoot_target = NULL;
 }
 
 static void	ft_data_init(t_cub *cub)
@@ -50,6 +61,11 @@ static void	ft_data_init(t_cub *cub)
 	cub->render = true;
 	cub->horizon = 0;
 	cub->stop = false;
+	cub->angle_minimap = 0;
+	cub->player.jump = false;
+	cub->play_weapon = false;
+	cub->light_on = false;
+	cub->mlx.mlx_ptr = NULL;
 	ft_data_init2(cub);
 }
 

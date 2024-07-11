@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 00:16:16 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:15:15 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_free_list(t_list **head)
 
 void	ft_free_mlx(t_cub *cub)
 {
+	if (!cub->mlx.mlx_ptr)
+		return ;
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.maze_img);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.canva);
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.no_img);

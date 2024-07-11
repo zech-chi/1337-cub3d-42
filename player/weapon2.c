@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:18:50 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/10 22:01:03 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:04:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,37 @@ void	ft_weapon_event(t_cub *cub)
 	{
 		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_HIDDEN);
 		cub->mlx.status = MLX_MOUSE_HIDDEN;
+	}
+}
+
+mlx_image_t	*ft_get_image2(t_cub *cub, char *path)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*image;
+
+	texture = mlx_load_png(path);
+	if (!texture)
+	{
+		ft_free_data(cub);
+		ft_putstr_fd("Failed to open : ", 2, 0, RED);
+		ft_putstr_fd(path, 2, 1, RED);
+		free(path);
+		exit(1);
+	}
+	image = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
+	mlx_delete_texture(texture);
+	return (image);
+}
+
+void	ft_check_last_frame(t_cub *cub, int size)
+{
+	if (cub->mlx.index_weapon > size)
+	{
+		cub->mlx.index_weapon = 0;
+		if (!cub->mlx.reload)
+			cub->mlx.weapon_magazin_index++;
+		ft_draw_weapon_magazine(cub);
+		ft_reset_weapon_event(cub);
+		cub->mlx.init_state = true;
 	}
 }

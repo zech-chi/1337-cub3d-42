@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 03:24:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:06:17 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,6 +313,9 @@ mlx_image_t	*ft_play_init_state(t_cub *cub);
 mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path);
 mlx_image_t	*ft_play_weapon(t_cub *cub);
 void		ft_play_weapon_frame(t_cub *cub);
+mlx_image_t	*ft_get_image2(t_cub *cub, char *path);
+void		ft_draw_weapon_magazine(t_cub *cub);
+void		ft_check_last_frame(t_cub *cub, int size);
 /*end player*/
 
 // minimap

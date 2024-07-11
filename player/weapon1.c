@@ -6,67 +6,81 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 03:04:31 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:06:12 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	ft_draw_weapon_magazine(t_cub *cub)
+void	ft_draw_weapon_magazine(t_cub *cub)
 {
 	char			*name;
-	mlx_texture_t	*texture;
+	bool			check;
 
+	check = true;
 	name = NULL;
 	name = ft_strjoin(ft_strdup(PATH_WEAPON_MAGAZINE), \
 	ft_itoa(cub->mlx.weapon_magazin_index));
+	if (!name)
+		check = false;
 	name = ft_strjoin(name, ft_strdup(PNG));
-	texture = mlx_load_png(name);
-	if (cub->mlx.weapon_magazin)
-		mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
-	cub->mlx.weapon_magazin = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin, \
-	WEAPON_MAGAZIN_X, WEAPON_MAGAZIN_Y);
+	if (!name)
+		check = false;
+	if (!check)
+	{
+		ft_free_data(cub);
+		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		exit(FAILED);
+	}
+	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
+	cub->mlx.weapon_magazin = ft_get_image2(cub, name);
 	free(name);
+	ft_mlx_image_to_window(cub, cub->mlx.weapon_magazin, \
+	WEAPON_MAGAZIN_X, WEAPON_MAGAZIN_Y);
 }
 
 mlx_image_t	*ft_play_init_state(t_cub *cub)
 {
 	char			*name;
-	mlx_texture_t	*texture;
 	mlx_image_t		*cur_img;
 
 	name = ft_strdup(PATH_WEAPONS_INIT_STATE);
-	texture = mlx_load_png(name);
+	if (!name)
+	{
+		ft_free_data(cub);
+		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		exit(FAILED);
+	}
+	cur_img = ft_get_image2(cub, name);
 	free(name);
-	cur_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cur_img, 0, 0);
+	ft_mlx_image_to_window(cub, cur_img, 0, 0);
 	return (cur_img);
 }
 
 mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 {
 	char			*name;
-	mlx_texture_t	*texture;
 	mlx_image_t		*cur_img;
+	bool			check;
 
+	check = true;
 	name = ft_strjoin(ft_strdup(path), ft_itoa(cub->mlx.index_weapon));
+	if (!name)
+		check = false;
 	name = ft_strjoin(name, ft_strdup(PNG));
-	texture = mlx_load_png(name);
-	cur_img = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);
-	mlx_image_to_window(cub->mlx.mlx_ptr, cur_img, 0, 0);
-	free(name);
-	(cub->mlx.index_weapon)++;
-	if (cub->mlx.index_weapon > size)
+	if (!name)
+		check = false;
+	if (!check)
 	{
-		cub->mlx.index_weapon = 0;
-		if (!cub->mlx.reload)
-			cub->mlx.weapon_magazin_index++;
-		printf("%d\n", cub->mlx.weapon_magazin_index);
-		ft_draw_weapon_magazine(cub);
-		ft_reset_weapon_event(cub);
-		cub->mlx.init_state = true;
+		ft_free_data(cub);
+		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		exit(FAILED);
 	}
+	cur_img = ft_get_image2(cub, name);
+	free(name);
+	ft_mlx_image_to_window(cub, cur_img, 0, 0);
+	(cub->mlx.index_weapon)++;
+	ft_check_last_frame(cub, size);
 	return (cur_img);
 }
 

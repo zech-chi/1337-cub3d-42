@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 02:07:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 03:24:55 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,8 @@ int		ft_set_color(t_cub *cub, int **color, char *line, int *i);
 void	ft_scan_file(t_cub *cub, char *path);
 void	ft_create_map(t_cub *cub);
 void	ft_scan_map(t_cub *cub);
+void	ft_check_neighbours_door(t_cub *cub);
+int	ft_check_neighbours(t_cub *cub, int r, int c);
 
 /* parsing/scan_file.c*/
 int		ft_part1_full(t_cub *cub);

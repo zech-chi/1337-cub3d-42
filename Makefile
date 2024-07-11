@@ -5,6 +5,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address 
 
 SRCS =  main.c \
+		music/play_music.c \
+		music/action_sound.c \
 		get_next_line/get_next_line_utils.c \
 		get_next_line/get_next_line.c \
 		malloc/free_data.c \
@@ -25,6 +27,7 @@ SRCS =  main.c \
 		parsing/scan_line_1.c \
 		parsing/scan_line_2.c \
 		parsing/scan_map.c \
+		parsing/scan_map_tools.c \
 		linked_list/linked_list.c \
 		draw/walls.c \
 		draw/walls_tools.c \
@@ -41,8 +44,6 @@ SRCS =  main.c \
 		player/jump.c \
 		player/weapon1.c \
 		player/weapon2.c \
-		music/play_music.c \
-		music/action_sound.c \
 		math/math_tools.c \
 		math/math_tools2.c \
 		raycasting/rays.c \

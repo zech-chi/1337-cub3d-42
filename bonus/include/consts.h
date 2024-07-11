@@ -6,10 +6,9 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 15:10:08 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 06:21:38 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:09:34 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CONSTS_H
 # define CONSTS_H
@@ -28,9 +27,9 @@
 
 # define PI M_PI
 # define PI2 M_PI_2
-# define _3PI2 (1.5 * M_PI)
-# define _2PI (2.0 * M_PI)
-# define _5PI (5 * M_PI)
+# define _3PI2 4.71238898038  // 1.5 * M_PI
+# define _2PI 6.28318530718   // 2.0 * M_PI
+# define _5PI 15.7079632679   // 5 * M_PI
 
 # define WINDOW_HEIGHT 675
 # define WINDOW_WIDTH 1200
@@ -77,15 +76,14 @@
 # define WEAPONS 637
 
 /*player consts*/
-# define SPEED_JUMP (M_PI / 4.0)
+# define SPEED_JUMP 0.78539816339  // M_PI / 4.0
 # define POS_MINIMAP 25
 # define RADIUS 2
 # define SENS_LENGTH 15
 # define N_STEPS 7
 # define SCALE 150
 # define WALK_SPEED 100
-# define TURN_SPEED 4.5 * (M_PI / 180)
-
+# define TURN_SPEED 0.07853981634  // 4.5 * (M_PI / 180)
 
 # define RELOAD_SOUND_PATH "music/reload_sound.mp3"
 #endif

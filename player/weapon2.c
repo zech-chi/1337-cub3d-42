@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:18:50 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 04:04:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:31:14 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ mlx_image_t	*ft_get_image2(t_cub *cub, char *path)
 	texture = mlx_load_png(path);
 	if (!texture)
 	{
-		ft_free_data(cub);
 		ft_putstr_fd("Failed to open : ", 2, 0, RED);
 		ft_putstr_fd(path, 2, 1, RED);
 		free(path);
+		ft_free_data(cub);
 		exit(1);
 	}
 	image = mlx_texture_to_image(cub->mlx.mlx_ptr, texture);

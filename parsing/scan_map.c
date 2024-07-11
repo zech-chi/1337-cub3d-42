@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scan_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 21:26:45 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 03:23:48 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:45:36 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_scan_map_help(t_cub *cub, int r, int c)
 	{
 		if (cub->player.pr != -1 || cub->player.pc != -1)
 		{
+			ft_putstr_fd("multiple player", 2, 1, RED);
 			ft_free_data(cub);
 			exit(FAILED);
 		}
@@ -41,6 +42,7 @@ static void	ft_scan_map_help(t_cub *cub, int r, int c)
 	}
 	if (ft_search(cub->map[r][c], "0NSEWDT") && ft_check_neighbours(cub, r, c))
 	{
+		ft_putstr_fd("Invalid map", 2, 1, RED);
 		ft_free_data(cub);
 		exit(FAILED);
 	}

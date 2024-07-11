@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 14:05:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/06/02 14:49:58 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:43:10 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_create_map(t_cub *cub)
 		cub->map[r] = ft_strjoin(a, b);
 		if (!a || !b || !cub->map[r])
 		{
+			ft_putstr_fd("malloc failed", 2, 1, RED);
 			ft_free_data(cub);
-			ft_free_list(&(cub->head));
 			exit(FAILED);
 		}
 		node = node->next;

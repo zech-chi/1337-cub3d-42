@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:06:12 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:31:03 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_draw_weapon_magazine(t_cub *cub)
 		check = false;
 	if (!check)
 	{
-		ft_free_data(cub);
 		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		ft_free_data(cub);
 		exit(FAILED);
 	}
 	mlx_delete_image(cub->mlx.mlx_ptr, cub->mlx.weapon_magazin);
@@ -47,8 +47,8 @@ mlx_image_t	*ft_play_init_state(t_cub *cub)
 	name = ft_strdup(PATH_WEAPONS_INIT_STATE);
 	if (!name)
 	{
-		ft_free_data(cub);
 		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		ft_free_data(cub);
 		exit(FAILED);
 	}
 	cur_img = ft_get_image2(cub, name);
@@ -72,8 +72,8 @@ mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 		check = false;
 	if (!check)
 	{
-		ft_free_data(cub);
 		ft_putstr_fd("malloc failed\n", 2, 1, RED);
+		ft_free_data(cub);
 		exit(FAILED);
 	}
 	cur_img = ft_get_image2(cub, name);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:17:23 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:45:56 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,4 @@ void	ft_parsing(int ac, char **av, t_cub *cub)
 	ft_create_map(cub);
 	ft_scan_map(cub);
 	ft_player_init(cub);
-	ft_putstr_fd("Good args", 1, 1, GREEN);
 }

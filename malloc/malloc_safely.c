@@ -6,13 +6,12 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:58:30 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/06/02 14:59:18 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 04:43:35 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/// emmmmmmm the line in get_next_line will still reacheble ;
 void	*allocate_memory_safely(size_t bytes, t_cub *cub)
 {
 	void	*ptr;

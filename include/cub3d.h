@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:06:17 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/11 05:37:14 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,7 @@ void	ft_walk_right(t_cub *cub);
 bool	ft_iswall2(t_cub *cub, int x, int y, double alpha);
 bool	ft_can_walk_up(t_cub *cub);
 bool	ft_can_walk_down(t_cub *cub, double a, double b);
+bool	ft_can_walk_down2(t_cub *cub);
 // turn
 void	ft_turn_left(t_cub *cub);
 void	ft_turn_right(t_cub *cub);

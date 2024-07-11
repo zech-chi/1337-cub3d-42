@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walk_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:44:38 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/09 15:51:19 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 05:48:07 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,34 @@ bool	ft_can_walk_up(t_cub *cub)
 	if (ft_between(angle, PI2, PI) && ft_iswall2(cub, x - SCALE, y, angle))
 		return (false);
 	if (ft_between(angle, PI2, PI) && ft_iswall2(cub, x, y - SCALE, angle))
+		return (false);
+	return (true);
+}
+
+bool	ft_can_walk_down2(t_cub *cub)
+{
+	float	angle;
+	float	x;
+	float	y;
+
+	angle = cub->player.angle;
+	x = cub->player.px;
+	y = cub->player.py;
+	if (ft_between(angle, 0, PI2) && ft_iswall2(cub, x - SCALE, y, angle))
+		return (false);
+	if (ft_between(angle, 0, PI2) && ft_iswall2(cub, x, y + SCALE, angle))
+		return (false);
+	if (ft_between(angle, PI, _3PI2) && ft_iswall2(cub, x + SCALE, y, angle))
+		return (false);
+	if (ft_between(angle, PI, _3PI2) && ft_iswall2(cub, x, y - SCALE, angle))
+		return (false);
+	if (ft_between(angle, _3PI2, _2PI) && ft_iswall2(cub, x, y - SCALE, angle))
+		return (false);
+	if (ft_between(angle, _3PI2, _2PI) && ft_iswall2(cub, x - SCALE, y, angle))
+		return (false);
+	if (ft_between(angle, PI2, PI) && ft_iswall2(cub, x + SCALE, y, angle))
+		return (false);
+	if (ft_between(angle, PI2, PI) && ft_iswall2(cub, x, y + SCALE, angle))
 		return (false);
 	return (true);
 }

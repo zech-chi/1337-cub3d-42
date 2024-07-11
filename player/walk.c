@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walk.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 14:06:53 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/09 15:51:05 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 05:40:29 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_walk_down(t_cub *cub)
 
 	if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_S))
 	{
+		if (!ft_can_walk_down2(cub))
+			return ;
 		a = -1 * cub->player.walk_speed * cos(cub->player.angle);
 		b = cub->player.walk_speed * sin(cub->player.angle);
 		if (ft_can_walk_down(cub, a, b))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:01:31 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 21:11:55 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:00:24 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	f(void)
 {
-	system("leaks cub3D");
+	system("leaks cub3Dbonus");
 }
 
 void	ft_create_threads(t_cub *cub)
@@ -44,6 +44,20 @@ void	ft_create_threads(t_cub *cub)
 	}
 }
 
+void	ft_check_path_music(void)
+{
+	if (access(RELOAD_SOUND_PATH, F_OK) == -1 \
+	|| access(RELOAD_SOUND_PATH, R_OK) == -1 \
+	|| access(WAR_SOUND_PATH, F_OK) == -1 \
+	|| access(WAR_SOUND_PATH, R_OK) == -1 \
+	|| access(SHOOT_SOUND_PATH, F_OK) == -1 \
+	|| access(SHOOT_SOUND_PATH, R_OK) == -1)
+	{
+		ft_putstr_fd("can't load all sound files", 2, 1, RED);
+		exit(FAILED);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_cub		cub;
@@ -51,16 +65,11 @@ int	main(int ac, char **av)
 
 	i = 0;
 	atexit(f);
-	ft_mtx_init(&cub);
+	ft_check_path_music();
 	ft_parsing(ac, av, &cub);
+	ft_mtx_init(&cub);
 	ft_create_threads(&cub);
-	ft_build_maze(&cub); 
-	// if (pthread_join(cub.thread.id_background_music, NULL))
-	// {
-	// 	ft_putstr_fd("Failed to join thread", 2, 1, RED);
-	// 	ft_free_data(&cub);
-	// 	exit(FAILED);
-	// }
+	ft_build_maze(&cub);
 	ft_free_data(&cub);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_music.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 21:12:02 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 20:58:35 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 08:17:59 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 
 void	ft_mtx_init(t_cub *cub)
 {
-	pthread_mutex_init(&(cub->thread.mtx_stop), NULL);
+	if (pthread_mutex_init(&(cub->thread.mtx_stop), NULL))
+	{
+		ft_putstr_fd("Failed to init a mutex", 2, 1, RED);
+		ft_free_data(cub);
+		exit(FAILED);
+	}
+	cub->thread.mtx_count++;
+	if (pthread_mutex_init(&(cub->thread.mtx_protect), NULL))
+	{
+		ft_putstr_fd("Failed to init a mutex", 2, 1, RED);
+		ft_free_data(cub);
+		exit(FAILED);
+	}
+	cub->thread.mtx_count++;
 }
 
 bool	ft_mtx_get_stop(t_cub *cub)

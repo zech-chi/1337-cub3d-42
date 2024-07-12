@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:07:51 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 21:10:21 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:13:44 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	ft_reset_walls(t_cub *cub)
-{
-	int	y;
-	int	x;
-
-	y = -1;
-	while (++y < WINDOW_HEIGHT)
-	{
-		x = -1;
-		while (++x < WINDOW_WIDTH)
-		{
-			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 0));
-			mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 0));
-		}
-	}
-}
 
 bool	ft_play_starting(t_cub *cub)
 {
@@ -66,15 +49,19 @@ void	ft_render(void *param)
 	if (ft_play_starting(cub))
 		return ;
 	ft_play_weapon_frame(cub);
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	if (cub->mlx.reload || cub->mlx.zome_shoot1 || cub->mlx.normal_shoot1)
+	{
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
 		return ;
+	}
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
 	ft_weapon_event(cub);
 	ft_close_win_event(cub);
 	ft_player_event(cub);
 	ft_light_event(cub);
 	if (cub->render)
 	{
-		ft_reset_walls(cub);
 		ft_rays(cub);
 		ft_render_walls(cub);
 		ft_render_minimap(cub);
@@ -87,8 +74,6 @@ void	ft_build_maze(t_cub *cub)
 {
 	ft_mlx_init(cub);
 	ft_load_img(cub);
-	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
-	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	ft_mlx_image_to_window(cub, cub->mlx.black, 0, 0);
 	ft_mlx_image_to_window(cub, cub->mlx.sky, 0, 0);
 	ft_mlx_image_to_window(cub, cub->mlx.canva, 0, 0);
@@ -101,5 +86,7 @@ void	ft_build_maze(t_cub *cub)
 		WINDOW_HEIGHT / 2 - 8);
 	ft_mlx_image_to_window(cub, cub->mlx.background_start, 0, 0);
 	mlx_loop_hook(cub->mlx.mlx_ptr, ft_render, cub);
+	mlx_mouse_hook(cub->mlx.mlx_ptr, mouse_hook, cub);
+	mlx_cursor_hook(cub->mlx.mlx_ptr, mouse_func, cub);
 	mlx_loop(cub->mlx.mlx_ptr);
 }

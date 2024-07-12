@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:59:01 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 22:00:25 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:07:17 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,47 @@ void	ft_check_look(t_cub *cub, double ypos)
 	}
 }
 
-void	ft_check_turn(t_cub *cub, double xpos)
+void static	ft_update_data_player(t_cub *cub, bool turn_right)
 {
-	if (xpos > (WINDOW_WIDTH / 2) + ZONE)
+	int	x;
+
+	if (turn_right)
 	{
+		x = cub->mlx.sky->instances[0].x - 5;
+		if (x > -720)
+			cub->mlx.sky->instances[0].x = x;
+		else
+			cub->mlx.sky->instances[0].x = 0;
 		cub->player.angle -= TURN_SPEED;
 		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 	}
-	else if (xpos < (WINDOW_WIDTH / 2) - ZONE)
+	else
 	{
+		x = cub->mlx.sky->instances[0].x + 5;
+		if (x < 5)
+			cub->mlx.sky->instances[0].x = x;
+		else
+			cub->mlx.sky->instances[0].x = -720;
 		cub->player.angle += TURN_SPEED;
 		cub->player.angle = ft_periodic(cub->player.angle);
 		cub->render = true;
 	}
+}
+
+void	ft_check_turn(t_cub *cub, double xpos)
+{
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
+	if (cub->mlx.reload || cub->mlx.zome_shoot1 || cub->mlx.normal_shoot1)
+	{
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
+		return ;
+	}
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
+	if (xpos > (WINDOW_WIDTH / 2) + ZONE)
+		ft_update_data_player(cub, true);
+	else if (xpos < (WINDOW_WIDTH / 2) - ZONE)
+		ft_update_data_player(cub, false);
 }
 
 void	mouse_func(double xpos, double ypos, void *param)
@@ -67,8 +94,12 @@ modifier_key_t mods, void *param)
 
 	cub = param;
 	(void)mods;
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	if (ft_there_is_active_event(cub))
+	{
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
 		return ;
+	}
 	if (action == MLX_PRESS)
 	{
 		if (button == MLX_MOUSE_BUTTON_LEFT)
@@ -82,4 +113,5 @@ modifier_key_t mods, void *param)
 			cub->mlx.zome_shoot1 = true;
 		}
 	}
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
 }

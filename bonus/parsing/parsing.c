@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 04:45:56 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/12 08:13:43 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void	ft_data_init(t_cub *cub)
 	cub->play_weapon = false;
 	cub->light_on = false;
 	cub->mlx.mlx_ptr = NULL;
+	cub->thread.mtx_count = 0;
 	ft_data_init2(cub);
 }
 

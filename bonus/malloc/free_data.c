@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:57:57 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 21:10:57 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:00:53 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ void	ft_free_mlx(t_cub *cub)
 	mlx_terminate(cub->mlx.mlx_ptr);
 }
 
+void	ft_destroy_mtx(t_cub *cub)
+{
+	if (cub->thread.mtx_count == 1)
+		pthread_mutex_destroy(&cub->thread.mtx_stop);
+	else if (cub->thread.mtx_count == 2)
+	{
+		pthread_mutex_destroy(&cub->thread.mtx_stop);
+		pthread_mutex_destroy(&cub->thread.mtx_protect);
+	}
+}
+
 void	ft_free_data(t_cub *cub)
 {
 	ft_mtx_set_stop(cub);
@@ -77,4 +88,5 @@ void	ft_free_data(t_cub *cub)
 	ft_free_mlx(cub);
 	if (cub->fd != -1)
 		close(cub->fd);
+	ft_destroy_mtx(cub);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 11:13:24 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 20:20:25 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:06:52 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_draw_weapon_magazine(t_cub *cub)
 
 	check = true;
 	name = NULL;
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	name = ft_strjoin(ft_strdup(PATH_WEAPON_MAGAZINE), \
 	ft_itoa(cub->mlx.weapon_magazin_index));
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
 	if (!name)
 		check = false;
 	name = ft_strjoin(name, ft_strdup(PNG));
@@ -64,6 +66,7 @@ mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 	bool			check;
 
 	check = true;
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	name = ft_strjoin(ft_strdup(path), ft_itoa(cub->mlx.index_weapon));
 	if (!name)
 		check = false;
@@ -80,6 +83,7 @@ mlx_image_t	*ft_play_weapon_status(t_cub *cub, int size, char *path)
 	free(name);
 	ft_mlx_image_to_window(cub, cur_img, 0, 0);
 	(cub->mlx.index_weapon)++;
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
 	ft_check_last_frame(cub, size);
 	return (cur_img);
 }
@@ -102,16 +106,11 @@ mlx_image_t	*ft_play_weapon(t_cub *cub)
 		cub->mlx.init_state = true;
 	}
 	else if (cub->mlx.normal_shoot1)
-	{
 		cur_img = ft_play_weapon_status(cub, FRAMES_SHOOT1, \
 		PATH_WEAPONS_NORM_SHOOT_1);
-	}
 	else if (cub->mlx.zome_shoot1)
-	{
 		cur_img = ft_play_weapon_status(cub, FRAMES_ZOME1, \
 		PATH_WEAPONS_ZOME_SHOOT_1);
-	}
-	
 	return (cur_img);
 }
 

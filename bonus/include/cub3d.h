@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 12:25:52 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 18:20:09 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 07:45:59 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ typedef struct s_thread
 	pthread_t		id_background_music;
 	pthread_t		id_sound;
 	pthread_mutex_t	mtx_stop;
+	pthread_mutex_t	mtx_protect;
+	int				mtx_count;
 }	t_thread;
 
 typedef struct s_cub

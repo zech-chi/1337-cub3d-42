@@ -4,7 +4,7 @@ NAMEBON = cub3Dbonus
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -Ofast #-fsanitize=thread #-g
 
 SRCSMAN =  mandatory/main.c \
 		mandatory/get_next_line/get_next_line_utils.c \

@@ -6,11 +6,28 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:23:48 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/10 21:24:18 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:13:55 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	ft_reset_walls(t_cub *cub)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < WINDOW_HEIGHT)
+	{
+		x = -1;
+		while (++x < WINDOW_WIDTH)
+		{
+			mlx_put_pixel(cub->mlx.maze_img, x, y, ft_color(255, 255, 255, 0));
+			mlx_put_pixel(cub->mlx.canva, x, y, ft_color(0, 0, 0, 0));
+		}
+	}
+}
 
 static void	ft_raycasting(t_cub *cub, int i)
 {
@@ -45,6 +62,7 @@ void	ft_rays(t_cub *cub)
 	float	ray_angle;
 	int		i;
 
+	ft_reset_walls(cub);
 	ray_angle = cub->player.angle + M_PI / 6.0;
 	i = -1;
 	while (++i < NUMBER_RAYS)

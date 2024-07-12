@@ -6,7 +6,7 @@
 /*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 16:18:50 by zelabbas          #+#    #+#             */
-/*   Updated: 2024/07/11 04:31:14 by zelabbas         ###   ########.fr       */
+/*   Updated: 2024/07/11 22:24:52 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@ void	ft_reset_weapon_event(t_cub *cub)
 
 void	ft_weapon_event(t_cub *cub)
 {
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	if (ft_there_is_active_event(cub))
+	{
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
 		return ;
+	}
 	else if (mlx_is_key_down(cub->mlx.mlx_ptr, MLX_KEY_1))
 	{
 		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_NORMAL);
@@ -46,6 +50,7 @@ void	ft_weapon_event(t_cub *cub)
 		mlx_set_cursor_mode(cub->mlx.mlx_ptr, MLX_MOUSE_HIDDEN);
 		cub->mlx.status = MLX_MOUSE_HIDDEN;
 	}
+	pthread_mutex_unlock(&(cub->thread.mtx_protect));
 }
 
 mlx_image_t	*ft_get_image2(t_cub *cub, char *path)
@@ -69,13 +74,21 @@ mlx_image_t	*ft_get_image2(t_cub *cub, char *path)
 
 void	ft_check_last_frame(t_cub *cub, int size)
 {
+	int	check;
+
+	check = 1;
+	pthread_mutex_lock(&(cub->thread.mtx_protect));
 	if (cub->mlx.index_weapon > size)
 	{
+		check = 0;
 		cub->mlx.index_weapon = 0;
 		if (!cub->mlx.reload)
 			cub->mlx.weapon_magazin_index++;
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
 		ft_draw_weapon_magazine(cub);
 		ft_reset_weapon_event(cub);
 		cub->mlx.init_state = true;
 	}
+	if (check)
+		pthread_mutex_unlock(&(cub->thread.mtx_protect));
 }

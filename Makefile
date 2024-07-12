@@ -4,7 +4,7 @@ NAMEBON = cub3Dbonus
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Ofast #-fsanitize=thread #-g
+CFLAGS = -Wall -Wextra -Werror -Ofast
 
 SRCSMAN =  mandatory/main.c \
 		mandatory/get_next_line/get_next_line_utils.c \
@@ -93,20 +93,24 @@ SRCSBON =  bonus/main_bonus.c \
 
 
 OBJSMAN = $(SRCSMAN:.c=.o)
+
 OBJSBON = $(SRCSBON:.c=.o)
-
-all: $(NAME)
-
-%.o: %.c #bonus/include/cub3d.h bonus/include/consts.h
-	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJSMAN)
 	$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 
-bonus: $(NAMEBON)
-
 $(NAMEBON): $(OBJSBON) 
 	$(CC) $(CFLAGS) $^ -o $@ ./MLX42/build/libmlx42.a -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+
+%_bonus.o: %_bonus.c bonus/include/cub3d_bonus.h bonus/include/consts_bonus.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.c mandatory/include/cub3d.h mandatory/include/consts.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+all: $(NAME)
+
+bonus: $(NAMEBON)
 
 clean:
 	$(RM) $(OBJSMAN) $(OBJSBON)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zelabbas <zelabbas@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:21:03 by zech-chi          #+#    #+#             */
-/*   Updated: 2024/07/11 17:36:06 by zech-chi         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:02:27 by zelabbas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ void	ft_parsing(int ac, char **av, t_cub *cub)
 	ft_valid_name(av[1]);
 	ft_scan_file(cub, av[1]);
 	ft_create_map(cub);
+	if (!cub->map)
+	{
+		ft_putstr_fd("ERROR:\nempty file !", 2, 1, RED);
+		ft_free_data(cub);
+		exit(FAILED);
+	}
 	ft_scan_map(cub);
 	ft_player_init(cub);
 }

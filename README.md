@@ -1,10 +1,8 @@
-<div align="center">
-
 ## Demo
 
-[![Watch the cub3D demo — 69 seconds, mandatory and bonus builds](docs/demo-preview.svg)](demo.mp4)
+https://github.com/user-attachments/assets/1707be1c-5ee5-4120-bb29-86f0aaa198c4
 
-[Open the video](demo.mp4) · [Local browser player](docs/demo.html)
+<div align="center">
 
 # cub3D
 
@@ -19,8 +17,6 @@ C · MLX42 · Raycasting · 1337 / 42
 ---
 
 A Wolfenstein-style raycaster written in C. The engine casts rays through a tile map, finds the nearest wall, and projects textured columns into a first-person view. The mandatory build implements the core renderer; the bonus build adds a minimap, mouse look, weapon animations, sound, and more.
-
-> The preview opens the recording. For local playback with controls, open `docs/demo.html` in your browser. Inline playback on GitHub requires an uploaded video attachment URL.
 
 ## What’s inside
 

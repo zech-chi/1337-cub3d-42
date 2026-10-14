@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cub3D — Demo</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#111;color:#eee;font:16px/1.6 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:48px 24px}.label{color:#999;letter-spacing:.2em;font-size:12px}h1{font-size:clamp(36px,7vw,64px);letter-spacing:-.05em;margin:8px 0}p{color:#aaa}video{display:block;width:100%;max-height:75vh;background:#000;border:1px solid #444;border-radius:8px;margin:28px 0 18px}a{color:#eee;text-underline-offset:4px}#status{color:#ccc}
+</style>
+</head>
+<body><main>
+<div class="label">1337 / 42 · RAYCASTING IN C</div>
+<h1>cub3D / Demo</h1>
+<p>A first-person maze, built from a 2D grid.</p>
+<video id="demo" controls playsinline preload="metadata" aria-label="cub3D gameplay demo">
+<source src="../demo.mp4" type="video/mp4">
+Your browser does not support video playback. <a href="../demo.mp4">Open the MP4 recording.</a>
+</video>
+<p id="status" role="status"></p>
+<a href="../demo.mp4">Open recording</a> · <a href="../README.md">Read the project documentation</a>
+</main>
+<script>
+const video=document.getElementById('demo');
+video.addEventListener('error',()=>{document.getElementById('status').textContent='This browser could not play the recording. Open the MP4 link to use another player.';});
+</script>
+</body></html>

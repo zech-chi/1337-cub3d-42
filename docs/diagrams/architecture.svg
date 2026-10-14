@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680" role="img" aria-labelledby="title desc">
+<title id="title">cub3D: from map to frame</title><desc id="desc">The map is parsed and validated before graphics initialization. Each loop processes input, casts rays, and draws wall columns. The bonus version adds overlays and audio threads.</desc>
+<rect width="1100" height="680" fill="#ffffff"/>
+<text x="40" y="53.0" fill="#222222" font-family="Arial, sans-serif" font-size="28">FROM MAP TO FRAME</text>
+<text x="40" y="83.0" fill="#666666" font-family="Arial, sans-serif" font-size="18">A shared raycasting core. Two playable builds.</text>
+<path d="M40,115 L330,116 L329,235 L41,234 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="58" y="151.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">01  Read the scene</text>
+<text x="58" y="183.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">.cub file</text>
+<text x="58" y="206.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">Textures + RGB colors</text>
+<path d="M405,115 L695,116 L694,235 L406,234 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="423" y="151.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">02  Validate the map</text>
+<text x="423" y="183.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Closed boundaries</text>
+<text x="423" y="206.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">Exactly one player</text>
+<path d="M770,115 L1060,116 L1059,235 L771,234 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="788" y="151.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">03  Initialize</text>
+<text x="788" y="183.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Player + textures</text>
+<text x="788" y="206.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">MLX42 window</text>
+<path d="M335,175 L395,175" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M385.3465918192059,180.27368092464624 L395,175 L385.3465918192059,169.72631907535376" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M700,175 L760,175" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M750.3465918192059,180.27368092464624 L760,175 L750.3465918192059,169.72631907535376" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M915,240 L915,285" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M909.7263190753538,275.3465918192059 L915,285 L920.2736809246462,275.3465918192059" fill="none" stroke="#222222" stroke-width="2"/>
+<text x="40" y="285.0" fill="#666666" font-family="Arial, sans-serif" font-size="18">RENDER LOOP</text>
+<path d="M40,315 L330,316 L329,440 L41,439 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="58" y="351.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">06  Draw columns</text>
+<text x="58" y="384.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Correct distance</text>
+<text x="58" y="407.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">Sample wall texture</text>
+<path d="M405,315 L695,316 L694,440 L406,439 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="423" y="351.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">05  Cast 1,200 rays</text>
+<text x="423" y="384.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Horizontal + vertical hits</text>
+<text x="423" y="407.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">Keep the nearest hit</text>
+<path d="M770,315 L1060,316 L1059,440 L771,439 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="788" y="351.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">04  Handle input</text>
+<text x="788" y="384.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Movement + collision</text>
+<text x="788" y="407.4" fill="#222222" font-family="Arial, sans-serif" font-size="18">Update view angle</text>
+<path d="M760,377 L700,377" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M709.6534081807941,371.7263190753538 L700,377 L709.6534081807941,382.2736809246462" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M395,377 L335,377" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M344.6534081807941,371.7263190753538 L335,377 L344.6534081807941,382.2736809246462" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M185,445 L185,470" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M185,470 L915,470" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M915,470 L915,445" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M920.2736809246462,454.6534081807941 L915,445 L909.7263190753538,454.6534081807941" fill="none" stroke="#222222" stroke-width="2"/>
+<text x="442" y="491.0" fill="#666666" font-family="Arial, sans-serif" font-size="16">Next loop iteration</text>
+<path d="M40,530 L1060,531 L1059,640 L41,639 Z" fill="#eeeeee" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="60" y="558.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">BONUS LAYER</text>
+<text x="60" y="588.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Minimap / doors / weapon animation / mouse look / jump / lighting</text>
+<text x="60" y="617.0" fill="#666666" font-family="Arial, sans-serif" font-size="17">Background music + action sounds run in separate threads (afplay).</text>
+</svg>

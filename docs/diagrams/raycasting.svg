@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650" role="img" aria-labelledby="title desc">
+<title id="title">cub3D: raycasting and projection</title><desc id="desc">A fan of rays across a 60 degree field of view hits a wall on a two dimensional grid. Cosine-corrected distances keep the projected flat wall straight.</desc>
+<rect width="1100" height="650" fill="#ffffff"/>
+<text x="40" y="53.0" fill="#222222" font-family="Arial, sans-serif" font-size="28">A 2D MAP BECOMES A 3D VIEW</text>
+<text x="40" y="83.0" fill="#666666" font-family="Arial, sans-serif" font-size="18">One ray per screen column. Cosine correction keeps flat walls straight.</text>
+<text x="40" y="131.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">01 / Top-down map</text>
+<text x="665" y="131.0" fill="#222222" font-family="Arial, sans-serif" font-size="21">02 / Projected wall slices</text>
+<path d="M40,165 L40,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M95,165 L95,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M150,165 L150,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M205,165 L205,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M260,165 L260,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M315,165 L315,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M370,165 L370,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M425,165 L425,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M480,165 L480,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,165 L480,165" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,220 L480,220" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,275 L480,275" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,330 L480,330" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,385 L480,385" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,440 L480,440" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M40,495 L480,495" fill="none" stroke="#dddddd" stroke-width="2"/>
+<path d="M370,165 L425,166 L424,495 L371,494 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="365" y="528.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Wall</text>
+<path d="M135,330 L370,194" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,239" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,284" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,330" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,375" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,420" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,465" fill="none" stroke="#999999" stroke-width="2"/>
+<path d="M135,330 L370,330" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M360.3465918192059,335.2736809246462 L370,330 L360.3465918192059,324.7263190753538" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M127,322 L143,323 L142,338 L128,337 Z" fill="#222222" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="55" y="368.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Player</text>
+<text x="167" y="307.0" fill="#222222" font-family="Arial, sans-serif" font-size="17">60 degree FOV</text>
+<text x="170" y="461.0" fill="#222222" font-family="Arial, sans-serif" font-size="17">Nearest grid intersection</text>
+<path d="M500,330 L625,330" fill="none" stroke="#222222" stroke-width="2"/>
+<path d="M615.3465918192059,335.2736809246462 L625,330 L615.3465918192059,324.7263190753538" fill="none" stroke="#222222" stroke-width="2"/>
+<text x="505" y="367.0" fill="#222222" font-family="Arial, sans-serif" font-size="17">Project</text>
+<path d="M665,165 L1060,166 L1059,495 L666,494 Z" fill="#f5f5f5" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M665,330 L1060,330" fill="none" stroke="#999999" stroke-width="2" stroke-dasharray="6 6"/>
+<path d="M681,225.0 L708,226.0 L707,435.0 L682,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M709,225.0 L736,226.0 L735,435.0 L710,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M737,225.0 L764,226.0 L763,435.0 L738,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M765,225.0 L792,226.0 L791,435.0 L766,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M793,225.0 L820,226.0 L819,435.0 L794,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M821,225.0 L848,226.0 L847,435.0 L822,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M849,225.0 L876,226.0 L875,435.0 L850,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M877,225.0 L904,226.0 L903,435.0 L878,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M905,225.0 L932,226.0 L931,435.0 L906,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M933,225.0 L960,226.0 L959,435.0 L934,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M961,225.0 L988,226.0 L987,435.0 L962,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M989,225.0 L1016,226.0 L1015,435.0 L990,434.0 Z" fill="#bbbbbb" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<path d="M1017,225.0 L1044,226.0 L1043,435.0 L1018,434.0 Z" fill="#dddddd" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="745" y="528.0" fill="#222222" font-family="Arial, sans-serif" font-size="18">Flat wall = equal-height slices</text>
+<path d="M40,565 L1060,566 L1059,620 L41,619 Z" fill="#eeeeee" stroke="#222222" stroke-width="2" stroke-linejoin="round"/>
+<text x="60" y="597.0" fill="#222222" font-family="Arial, sans-serif" font-size="17">distance = ray distance x cos(view angle - ray angle)   /   wall height scales as 1 / distance</text>
+</svg>
